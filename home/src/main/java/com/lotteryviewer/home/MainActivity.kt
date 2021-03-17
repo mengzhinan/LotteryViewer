@@ -1,4 +1,4 @@
-package com.lotteryviewer.android
+package com.lotteryviewer.home
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView

@@ -1,4 +1,4 @@
-package com.lotteryviewer.android.ui.notifications
+package com.lotteryviewer.home.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

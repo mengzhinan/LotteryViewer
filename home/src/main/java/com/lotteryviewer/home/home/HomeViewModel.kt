@@ -1,4 +1,4 @@
-package com.lotteryviewer.android.ui.home
+package com.lotteryviewer.home.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
