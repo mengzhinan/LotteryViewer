@@ -4,7 +4,7 @@ import android.net.Uri;
 
 import androidx.core.content.FileProvider;
 
-import com.lotteryviewer.base.BaseApplication;
+import com.lotteryviewer.base.app.BaseApplication;
 
 import java.io.File;
 

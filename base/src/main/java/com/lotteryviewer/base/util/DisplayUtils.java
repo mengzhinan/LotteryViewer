@@ -3,7 +3,7 @@ package com.lotteryviewer.base.util;
 import android.content.Context;
 import android.util.DisplayMetrics;
 
-import com.lotteryviewer.base.BaseApplication;
+import com.lotteryviewer.base.app.BaseApplication;
 
 /**
  * @Author: duke

@@ -1,4 +1,4 @@
-package com.lotteryviewer.base;
+package com.lotteryviewer.base.app;
 
 import android.content.Context;
 import android.content.SharedPreferences;

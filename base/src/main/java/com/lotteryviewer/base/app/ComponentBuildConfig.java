@@ -1,4 +1,4 @@
-package com.lotteryviewer.base;
+package com.lotteryviewer.base.app;
 
 import android.os.Bundle;
 
