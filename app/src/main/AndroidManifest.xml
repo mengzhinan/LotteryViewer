@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lotteryviewer.android">
 
+
     <application
         android:name=".LotteryApplication"
         android:allowBackup="true"

@@ -1,5 +1,7 @@
 package com.lotteryviewer.android
 
+import android.content.Context
+import androidx.multidex.MultiDex
 import com.lotteryviewer.base.app.BaseApplication
 
 /**
@@ -9,5 +11,9 @@ import com.lotteryviewer.base.app.BaseApplication
  */
 class LotteryApplication : BaseApplication() {
 
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+    }
 
 }

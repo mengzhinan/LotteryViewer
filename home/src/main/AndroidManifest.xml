@@ -3,7 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lotteryviewer.home">
 
-    <application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取用户的手机是否联网的信息 -->
+    <!--    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
+
+
+    <application
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:usesCleartextTraffic="true"
+        tools:ignore="UnusedAttribute">
 
         <activity
             android:name=".MainActivity"

@@ -15,6 +15,14 @@ android {
         versionName rootProject.ext.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
+        // 65536
+        // 5.0 21 以上默认支持 64k
+        // https://developer.android.google.cn/studio/build/multidex?hl=zh_cn
+        multiDexEnabled true
+
+
     }
 
     buildTypes {
@@ -46,6 +54,12 @@ dependencies {
 
     implementation project(path: ':base')
     implementation project(path: ':home')
+
+    // 65536
+    // 5.0 21 以上默认支持 64k
+    // https://developer.android.google.cn/studio/build/multidex?hl=zh_cn
+    implementation 'androidx.multidex:multidex:2.0.1'
+
 
 
 }
