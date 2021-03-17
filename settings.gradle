@@ -1,0 +1,9 @@
+include ':guaGuaLe'
+include ':fc3d'
+include ':sevenColors'
+include ':happy8'
+include ':twoColorBall'
+include ':base'
+include ':home'
+include ':app'
+rootProject.name = "LotteryViewer"
