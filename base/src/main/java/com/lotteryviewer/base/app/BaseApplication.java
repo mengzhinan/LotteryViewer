@@ -9,7 +9,7 @@ import android.app.Application;
  */
 public class BaseApplication extends Application {
 
-    private static Application REAL_INSTANCE;
+    private static BaseApplication REAL_INSTANCE;
     private static Application sApplicationContext;
 
     {
