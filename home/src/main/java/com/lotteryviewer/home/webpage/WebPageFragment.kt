@@ -1,4 +1,4 @@
-package com.lotteryviewer.home.home
+package com.lotteryviewer.home.webpage
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.lotteryviewer.home.R
 
-class HomeFragment : Fragment() {
+class WebPageFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var webPageViewModel: WebPageViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        webPageViewModel =
+            ViewModelProvider(this).get(WebPageViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_web_page, container, false)
+        val textView: TextView = root.findViewById(R.id.text_web_page)
+        webPageViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_dashboard">
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.lotteryviewer.home.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_web_page"
+        android:name="com.lotteryviewer.home.webpage.WebPageFragment"
+        android:label="@string/title_web_page"
+        tools:layout="@layout/fragment_web_page" />
 
     <fragment
         android:id="@+id/navigation_notifications"
