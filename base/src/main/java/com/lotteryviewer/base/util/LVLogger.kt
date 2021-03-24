@@ -11,7 +11,7 @@ import android.util.Log
 object LVLogger {
 
     const val TAG = "test_lv_log"
-    var isDebug = false
+    var isDebug = true
 
     fun logD(s: String?) {
         logD(TAG, s)

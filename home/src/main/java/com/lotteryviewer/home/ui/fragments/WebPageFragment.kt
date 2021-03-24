@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.lotteryviewer.home.R
-import com.lotteryviewer.home.ui.webpage.WebPageViewModel
+import com.lotteryviewer.home.ui.viewmodel.WebPageViewModel
 
 class WebPageFragment : Fragment() {
 
