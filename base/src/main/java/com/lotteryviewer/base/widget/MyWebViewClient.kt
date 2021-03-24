@@ -1,4 +1,4 @@
-package com.lotteryviewer.base.widgets
+package com.lotteryviewer.base.widget
 
 /**
  * @Author: duke

@@ -1,4 +1,6 @@
-package com.lotteryviewer.twocolorball
+package com.lotteryviewer.twocolorball.util
+
+import com.lotteryviewer.twocolorball.R
 
 /**
  * @Author: duke
@@ -6,7 +8,7 @@ package com.lotteryviewer.twocolorball
  * @Description: 功能描述：
  *
  */
-object TwoColorBallDataUtil {
+object BallDataUtil {
 
     const val TAG = "two_color_ball_js"
 

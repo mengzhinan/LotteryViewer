@@ -1,4 +1,4 @@
-package com.lotteryviewer.twocolorball
+package com.lotteryviewer.twocolorball.util
 
 import android.util.Log
 import android.webkit.WebView
@@ -13,7 +13,7 @@ import java.util.*
  * @Description: 功能描述：
  *
  */
-object TwoColorBallHtmlUtil {
+object BallHtmlUtil {
 
     // 移除默认节点 UI
     private const val demo = ("javascript:function deleteByTagName0() {"
@@ -42,7 +42,7 @@ object TwoColorBallHtmlUtil {
             + "var nums = '';"
             + "for(var i = 0; i < size; i++) {"
             + "nums += lis[i].innerText;"
-            + "nums += '${TwoColorBallDataUtil.SPLIT}';"
+            + "nums += '${BallDataUtil.SPLIT}';"
             + "}"
             + "return nums;"
             + "}")
@@ -51,7 +51,7 @@ object TwoColorBallHtmlUtil {
     fun getHtmlText(view: WebView?, endCallback: FunctionNone?) {
         view ?: return
         endCallback ?: return
-        Log.e(TwoColorBallDataUtil.TAG, "开始解析 html")
+        Log.e(BallDataUtil.TAG, "开始解析 html")
 
         var isSequenceOK = false
         var isDateOK = false
@@ -63,11 +63,11 @@ object TwoColorBallHtmlUtil {
             "getCurrentPrizeSequence",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    TwoColorBallDataUtil.prizeSequenceStr = value
-                    if (TwoColorBallDataUtil.prizeSequenceStr?.toLowerCase(Locale.getDefault()) == "null") {
-                        TwoColorBallDataUtil.prizeSequenceStr = "?"
+                    BallDataUtil.prizeSequenceStr = value
+                    if (BallDataUtil.prizeSequenceStr?.toLowerCase(Locale.getDefault()) == "null") {
+                        BallDataUtil.prizeSequenceStr = "?"
                     }
-                    TwoColorBallDataUtil.parseStr()
+                    BallDataUtil.parseStr()
                     isSequenceOK = true
                     checkDateAndCallback(isSequenceOK, isDateOK, isPrizeNumOK, endCallback)
                 }
@@ -79,11 +79,11 @@ object TwoColorBallHtmlUtil {
             "getCurrentPrizeDate",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    TwoColorBallDataUtil.prizeDateStr = value
-                    if (TwoColorBallDataUtil.prizeDateStr?.toLowerCase(Locale.getDefault()) == "null") {
-                        TwoColorBallDataUtil.prizeDateStr = "?"
+                    BallDataUtil.prizeDateStr = value
+                    if (BallDataUtil.prizeDateStr?.toLowerCase(Locale.getDefault()) == "null") {
+                        BallDataUtil.prizeDateStr = "?"
                     }
-                    TwoColorBallDataUtil.parseStr()
+                    BallDataUtil.parseStr()
                     isDateOK = true
                     checkDateAndCallback(isSequenceOK, isDateOK, isPrizeNumOK, endCallback)
                 }
@@ -95,7 +95,7 @@ object TwoColorBallHtmlUtil {
             "getCurrentPrizeNums",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    TwoColorBallDataUtil.prizeNumStr = value
+                    BallDataUtil.prizeNumStr = value
                     isPrizeNumOK = true
                     checkDateAndCallback(isSequenceOK, isDateOK, isPrizeNumOK, endCallback)
                 }
@@ -109,7 +109,7 @@ object TwoColorBallHtmlUtil {
         callback: FunctionNone?
     ) {
         Log.e(
-            TwoColorBallDataUtil.TAG,
+            BallDataUtil.TAG,
             "准备回调 bl1 = $bl1, bl2 = $bl2, bl3 = $bl3"
         )
         if (bl1 && bl2 && bl3) {

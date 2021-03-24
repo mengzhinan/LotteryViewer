@@ -46,7 +46,7 @@ object BaseSPUtil {
         context: Context?,
         key: String?,
         value: Any?,
-        listener: SharedPreferences.OnSharedPreferenceChangeListener?
+        listener: SharedPreferences.OnSharedPreferenceChangeListener? = null
     ) {
         key ?: return
         value ?: return
