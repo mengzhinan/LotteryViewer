@@ -14,11 +14,19 @@ object BaseSPUtil {
 
     private const val BASE_FILE_NAME = "lottery_viewer"
 
-    private fun getSharedPreferences(context: Context?): SharedPreferences? {
+    fun getSharedPreferences(context: Context?): SharedPreferences? {
         return context?.applicationContext?.getSharedPreferences(
             BASE_FILE_NAME,
             Context.MODE_PRIVATE
         )
+    }
+
+    internal fun getEditor(context: Context?): SharedPreferences.Editor? {
+        return getSharedPreferences(context)?.edit()
+    }
+
+    fun contains(context: Context?, key: String?): Boolean {
+        return getSharedPreferences(context)?.contains(key) ?: false
     }
 
     fun getBoolean(context: Context?, key: String?, defaultValue: Boolean): Boolean {
@@ -75,9 +83,12 @@ object BaseSPUtil {
         getSharedPreferences(context)?.unregisterOnSharedPreferenceChangeListener(listener)
     }
 
-    @SuppressLint("CommitPrefEdits")
     fun clear(context: Context?) {
-        getSharedPreferences(context)?.edit()?.clear()
+        getEditor(context)?.clear()
+    }
+
+    fun remove(context: Context?, key: String?) {
+        getEditor(context)?.remove(key)
     }
 
 }
