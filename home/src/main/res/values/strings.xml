@@ -4,4 +4,18 @@
     <string name="title_web_page">Web</string>
     <string name="title_notifications">Notifications</string>
 
+
+    <string name="about_app_title">关于应用</string>
+    <string name="about_app_disclaimer_title">免责申明</string>
+    <string name="about_app_content">\t\t1、本软件提供服务范围为：
+\n便捷查看官网历史开奖信息；
+\n获取某期开奖号码与输入号码自动对比，智能计算中奖状态。
+\n\t\t2、本软件完全免费。最终是否中奖请参考彩票网站结果。请理性购买彩票，不要过度。
+\n\t\t3、本软件承诺不会获取用户手机任何隐私信息，但仅会使用手机网络权限加载彩票网页数据。
+\n\t\t4、任何人使用本软件做出违法行为或损害第三方利益行为，本软件开发者不承担任何责任，用户自己承担责任。
+\n\t\t5、不要恶意传播此软件，如果喜欢此软件，可私下联系开发者获取更全功能的安装包。
+\n\t\t6、使用本软件要求手机系统版本在 Android 5.1 及以上，并且手机联网。如果发现软件有 Bug，或有宝贵的改进建议，请联系开发者。
+\n\t\t7、当你使用此软件时，即表示同意上述条款；否则请立即卸载。
+    </string>
+
 </resources>

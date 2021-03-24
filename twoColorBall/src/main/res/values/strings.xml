@@ -1,0 +1,18 @@
+<resources>
+
+    <string name="title">彩票查询</string>
+    <string name="menu1">查中奖</string>
+    <string name="menu2">刷新</string>
+    <string name="menu3">关于应用</string>
+
+    <string name="check_prize_title">中奖查询</string>
+
+    <string name="result_tip_6">恭喜你命中六等奖，\n奖金 5 元！</string>
+    <string name="result_tip_5">恭喜你命中五等奖，\n奖金 10 元！</string>
+    <string name="result_tip_4">恭喜你命中四等奖，\n奖金 200 元！</string>
+    <string name="result_tip_3">恭喜你命中三等奖，\n奖金 3,000 元！</string>
+    <string name="result_tip_2">恭喜你命中二等奖，\n奖金浮动！</string>
+    <string name="result_tip_1">恭喜你命中一等奖，\n奖金浮动！</string>
+    <string name="result_tip_empty">好像没中奖，\n继续努力!</string>
+
+</resources>
