@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.lotteryviewer.base.util.TextUtils;
+import com.lotteryviewer.base.util.TextUtil;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -112,7 +112,7 @@ public class BasePreferenceHelper {
     public static GregorianCalendar getTime(Context pContext, int pKeyResId, String pDefValueStr,
                                             DateFormat dateFormat) {
         String str = getString(pContext, pKeyResId, pDefValueStr);
-        if (!TextUtils.isEmpty(str)) {
+        if (!TextUtil.isEmpty(str)) {
             try {
                 GregorianCalendar time = new GregorianCalendar();
                 time.setTime(dateFormat.parse(str));
