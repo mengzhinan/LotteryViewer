@@ -1,4 +1,4 @@
-package com.lotteryviewer.home.dashboard
+package com.lotteryviewer.home.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.lotteryviewer.home.R
+import com.lotteryviewer.home.ui.viewmodel.DashboardViewModel
 
 class DashboardFragment : Fragment() {
 

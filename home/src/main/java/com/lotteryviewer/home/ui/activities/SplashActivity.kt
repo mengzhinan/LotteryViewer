@@ -1,9 +1,9 @@
-package com.lotteryviewer.android
+package com.lotteryviewer.home.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.lotteryviewer.home.MainActivity
+import com.lotteryviewer.home.R
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.lotteryviewer.home.dialog
+package com.lotteryviewer.home.ui.dialog
 
 import android.app.Activity
 import android.content.DialogInterface
@@ -14,7 +14,7 @@ import kotlin.system.exitProcess
  * @Description: 功能描述：
  *
  */
-object DisclaimerDialogUtils {
+object DisclaimerDialogUtil {
 
     fun showDisclaimerDialog(activity: Activity?) {
         activity ?: return

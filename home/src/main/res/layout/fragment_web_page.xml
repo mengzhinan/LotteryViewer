@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lotteryviewer.home.webpage.WebPageFragment">
+    tools:context="com.lotteryviewer.home.ui.fragments.WebPageFragment">
 
     <TextView
         android:id="@+id/text_web_page"

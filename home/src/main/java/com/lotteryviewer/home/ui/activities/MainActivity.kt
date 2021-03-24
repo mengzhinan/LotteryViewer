@@ -1,13 +1,13 @@
-package com.lotteryviewer.home
+package com.lotteryviewer.home.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.lotteryviewer.home.R
 
 class MainActivity : AppCompatActivity() {
 

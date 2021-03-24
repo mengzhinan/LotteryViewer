@@ -1,13 +1,13 @@
-package com.lotteryviewer.home.webpage
+package com.lotteryviewer.home.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class WebPageViewModel : ViewModel() {
+class NotificationsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is webPage Fragment"
+        value = "This is notifications Fragment"
     }
     val text: LiveData<String> = _text
 }
