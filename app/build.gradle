@@ -16,6 +16,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        buildConfigField "String", "DEFAULT_TEST", "\"test\""
 
         // 65536
         // 5.0 21 以上默认支持 64k
@@ -26,11 +27,36 @@ android {
     }
 
     buildTypes {
-        release {
+
+        debug {
             minifyEnabled false
+            shrinkResources false
+        }
+
+        release {
+
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
     }
+
+    flavorDimensions "default"
+    productFlavors {
+
+        alpha {
+            versionNameSuffix "-dev"
+            buildConfigField "String", "INSTALLER_ID", "\"Development\""
+            resConfigs "zh-rCN", "xxhdpi"
+        }
+
+        market {
+            buildConfigField "String", "INSTALLER_ID", "\"Market\""
+        }
+
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -59,7 +85,6 @@ dependencies {
     // 5.0 21 以上默认支持 64k
     // https://developer.android.google.cn/studio/build/multidex?hl=zh_cn
     implementation 'androidx.multidex:multidex:2.0.1'
-
 
 
 }
