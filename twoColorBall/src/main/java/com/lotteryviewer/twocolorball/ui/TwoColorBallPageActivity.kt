@@ -23,7 +23,8 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        baseWebView?.webViewClient = BallWebViewClient(baseLoadingLayout)
+        // just pre grab html data
+        baseWebView?.webViewClient = BallWebViewClient()
 
         refreshUrl()
     }
