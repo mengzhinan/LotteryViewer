@@ -6,12 +6,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.lotteryviewer.base.interfaces.FunctionNone
-import com.lotteryviewer.base.ui.WebViewActivity
+import com.lotteryviewer.base.ui.BaseWebViewActivity
 import com.lotteryviewer.twocolorball.R
 import com.lotteryviewer.twocolorball.util.BallHtmlUtil
 import com.lotteryviewer.twocolorball.widget.BallWebViewClient
 
-class TwoColorBallPageActivity : WebViewActivity() {
+class TwoColorBallPageActivity : BaseWebViewActivity() {
 
     companion object {
         // china fc web url

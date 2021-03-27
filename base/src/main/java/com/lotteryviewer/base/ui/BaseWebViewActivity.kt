@@ -6,25 +6,28 @@ import android.view.KeyEvent
 import android.webkit.WebView
 import android.widget.RelativeLayout
 import androidx.annotation.StringRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.lotteryviewer.base.R
 import com.lotteryviewer.base.util.WebViewSettingsUtil
 import com.lotteryviewer.base.widget.MyWebChromeClient
 import com.lotteryviewer.base.widget.MyWebViewClient
 
-open class WebViewActivity : BaseActivity() {
+open class BaseWebViewActivity : BaseActivity() {
 
+    protected var baseActivityRoot: ConstraintLayout? = null
     protected var baseWebView: WebView? = null
     protected var baseLoadingLayout: RelativeLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_web_view)
+        setContentView(R.layout.activity_base_web_view)
         initUI()
         initActionBar()
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun initUI() {
+        baseActivityRoot = findViewById(R.id.activity_web_view_root)
         baseLoadingLayout = findViewById(R.id.loading_layout)
         baseWebView = findViewById(R.id.content_web_view)
 
@@ -70,4 +73,5 @@ open class WebViewActivity : BaseActivity() {
         }
         return super.onKeyDown(keyCode, event)
     }
+
 }
