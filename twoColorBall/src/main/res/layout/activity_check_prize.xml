@@ -157,9 +157,11 @@
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/item_red_bg"
+                android:gravity="center"
                 android:padding="2dp">
 
                 <androidx.appcompat.widget.AppCompatSpinner
@@ -176,10 +178,12 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/item_red_bg"
+                android:gravity="center"
                 android:padding="2dp">
 
                 <androidx.appcompat.widget.AppCompatSpinner
@@ -196,10 +200,12 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/item_red_bg"
+                android:gravity="center"
                 android:padding="2dp">
 
                 <androidx.appcompat.widget.AppCompatSpinner
@@ -222,13 +228,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line1"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/item_red_bg"
+                android:gravity="center"
                 android:padding="2dp">
 
                 <androidx.appcompat.widget.AppCompatSpinner
@@ -245,10 +253,12 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/item_red_bg"
+                android:gravity="center"
                 android:padding="2dp">
 
                 <androidx.appcompat.widget.AppCompatSpinner
@@ -265,10 +275,12 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/item_red_bg"
+                android:gravity="center"
                 android:padding="2dp">
 
                 <androidx.appcompat.widget.AppCompatSpinner
@@ -291,13 +303,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line2"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/item_blue_bg"
+                android:gravity="center"
                 android:padding="2dp">
 
                 <androidx.appcompat.widget.AppCompatSpinner
