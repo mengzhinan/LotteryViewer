@@ -7,13 +7,13 @@
     tools:context=".ui.WebViewActivity">
 
     <WebView
-        android:id="@+id/content_webview"
+        android:id="@+id/content_web_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
         android:id="@+id/loading_layout"

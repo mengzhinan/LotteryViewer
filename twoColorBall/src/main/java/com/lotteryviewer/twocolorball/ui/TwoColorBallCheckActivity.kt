@@ -6,14 +6,14 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.core.content.ContextCompat
+import com.lotteryviewer.base.ui.BaseActivity
 import com.lotteryviewer.twocolorball.R
 import com.lotteryviewer.twocolorball.util.BallDataUtil
 import com.lotteryviewer.twocolorball.widget.BallLayout
 
-class CheckPrizeActivity : AppCompatActivity() {
+class TwoColorBallCheckActivity : BaseActivity() {
 
     private var tvSequence: TextView? = null
     private var tvDate: TextView? = null

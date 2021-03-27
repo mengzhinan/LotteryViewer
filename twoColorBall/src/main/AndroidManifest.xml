@@ -6,7 +6,7 @@
     <application>
 
         <activity
-            android:name=".ui.CheckPrizeActivity"
+            android:name=".ui.TwoColorBallCheckActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
             android:exported="false"
             android:launchMode="singleTask"
@@ -17,7 +17,7 @@
             tools:ignore="UnusedAttribute" />
 
         <activity
-            android:name=".ui.WebViewActivity"
+            android:name=".ui.TwoColorBallPageActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
             android:exported="false"
             android:launchMode="singleTask"
