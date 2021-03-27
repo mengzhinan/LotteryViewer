@@ -31,7 +31,7 @@ open class BaseWebViewActivity : BaseActivity() {
         baseLoadingLayout = findViewById(R.id.loading_layout)
         baseWebView = findViewById(R.id.content_web_view)
 
-        baseWebView?.webChromeClient = MyWebChromeClient()
+        baseWebView?.webChromeClient = MyWebChromeClient(baseLoadingLayout)
         baseWebView?.webViewClient = MyWebViewClient()
 
         // set WebView common properties
