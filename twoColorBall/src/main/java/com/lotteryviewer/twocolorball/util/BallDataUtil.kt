@@ -17,9 +17,17 @@ object BallDataUtil {
     // 号码球之间的分割符
     const val SPLIT = "lvSplit"
 
-    var prizeSequenceStr: String? = ""
-    var prizeDateStr: String? = ""
+    private var prizeSequenceStr: String? = ""
+    private var prizeDateStr: String? = ""
     private var prizeNumStr: String? = ""
+
+    fun getPrizeSequenceStr(): String {
+        return prizeSequenceStr ?: ""
+    }
+
+    fun getPrizeDateStr(): String {
+        return prizeDateStr ?: ""
+    }
 
     val prizeNumArray: Array<String> = arrayOf("?", "?", "?", "?", "?", "?", "?")
 

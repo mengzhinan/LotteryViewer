@@ -221,8 +221,8 @@ class TwoColorBallCheckActivity : BaseActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun setupData() {
-        tvSequence?.text = "开奖期数：${BallDataUtil.prizeSequenceStr}"
-        tvDate?.text = "开奖日期：${BallDataUtil.prizeDateStr}"
+        tvSequence?.text = "开奖期数：${BallDataUtil.getPrizeSequenceStr()}"
+        tvDate?.text = "开奖日期：${BallDataUtil.getPrizeDateStr()}"
         prizeNumsLayout?.setBalls(finalBallArray, finalBallArray)
     }
 
