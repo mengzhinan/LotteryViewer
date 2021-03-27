@@ -2,10 +2,10 @@ package com.lotteryviewer.home.ui.activities
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
+import com.lotteryviewer.base.ui.BaseActivity
 import com.lotteryviewer.home.R
 
-class AboutActivity : AppCompatActivity() {
+class AboutActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)

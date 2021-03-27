@@ -39,8 +39,9 @@ class SplashActivity : AppCompatActivity(), SafetyHandler.Delegate {
 
     override fun onReceivedHandlerMessage(message: Message?) {
         if (message?.what == HANDLER_WHAT_FINISH) {
-            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
             finish()
+            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
         }
     }
+
 }
