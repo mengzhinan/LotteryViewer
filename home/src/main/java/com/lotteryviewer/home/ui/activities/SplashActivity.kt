@@ -13,6 +13,7 @@ class SplashActivity : AppCompatActivity(), SafetyHandler.Delegate {
 
     companion object {
         private const val HANDLER_WHAT_FINISH = 1
+        private const val DELAY_TIME = 1000L
     }
 
     private var safetyHandler: SafetyHandler? = null
@@ -33,7 +34,7 @@ class SplashActivity : AppCompatActivity(), SafetyHandler.Delegate {
             }
         })
         if (!isSuccessShow) {
-            safetyHandler?.sendEmptyMessageDelayed(HANDLER_WHAT_FINISH, 2000)
+            safetyHandler?.sendEmptyMessageDelayed(HANDLER_WHAT_FINISH, DELAY_TIME)
         }
     }
 
