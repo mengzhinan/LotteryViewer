@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.lotteryviewer.base.ui.BaseFragment
 import com.lotteryviewer.home.R
 import com.lotteryviewer.home.ui.viewmodel.DashboardViewModel
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : BaseFragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
 

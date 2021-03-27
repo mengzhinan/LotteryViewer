@@ -6,6 +6,7 @@ import com.lotteryviewer.base.ui.BaseActivity
 import com.lotteryviewer.home.R
 
 class AboutActivity : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
