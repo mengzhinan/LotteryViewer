@@ -2,16 +2,45 @@ package com.lotteryviewer.home.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Message
 import androidx.appcompat.app.AppCompatActivity
+import com.lotteryviewer.base.interfaces.FunctionNone
+import com.lotteryviewer.base.util.SafetyHandler
 import com.lotteryviewer.home.R
+import com.lotteryviewer.home.ui.dialog.DisclaimerDialogUtil
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity(), SafetyHandler.Delegate {
+
+    companion object {
+        private const val HANDLER_WHAT_FINISH = 1
+    }
+
+    private var safetyHandler: SafetyHandler? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+        safetyHandler = SafetyHandler.create(this)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val isSuccessShow = DisclaimerDialogUtil.showDisclaimerDialog(this, object : FunctionNone {
+            override fun onCallBack() {
+                safetyHandler?.sendEmptyMessageDelayed(HANDLER_WHAT_FINISH, 0)
+            }
+        })
+        if (!isSuccessShow) {
+            safetyHandler?.sendEmptyMessageDelayed(HANDLER_WHAT_FINISH, 2000)
+        }
+    }
+
+    override fun onReceivedHandlerMessage(message: Message?) {
+        if (message?.what == HANDLER_WHAT_FINISH) {
+            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            finish()
+        }
     }
 }

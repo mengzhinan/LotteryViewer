@@ -1,9 +1,9 @@
 package com.lotteryviewer.home.ui.dialog
 
 import android.app.Activity
-import android.content.DialogInterface
-import android.util.DisplayMetrics
 import androidx.appcompat.app.AlertDialog
+import com.lotteryviewer.base.interfaces.FunctionNone
+import com.lotteryviewer.base.util.DisplayUtil
 import com.lotteryviewer.home.R
 import com.lotteryviewer.home.util.HomeSPUtil
 import kotlin.system.exitProcess
@@ -16,40 +16,44 @@ import kotlin.system.exitProcess
  */
 object DisclaimerDialogUtil {
 
-    fun showDisclaimerDialog(activity: Activity?) {
-        activity ?: return
+    /**
+     * 显示隐私协议弹框
+     * @param activity context
+     * @param agreeCallBack 点击同意的回调
+     * @return 是否成功显示弹框
+     */
+    fun showDisclaimerDialog(activity: Activity?, agreeCallBack: FunctionNone?): Boolean {
+        activity ?: return false
 
         if (!HomeSPUtil.isNeedShowDisclaimerDialog()) {
-            return
+            return false
         }
 
         val dialog = AlertDialog.Builder(activity)
             .setMessage(R.string.about_app_content)
-            .setNegativeButton("退出", object : DialogInterface.OnClickListener {
-                override fun onClick(dialog: DialogInterface?, which: Int) {
-                    activity.finishAffinity()
-                    exitProcess(0)
-                }
-            }).setPositiveButton("同意并继续", object : DialogInterface.OnClickListener {
-                override fun onClick(dialog: DialogInterface?, which: Int) {
-                    // go on use app
-                    HomeSPUtil.setConsumeDisclaimerDialog()
-                }
-            }).setCancelable(false)
+            .setNegativeButton("退出") { _, _ ->
+                activity.finishAffinity()
+                exitProcess(0)
+            }.setPositiveButton(
+                "同意并继续"
+            ) { _, _ -> // go on use app
+                HomeSPUtil.setConsumeDisclaimerDialog()
+                agreeCallBack?.onCallBack()
+            }.setCancelable(false)
             .setTitle(R.string.about_app_disclaimer_title)
             .show()
 
         try {
-            val m = DisplayMetrics()
-            activity.display?.getRealMetrics(m)
-            val screenWidth = m.widthPixels
-            val screenHeight = m.heightPixels
+
+            val screenWidth = DisplayUtil.getWidthPixels(activity)
+            val screenHeight = DisplayUtil.getHeightPixels(activity)
             dialog.window?.setLayout(screenWidth * 9 / 10, screenHeight * 3 / 5)
 
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
+        return true
     }
 
 }
