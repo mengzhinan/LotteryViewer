@@ -63,15 +63,15 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
             baseLoadingLayout?.visibility = View.VISIBLE
             BallHtmlUtil.getHtmlText(baseWebView, object : FunctionNone {
                 override fun onCallBack() {
+                    baseLoadingLayout?.visibility = View.GONE
                     baseLoadingLayout?.postDelayed({
-                        baseLoadingLayout?.visibility = View.GONE
                         startActivity(
                             Intent(
                                 this@TwoColorBallPageActivity,
                                 TwoColorBallCheckActivity::class.java
                             )
                         )
-                    }, 200)
+                    }, 100)
                 }
             })
         }

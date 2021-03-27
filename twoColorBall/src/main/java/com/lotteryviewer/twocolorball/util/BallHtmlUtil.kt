@@ -5,7 +5,6 @@ import android.webkit.WebView
 import com.lotteryviewer.base.interfaces.FunctionNone
 import com.lotteryviewer.base.interfaces.FunctionStringOne
 import com.lotteryviewer.base.util.BaseHtmlJSUtil
-import java.util.*
 
 /**
  * @Author: duke
@@ -63,11 +62,7 @@ object BallHtmlUtil {
             "getCurrentPrizeSequence",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    BallDataUtil.prizeSequenceStr = value
-                    if (BallDataUtil.prizeSequenceStr?.toLowerCase(Locale.getDefault()) == "null") {
-                        BallDataUtil.prizeSequenceStr = "?"
-                    }
-                    BallDataUtil.parseStr()
+                    BallDataUtil.parseSequenceStr(value)
                     isSequenceOK = true
                     checkDateAndCallback(isSequenceOK, isDateOK, isPrizeNumOK, endCallback)
                 }
@@ -79,11 +74,7 @@ object BallHtmlUtil {
             "getCurrentPrizeDate",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    BallDataUtil.prizeDateStr = value
-                    if (BallDataUtil.prizeDateStr?.toLowerCase(Locale.getDefault()) == "null") {
-                        BallDataUtil.prizeDateStr = "?"
-                    }
-                    BallDataUtil.parseStr()
+                    BallDataUtil.parseDateStr(value)
                     isDateOK = true
                     checkDateAndCallback(isSequenceOK, isDateOK, isPrizeNumOK, endCallback)
                 }
@@ -95,7 +86,7 @@ object BallHtmlUtil {
             "getCurrentPrizeNums",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    BallDataUtil.prizeNumStr = value
+                    BallDataUtil.parsePrizeBallNum(value)
                     isPrizeNumOK = true
                     checkDateAndCallback(isSequenceOK, isDateOK, isPrizeNumOK, endCallback)
                 }

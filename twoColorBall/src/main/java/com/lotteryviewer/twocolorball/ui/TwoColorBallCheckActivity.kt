@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.core.content.ContextCompat
 import com.lotteryviewer.base.ui.BaseActivity
@@ -22,7 +23,7 @@ class TwoColorBallCheckActivity : BaseActivity() {
     private var tvResult: TextView? = null
 
     // 进入此页面时，开奖号码已经解析到，而不是 ？
-    private val finalBallArray = BallDataUtil.prizeNumArray
+    private val finalBallArray = Array(BallDataUtil.prizeNumArray.size) { "" }
 
     private val inputBallArray: Array<String> = arrayOf("?", "?", "?", "?", "?", "?", "?")
 
@@ -37,6 +38,18 @@ class TwoColorBallCheckActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_check_prize)
+
+        if (BallDataUtil.isPrizeNumArrayValid()) {
+            // 获取解析到的数据，不要直接引用数组内存地址
+            BallDataUtil.copyArray(BallDataUtil.prizeNumArray, finalBallArray)
+        } else {
+            Toast.makeText(
+                this,
+                getString(R.string.two_color_ball_prize_num_invalid),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
         initActionBar()
         initUI()
         setupData()

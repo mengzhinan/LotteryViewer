@@ -1,6 +1,8 @@
 package com.lotteryviewer.twocolorball.util
 
+import com.lotteryviewer.base.util.TextUtil
 import com.lotteryviewer.twocolorball.R
+import java.util.*
 
 /**
  * @Author: duke
@@ -17,33 +19,72 @@ object BallDataUtil {
 
     var prizeSequenceStr: String? = ""
     var prizeDateStr: String? = ""
-    var prizeNumStr: String? = ""
+    private var prizeNumStr: String? = ""
 
     val prizeNumArray: Array<String> = arrayOf("?", "?", "?", "?", "?", "?", "?")
 
-    fun parseStr() {
-        prizeSequenceStr = prizeSequenceStr?.trim()
-        prizeSequenceStr = prizeSequenceStr?.replace("\"", "")
-
-        prizeDateStr = prizeDateStr?.trim()
-        prizeDateStr = prizeDateStr?.replace("\"", "")
+    /**
+     * 开奖号码数据是否有效
+     */
+    fun isPrizeNumArrayValid(): Boolean {
+        for (index in prizeNumArray.indices) {
+            if (prizeNumArray[index] == "?") {
+                // 主要发现开奖号码数组内有一个问号，即表示数据解析失败，数据无效
+                return false
+            }
+        }
+        return true
     }
 
-    // 把解析到的字符串号码，转换为对应的 int 数组
-    fun parseBallNumArray(): Boolean {
-        try {
-            prizeNumStr = prizeNumStr?.trim()
+    fun copyArray(srcArr: Array<String>?, destArr: Array<String>?) {
+        srcArr ?: return
+        destArr ?: return
+        System.arraycopy(srcArr, 0, destArr, 0, srcArr.size)
+    }
 
-            // 去除两端的双引号
+    fun parseSequenceStr(value: String?) {
+        if (TextUtil.isNullOrEmpty(value)) {
+            prizeSequenceStr = ""
+            return
+        }
+        prizeSequenceStr = prizeSequenceStr?.trim()
+        prizeSequenceStr = prizeSequenceStr?.toLowerCase(Locale.getDefault())
+        prizeSequenceStr = prizeSequenceStr?.replace("\"", "")
+        prizeSequenceStr = prizeSequenceStr?.replace("null", "")
+    }
+
+    fun parseDateStr(value: String?) {
+        if (TextUtil.isNullOrEmpty(value)) {
+            prizeDateStr = ""
+            return
+        }
+        prizeDateStr = prizeDateStr?.trim()
+        prizeDateStr = prizeDateStr?.toLowerCase(Locale.getDefault())
+        prizeDateStr = prizeDateStr?.replace("\"", "")
+        prizeDateStr = prizeDateStr?.replace("null", "")
+    }
+
+    /**
+     * 把解析到的开奖号码字符串，转换为对应的 String 数组
+     */
+    fun parsePrizeBallNum(value: String?) {
+        try {
+            prizeNumStr = value
+            prizeNumStr = prizeNumStr?.trim()
+            prizeNumStr = prizeNumStr?.toLowerCase(Locale.getDefault())
             prizeNumStr = prizeNumStr?.replace("\"", "")
+            prizeNumStr = prizeNumStr?.replace("null", "")
 
             // 去除开头的分隔符
             if (prizeNumStr?.startsWith(SPLIT) == true) {
                 prizeNumStr = prizeNumStr?.substring(SPLIT.length)
             }
+
             val l = prizeNumStr?.length ?: 0
             if (l == 0 || l <= SPLIT.length) {
-                return false
+                // 已经是无效的数据
+                prizeNumStr = ""
+                return
             }
 
             // 去除末尾的分隔符
@@ -52,25 +93,29 @@ object BallDataUtil {
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            return false
+            return
         }
 
-        val tempArray = prizeNumStr?.split(SPLIT) ?: return false
-        val tempSize = tempArray.size
+        val tempArray = prizeNumStr?.split(SPLIT)
+        val tempSize = tempArray?.size ?: 0
         if (tempSize != prizeNumArray.size) {
-            return false
+            prizeNumStr = ""
+            return
         }
         for (index in 0 until tempSize) {
             try {
+                val item = tempArray?.get(index) ?: continue
+
                 // 检测号码是否是数字
-                tempArray[index].trim().toInt()
-                prizeNumArray[index] = tempArray[index]
+                item.trim().toInt()
+
+                // 上一步转换为数字 OK，数据有效。保存数据
+                prizeNumArray[index] = item
             } catch (e: Exception) {
                 e.printStackTrace()
-                return false
+                return
             }
         }
-        return true
     }
 
 
