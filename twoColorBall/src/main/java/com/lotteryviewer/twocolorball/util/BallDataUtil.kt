@@ -51,7 +51,8 @@ object BallDataUtil {
     }
 
     fun parseSequenceStr(value: String?) {
-        if (TextUtil.isNullOrEmpty(value)) {
+        prizeSequenceStr = value
+        if (TextUtil.isNullOrEmpty(prizeSequenceStr)) {
             prizeSequenceStr = ""
             return
         }
@@ -62,7 +63,8 @@ object BallDataUtil {
     }
 
     fun parseDateStr(value: String?) {
-        if (TextUtil.isNullOrEmpty(value)) {
+        prizeDateStr = value
+        if (TextUtil.isNullOrEmpty(prizeDateStr)) {
             prizeDateStr = ""
             return
         }
@@ -78,6 +80,10 @@ object BallDataUtil {
     fun parsePrizeBallNum(value: String?) {
         try {
             prizeNumStr = value
+            if (TextUtil.isNullOrEmpty(prizeNumStr)) {
+                prizeNumStr = ""
+                return
+            }
             prizeNumStr = prizeNumStr?.trim()
 
             // 不要 lower case，否则字符串 split 会失败
