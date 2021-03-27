@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.lotteryviewer.home.ui.fragments.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_web_page"
         android:name="com.lotteryviewer.home.ui.fragments.WebPageFragment"
-        android:label="@string/title_web_page"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_web_page" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.lotteryviewer.home.ui.fragments.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

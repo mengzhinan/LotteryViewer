@@ -1,5 +1,7 @@
 <resources>
 
+    <string name="app_name">彩票查询助手</string>
+
     <string name="title_dashboard">服务专区</string>
     <string name="title_web_page">Web 主页</string>
     <string name="title_notifications">消息</string>
