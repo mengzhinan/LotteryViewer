@@ -71,7 +71,11 @@ object BallDataUtil {
         try {
             prizeNumStr = value
             prizeNumStr = prizeNumStr?.trim()
-            prizeNumStr = prizeNumStr?.toLowerCase(Locale.getDefault())
+
+            // 不要 lower case，否则字符串 split 会失败
+            // 其实里面也不会大、小写字母
+//            prizeNumStr = prizeNumStr?.toLowerCase(Locale.getDefault())
+
             prizeNumStr = prizeNumStr?.replace("\"", "")
             prizeNumStr = prizeNumStr?.replace("null", "")
 
