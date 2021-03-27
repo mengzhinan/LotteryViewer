@@ -59,7 +59,7 @@ open class BaseWebViewFragment : BaseFragment() {
         baseWebView = view.findViewById(R.id.content_web_view)
         baseLoadingLayout = view.findViewById(R.id.loading_layout)
 
-        baseWebView?.webChromeClient = MyWebChromeClient()
+        baseWebView?.webChromeClient = MyWebChromeClient(baseLoadingLayout)
         baseWebView?.webViewClient = MyWebViewClient()
 
         // set WebView common properties
