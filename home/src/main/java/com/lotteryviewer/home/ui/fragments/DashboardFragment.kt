@@ -1,5 +1,6 @@
 package com.lotteryviewer.home.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.lotteryviewer.base.ui.BaseFragment
 import com.lotteryviewer.home.R
 import com.lotteryviewer.home.ui.viewmodel.DashboardViewModel
+import com.lotteryviewer.twocolorball.ui.TwoColorBallPageActivity
 
 class DashboardFragment : BaseFragment() {
 
@@ -20,13 +22,21 @@ class DashboardFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
+
+        dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
+
+        return inflater.inflate(R.layout.fragment_dashboard, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val tvTwoColorBall: TextView = view.findViewById(R.id.tv_two_color_ball)
         dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+            // textView.text = it
         })
-        return root
+
+        tvTwoColorBall.setOnClickListener {
+            startActivity(Intent(context, TwoColorBallPageActivity::class.java))
+        }
     }
 }

@@ -28,6 +28,11 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
         refreshUrl()
     }
 
+    override fun onResume() {
+        super.onResume()
+        setActionBarTitle(R.string.two_color_ball_title)
+    }
+
 
     private fun refreshUrl() {
         baseWebView?.loadUrl(LOAD_URL)
