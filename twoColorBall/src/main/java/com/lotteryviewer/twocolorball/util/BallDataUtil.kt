@@ -16,6 +16,7 @@ object BallDataUtil {
 
     // 号码球之间的分割符
     const val SPLIT = "lvSplit"
+    const val SEE_CITY = "北京"
 
     private var prizeSequenceStr: String? = ""
     private var prizeDateStr: String? = ""
@@ -88,7 +89,21 @@ object BallDataUtil {
         prizeCityStr = prizeCityStr?.trim()
         prizeCityStr = prizeCityStr?.toLowerCase(Locale.getDefault())
         prizeCityStr = prizeCityStr?.replace("\"", "")
+        prizeCityStr = prizeCityStr?.replace("，", ",")
         prizeCityStr = prizeCityStr?.replace("null", "")
+        val arr = prizeCityStr?.split(",")
+        if (arr == null || arr.isEmpty()) {
+            prizeCityStr = ""
+            return
+        }
+        for (index in arr.indices) {
+            if (arr[index].startsWith(SEE_CITY)) {
+                prizeCityStr = arr[index]
+                return
+            }
+        }
+        // 没找到北京的，那就把其他的也显示出来，但是逗号间隔大一点
+        prizeCityStr = prizeCityStr?.replace(",", " , ")
     }
 
     /**

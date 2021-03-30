@@ -16,6 +16,7 @@ import com.lotteryviewer.twocolorball.widget.BallLayout
 
 class TwoColorBallCheckActivity : BaseActivity() {
 
+    private var tvHitCity: TextView? = null
     private var tvSequence: TextView? = null
     private var tvDate: TextView? = null
     private var prizeNumsLayout: BallLayout? = null
@@ -66,6 +67,7 @@ class TwoColorBallCheckActivity : BaseActivity() {
     }
 
     private fun initUI() {
+        tvHitCity = findViewById(R.id.tv_hit_city)
         tvSequence = findViewById(R.id.tv_sequence)
         tvDate = findViewById(R.id.tv_date)
         prizeNumsLayout = findViewById(R.id.current_ball_layout)
@@ -221,6 +223,7 @@ class TwoColorBallCheckActivity : BaseActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun setupData() {
+        tvHitCity?.text = "中奖城市：${BallDataUtil.getPrizeCityStr()}"
         tvSequence?.text = "开奖期数：${BallDataUtil.getPrizeSequenceStr()}"
         tvDate?.text = "开奖日期：${BallDataUtil.getPrizeDateStr()}"
         prizeNumsLayout?.setBalls(finalBallArray, finalBallArray)
