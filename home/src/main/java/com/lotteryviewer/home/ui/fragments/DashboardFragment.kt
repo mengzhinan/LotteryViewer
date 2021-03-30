@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.lotteryviewer.base.ui.BaseFragment
 import com.lotteryviewer.home.R
 import com.lotteryviewer.home.ui.viewmodel.DashboardViewModel
+import com.lotteryviewer.sunset.activities.SunsetPageActivity
+import com.lotteryviewer.sunset.util.SunsetDataUtil
 import com.lotteryviewer.twocolorball.ui.TwoColorBallPageActivity
 
 class DashboardFragment : BaseFragment() {
@@ -31,6 +33,9 @@ class DashboardFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val btnTwoColorBall: Button = view.findViewById(R.id.btn_two_color_ball)
+        val btnSunsetBeijing: Button = view.findViewById(R.id.btn_sunset_beijing)
+        val btnSunsetWuhan: Button = view.findViewById(R.id.btn_sunset_wuhan)
+        val btnSunsetHuanggang: Button = view.findViewById(R.id.btn_sunset_huanggang)
         dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
             // textView.text = it
         })
@@ -38,5 +43,22 @@ class DashboardFragment : BaseFragment() {
         btnTwoColorBall.setOnClickListener {
             startActivity(Intent(context, TwoColorBallPageActivity::class.java))
         }
+
+        btnSunsetBeijing.setOnClickListener {
+            val intent = Intent(context, SunsetPageActivity::class.java)
+            intent.putExtra(SunsetDataUtil.PARAM_URL_TYPE, SunsetDataUtil.URL_BEIJING)
+            startActivity(intent)
+        }
+        btnSunsetWuhan.setOnClickListener {
+            val intent = Intent(context, SunsetPageActivity::class.java)
+            intent.putExtra(SunsetDataUtil.PARAM_URL_TYPE, SunsetDataUtil.URL_WUHAN)
+            startActivity(intent)
+        }
+        btnSunsetHuanggang.setOnClickListener {
+            val intent = Intent(context, SunsetPageActivity::class.java)
+            intent.putExtra(SunsetDataUtil.PARAM_URL_TYPE, SunsetDataUtil.URL_HUANGGANG)
+            startActivity(intent)
+        }
+
     }
 }

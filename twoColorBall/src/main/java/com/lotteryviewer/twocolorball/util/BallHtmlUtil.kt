@@ -55,7 +55,6 @@ object BallHtmlUtil {
 
     fun getHtmlText(view: WebView?, endCallback: FunctionNone?) {
         view ?: return
-        endCallback ?: return
         Log.e(BallDataUtil.TAG, "开始解析 html")
 
         var isSequenceOK = false
