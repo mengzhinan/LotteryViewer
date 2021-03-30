@@ -11,9 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.lotteryviewer.base.ui.BaseFragment
 import com.lotteryviewer.home.R
 import com.lotteryviewer.home.ui.viewmodel.DashboardViewModel
-import com.lotteryviewer.sunset.activities.SunsetPageActivity
+import com.lotteryviewer.sunset.activities.SunsetActivity
 import com.lotteryviewer.sunset.util.SunsetDataUtil
-import com.lotteryviewer.twocolorball.ui.TwoColorBallPageActivity
+import com.lotteryviewer.twocolorball.ui.TwoColorBallActivity
 
 class DashboardFragment : BaseFragment() {
 
@@ -41,21 +41,21 @@ class DashboardFragment : BaseFragment() {
         })
 
         btnTwoColorBall.setOnClickListener {
-            startActivity(Intent(context, TwoColorBallPageActivity::class.java))
+            startActivity(Intent(context, TwoColorBallActivity::class.java))
         }
 
         btnSunsetBeijing.setOnClickListener {
-            val intent = Intent(context, SunsetPageActivity::class.java)
+            val intent = Intent(context, SunsetActivity::class.java)
             intent.putExtra(SunsetDataUtil.PARAM_URL_TYPE, SunsetDataUtil.URL_BEIJING)
             startActivity(intent)
         }
         btnSunsetWuhan.setOnClickListener {
-            val intent = Intent(context, SunsetPageActivity::class.java)
+            val intent = Intent(context, SunsetActivity::class.java)
             intent.putExtra(SunsetDataUtil.PARAM_URL_TYPE, SunsetDataUtil.URL_WUHAN)
             startActivity(intent)
         }
         btnSunsetHuanggang.setOnClickListener {
-            val intent = Intent(context, SunsetPageActivity::class.java)
+            val intent = Intent(context, SunsetActivity::class.java)
             intent.putExtra(SunsetDataUtil.PARAM_URL_TYPE, SunsetDataUtil.URL_HUANGGANG)
             startActivity(intent)
         }

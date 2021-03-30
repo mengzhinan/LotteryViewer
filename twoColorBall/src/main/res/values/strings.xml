@@ -1,8 +1,8 @@
 <resources>
 
     <string name="two_color_ball_title">双色球</string>
-    <string name="menu1">查中奖</string>
-    <string name="menu2">刷新</string>
+    <string name="menu1">刷新</string>
+    <string name="menu2">查中奖</string>
 
     <string name="check_prize_title">中奖查询</string>
 

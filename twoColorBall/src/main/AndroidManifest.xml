@@ -17,7 +17,7 @@
             tools:ignore="UnusedAttribute" />
 
         <activity
-            android:name=".ui.TwoColorBallPageActivity"
+            android:name=".ui.TwoColorBallActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
             android:exported="false"
             android:launchMode="singleTask"

@@ -11,36 +11,43 @@ import com.lotteryviewer.sunset.util.SunsetDataUtil
 import com.lotteryviewer.sunset.util.SunsetHtmlUtil
 import com.lotteryviewer.sunset.widgets.SunsetWebViewClient
 
-class SunsetPageActivity : BaseWebViewActivity() {
+class SunsetActivity : BaseWebViewActivity() {
 
     companion object {
         private const val MENU_ID_REFRESH = 0
         private const val MENU_ID_SEE_TODAY = 1
     }
 
-    private var url: String? = ""
+    private var url: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // 解析对应的 url
         url = SunsetDataUtil.parseIntentUrl(intent)
+
         setActionBarTitle(R.string.sunset_title)
+
+        // WebViewClient 中解析 html 数据
         baseWebView?.webViewClient = SunsetWebViewClient()
+
         refreshUrl()
     }
 
     private fun refreshUrl() {
-        if (!TextUtil.isNullOrEmpty(url)) {
-            baseWebView?.loadUrl(url!!)
+        if (TextUtil.isNullOrEmpty(url)) {
+            return
         }
+        baseWebView?.loadUrl(url)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        menu?.add(Menu.NONE, MENU_ID_REFRESH, Menu.NONE, getString(R.string.menu2))
-        menu?.add(Menu.NONE, MENU_ID_CHECK, Menu.NONE, getString(R.string.menu1))
+        menu?.add(Menu.NONE, MENU_ID_REFRESH, Menu.NONE, getString(R.string.menu1))
+        menu?.add(Menu.NONE, MENU_ID_SEE_TODAY, Menu.NONE, getString(R.string.menu2))
 
         menu?.getItem(MENU_ID_REFRESH)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
-        menu?.getItem(MENU_ID_CHECK)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
+        menu?.getItem(MENU_ID_SEE_TODAY)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -54,7 +61,7 @@ class SunsetPageActivity : BaseWebViewActivity() {
             }
         } else if (item.itemId == MENU_ID_REFRESH) {
             refreshUrl()
-        } else if (item.itemId == MENU_ID_CHECK) {
+        } else if (item.itemId == MENU_ID_SEE_TODAY) {
 
             // 此处需要再次爬取数据
             SunsetHtmlUtil.getHtmlText(baseWebView, object : FunctionNone {

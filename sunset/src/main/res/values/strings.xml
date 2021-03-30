@@ -2,4 +2,7 @@
 
     <string name="sunset_title">日出日落</string>
 
+    <string name="menu1">刷新</string>
+    <string name="menu2">查今天</string>
+
 </resources>

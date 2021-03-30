@@ -11,7 +11,7 @@ import com.lotteryviewer.twocolorball.util.TwoColorBallDataUtil
 import com.lotteryviewer.twocolorball.util.TwoColorBallHtmlUtil
 import com.lotteryviewer.twocolorball.widget.BallWebViewClient
 
-class TwoColorBallPageActivity : BaseWebViewActivity() {
+class TwoColorBallActivity : BaseWebViewActivity() {
 
     companion object {
 
@@ -37,8 +37,8 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        menu?.add(Menu.NONE, MENU_ID_REFRESH, Menu.NONE, getString(R.string.menu2))
-        menu?.add(Menu.NONE, MENU_ID_CHECK, Menu.NONE, getString(R.string.menu1))
+        menu?.add(Menu.NONE, MENU_ID_REFRESH, Menu.NONE, getString(R.string.menu1))
+        menu?.add(Menu.NONE, MENU_ID_CHECK, Menu.NONE, getString(R.string.menu2))
 
         menu?.getItem(MENU_ID_REFRESH)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         menu?.getItem(MENU_ID_CHECK)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
@@ -64,7 +64,7 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
                     baseLoadingLayout?.postDelayed({
                         startActivity(
                             Intent(
-                                this@TwoColorBallPageActivity,
+                                this@TwoColorBallActivity,
                                 TwoColorBallCheckActivity::class.java
                             )
                         )

@@ -6,7 +6,7 @@
     <application>
 
         <activity
-            android:name=".activities.SunsetPageActivity"
+            android:name=".activities.SunsetActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
             android:exported="true"
             android:resizeableActivity="true"
