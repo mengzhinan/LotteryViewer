@@ -49,6 +49,7 @@ dependencies {
     implementation project(path: ':guaGuaLe')
     implementation project(path: ':happy8')
     implementation project(path: ':fc3d')
+    implementation project(path: ':sunset')
 
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.4'
