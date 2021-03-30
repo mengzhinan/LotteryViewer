@@ -33,6 +33,12 @@ object BallHtmlUtil {
             + "return spanS.innerText;"
             + "}")
 
+    // 中奖城市
+    private const val getHitPrizeCity = ("javascript:function getHitPrizeCity() {"
+            + "var spanS = document.getElementsByClassName('ydjzc')[0];"
+            + "return spanS.innerText;"
+            + "}")
+
     // 获取本期头奖号码
     private var getCurrentPrizeNums = ("javascript:function getCurrentPrizeNums() {"
             + "var ul = document.getElementsByClassName('hmj')[0];"
@@ -55,6 +61,7 @@ object BallHtmlUtil {
         var isSequenceOK = false
         var isDateOK = false
         var isPrizeNumOK = false
+        var isPrizeCityOK = false
 
         BaseHtmlJSUtil.loadAndCallJs(
             view,
@@ -64,7 +71,13 @@ object BallHtmlUtil {
                 override fun onCallBack(value: String?) {
                     BallDataUtil.parseSequenceStr(value)
                     isSequenceOK = true
-                    checkDateAndCallback(isSequenceOK, isDateOK, isPrizeNumOK, endCallback)
+                    checkDateAndCallback(
+                        isSequenceOK,
+                        isDateOK,
+                        isPrizeNumOK,
+                        isPrizeCityOK,
+                        endCallback
+                    )
                 }
             })
 
@@ -76,7 +89,13 @@ object BallHtmlUtil {
                 override fun onCallBack(value: String?) {
                     BallDataUtil.parseDateStr(value)
                     isDateOK = true
-                    checkDateAndCallback(isSequenceOK, isDateOK, isPrizeNumOK, endCallback)
+                    checkDateAndCallback(
+                        isSequenceOK,
+                        isDateOK,
+                        isPrizeNumOK,
+                        isPrizeCityOK,
+                        endCallback
+                    )
                 }
             })
 
@@ -88,7 +107,31 @@ object BallHtmlUtil {
                 override fun onCallBack(value: String?) {
                     BallDataUtil.parsePrizeBallNum(value)
                     isPrizeNumOK = true
-                    checkDateAndCallback(isSequenceOK, isDateOK, isPrizeNumOK, endCallback)
+                    checkDateAndCallback(
+                        isSequenceOK,
+                        isDateOK,
+                        isPrizeNumOK,
+                        isPrizeCityOK,
+                        endCallback
+                    )
+                }
+            })
+
+        BaseHtmlJSUtil.loadAndCallJs(
+            view,
+            getHitPrizeCity,
+            "getHitPrizeCity",
+            object : FunctionStringOne {
+                override fun onCallBack(value: String?) {
+                    BallDataUtil.parseCityStr(value)
+                    isPrizeCityOK = true
+                    checkDateAndCallback(
+                        isSequenceOK,
+                        isDateOK,
+                        isPrizeNumOK,
+                        isPrizeCityOK,
+                        endCallback
+                    )
                 }
             })
     }
@@ -97,13 +140,10 @@ object BallHtmlUtil {
         bl1: Boolean,
         bl2: Boolean,
         bl3: Boolean,
+        bl4: Boolean,
         callback: FunctionNone?
     ) {
-        Log.e(
-            BallDataUtil.TAG,
-            "准备回调 bl1 = $bl1, bl2 = $bl2, bl3 = $bl3"
-        )
-        if (bl1 && bl2 && bl3) {
+        if (bl1 && bl2 && bl3 && bl4) {
             callback?.onCallBack()
         }
     }

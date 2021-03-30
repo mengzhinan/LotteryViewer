@@ -20,6 +20,7 @@ object BallDataUtil {
     private var prizeSequenceStr: String? = ""
     private var prizeDateStr: String? = ""
     private var prizeNumStr: String? = ""
+    private var prizeCityStr: String? = ""
 
     fun getPrizeSequenceStr(): String {
         return prizeSequenceStr ?: ""
@@ -27,6 +28,10 @@ object BallDataUtil {
 
     fun getPrizeDateStr(): String {
         return prizeDateStr ?: ""
+    }
+
+    fun getPrizeCityStr(): String {
+        return prizeCityStr ?: ""
     }
 
     val prizeNumArray: Array<String> = arrayOf("?", "?", "?", "?", "?", "?", "?")
@@ -72,6 +77,18 @@ object BallDataUtil {
         prizeDateStr = prizeDateStr?.toLowerCase(Locale.getDefault())
         prizeDateStr = prizeDateStr?.replace("\"", "")
         prizeDateStr = prizeDateStr?.replace("null", "")
+    }
+
+    fun parseCityStr(value: String?) {
+        prizeCityStr = value
+        if (TextUtil.isNullOrEmpty(prizeCityStr)) {
+            prizeCityStr = ""
+            return
+        }
+        prizeCityStr = prizeCityStr?.trim()
+        prizeCityStr = prizeCityStr?.toLowerCase(Locale.getDefault())
+        prizeCityStr = prizeCityStr?.replace("\"", "")
+        prizeCityStr = prizeCityStr?.replace("null", "")
     }
 
     /**

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import com.lotteryviewer.base.interfaces.FunctionNone
 import com.lotteryviewer.base.ui.BaseWebViewActivity
 import com.lotteryviewer.twocolorball.R
@@ -60,10 +59,11 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
         } else if (item.itemId == MENU_ID_REFRESH) {
             refreshUrl()
         } else if (item.itemId == MENU_ID_CHECK) {
-            baseLoadingLayout?.visibility = View.VISIBLE
+
+            // 用户可能会切换页面内的 选择框，切换了开奖日期
+            // 所以此处需要再次爬取数据
             BallHtmlUtil.getHtmlText(baseWebView, object : FunctionNone {
                 override fun onCallBack() {
-                    baseLoadingLayout?.visibility = View.GONE
                     baseLoadingLayout?.postDelayed({
                         startActivity(
                             Intent(
@@ -74,6 +74,7 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
                     }, 100)
                 }
             })
+
         }
         return super.onOptionsItemSelected(item)
     }
