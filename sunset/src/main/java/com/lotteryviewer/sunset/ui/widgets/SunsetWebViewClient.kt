@@ -1,4 +1,4 @@
-package com.lotteryviewer.sunset.widgets
+package com.lotteryviewer.sunset.ui.widgets
 
 import android.webkit.WebView
 import com.lotteryviewer.base.interfaces.FunctionNone

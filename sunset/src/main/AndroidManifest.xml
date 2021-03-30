@@ -6,9 +6,9 @@
     <application>
 
         <activity
-            android:name=".activities.SunsetActivity"
+            android:name="com.lotteryviewer.sunset.ui.activities.SunsetActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
-            android:exported="true"
+            android:exported="false"
             android:resizeableActivity="true"
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="true"

@@ -2,7 +2,18 @@
 
     <string name="sunset_title">日出日落</string>
 
-    <string name="menu1">刷新</string>
-    <string name="menu2">查今天</string>
+    <string name="sunset_menu1">刷新</string>
+    <string name="sunset_menu2">查今天</string>
+
+    <string name="sunset_today_info">今天日出日落信息</string>
+
+
+    <string name="sunset_date">日期：</string>
+    <string name="sunset_sunrise">日出：</string>
+    <string name="sunset_middle">日中：</string>
+    <string name="sunset_sunset">日落：</string>
+    <string name="sunset_day_length">昼长：</string>
+    <string name="sunset_day_light">天亮：</string>
+    <string name="sunset_day_dark">天黑：</string>
 
 </resources>

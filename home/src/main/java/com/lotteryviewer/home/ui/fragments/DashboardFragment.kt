@@ -11,9 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.lotteryviewer.base.ui.BaseFragment
 import com.lotteryviewer.home.R
 import com.lotteryviewer.home.ui.viewmodel.DashboardViewModel
-import com.lotteryviewer.sunset.activities.SunsetActivity
+import com.lotteryviewer.sunset.ui.activities.SunsetActivity
 import com.lotteryviewer.sunset.util.SunsetDataUtil
-import com.lotteryviewer.twocolorball.ui.TwoColorBallActivity
+import com.lotteryviewer.twocolorball.ui.activities.TwoColorBallActivity
 
 class DashboardFragment : BaseFragment() {
 

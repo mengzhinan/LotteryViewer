@@ -1,4 +1,4 @@
-package com.lotteryviewer.sunset.activities
+package com.lotteryviewer.sunset.ui.activities
 
 import android.os.Bundle
 import android.view.Menu
@@ -7,9 +7,10 @@ import com.lotteryviewer.base.interfaces.FunctionNone
 import com.lotteryviewer.base.ui.BaseWebViewActivity
 import com.lotteryviewer.base.util.TextUtil
 import com.lotteryviewer.sunset.R
+import com.lotteryviewer.sunset.ui.dialog.SunsetTodayDialogUtil
+import com.lotteryviewer.sunset.ui.widgets.SunsetWebViewClient
 import com.lotteryviewer.sunset.util.SunsetDataUtil
 import com.lotteryviewer.sunset.util.SunsetHtmlUtil
-import com.lotteryviewer.sunset.widgets.SunsetWebViewClient
 
 class SunsetActivity : BaseWebViewActivity() {
 
@@ -43,8 +44,8 @@ class SunsetActivity : BaseWebViewActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        menu?.add(Menu.NONE, MENU_ID_REFRESH, Menu.NONE, getString(R.string.menu1))
-        menu?.add(Menu.NONE, MENU_ID_SEE_TODAY, Menu.NONE, getString(R.string.menu2))
+        menu?.add(Menu.NONE, MENU_ID_REFRESH, Menu.NONE, getString(R.string.sunset_menu1))
+        menu?.add(Menu.NONE, MENU_ID_SEE_TODAY, Menu.NONE, getString(R.string.sunset_menu2))
 
         menu?.getItem(MENU_ID_REFRESH)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         menu?.getItem(MENU_ID_SEE_TODAY)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
@@ -66,7 +67,7 @@ class SunsetActivity : BaseWebViewActivity() {
             // 此处需要再次爬取数据
             SunsetHtmlUtil.getHtmlText(baseWebView, object : FunctionNone {
                 override fun onCallBack() {
-
+                    SunsetTodayDialogUtil.showTodayDialog(this@SunsetActivity)
                 }
             })
 

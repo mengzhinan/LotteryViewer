@@ -1,4 +1,4 @@
-package com.lotteryviewer.twocolorball.ui
+package com.lotteryviewer.twocolorball.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,9 @@ import android.view.MenuItem
 import com.lotteryviewer.base.interfaces.FunctionNone
 import com.lotteryviewer.base.ui.BaseWebViewActivity
 import com.lotteryviewer.twocolorball.R
+import com.lotteryviewer.twocolorball.ui.widget.BallWebViewClient
 import com.lotteryviewer.twocolorball.util.TwoColorBallDataUtil
 import com.lotteryviewer.twocolorball.util.TwoColorBallHtmlUtil
-import com.lotteryviewer.twocolorball.widget.BallWebViewClient
 
 class TwoColorBallActivity : BaseWebViewActivity() {
 
@@ -37,8 +37,8 @@ class TwoColorBallActivity : BaseWebViewActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        menu?.add(Menu.NONE, MENU_ID_REFRESH, Menu.NONE, getString(R.string.menu1))
-        menu?.add(Menu.NONE, MENU_ID_CHECK, Menu.NONE, getString(R.string.menu2))
+        menu?.add(Menu.NONE, MENU_ID_REFRESH, Menu.NONE, getString(R.string.two_color_ball_menu1))
+        menu?.add(Menu.NONE, MENU_ID_CHECK, Menu.NONE, getString(R.string.two_color_ball_menu2))
 
         menu?.getItem(MENU_ID_REFRESH)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         menu?.getItem(MENU_ID_CHECK)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)

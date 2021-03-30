@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0D000000"
-    tools:context=".ui.TwoColorBallCheckActivity">
+    tools:context=".ui.activities.TwoColorBallCheckActivity">
 
     <TextView
         android:id="@+id/tv_hit_city"
@@ -63,7 +63,7 @@
             android:text="本期号码："
             android:textSize="16sp" />
 
-        <com.lotteryviewer.twocolorball.widget.BallLayout
+        <com.lotteryviewer.twocolorball.ui.widget.BallLayout
             android:id="@+id/current_ball_layout"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
@@ -100,7 +100,7 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <com.lotteryviewer.twocolorball.widget.BallLayout
+        <com.lotteryviewer.twocolorball.ui.widget.BallLayout
             android:id="@+id/your_ball_layout"
             android:layout_width="match_parent"
             android:layout_height="50dp" />

@@ -1,4 +1,4 @@
-package com.lotteryviewer.twocolorball.ui
+package com.lotteryviewer.twocolorball.ui.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,8 +11,8 @@ import androidx.appcompat.widget.AppCompatSpinner
 import androidx.core.content.ContextCompat
 import com.lotteryviewer.base.ui.BaseActivity
 import com.lotteryviewer.twocolorball.R
+import com.lotteryviewer.twocolorball.ui.widget.BallLayout
 import com.lotteryviewer.twocolorball.util.TwoColorBallDataUtil
-import com.lotteryviewer.twocolorball.widget.BallLayout
 
 class TwoColorBallCheckActivity : BaseActivity() {
 

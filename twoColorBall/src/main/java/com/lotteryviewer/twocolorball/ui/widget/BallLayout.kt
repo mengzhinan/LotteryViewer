@@ -1,4 +1,4 @@
-package com.lotteryviewer.twocolorball.widget
+package com.lotteryviewer.twocolorball.ui.widget
 
 import android.annotation.SuppressLint
 import android.content.Context

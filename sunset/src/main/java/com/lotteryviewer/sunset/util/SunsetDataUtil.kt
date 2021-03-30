@@ -1,5 +1,6 @@
 package com.lotteryviewer.sunset.util
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import com.lotteryviewer.base.util.TextUtil
 import java.text.SimpleDateFormat
@@ -29,6 +30,7 @@ object SunsetDataUtil {
     }
 
     // 2021年03月01日
+    @SuppressLint("SimpleDateFormat")
     val CURRENT_DATE_YYYY_MM_DD: String = SimpleDateFormat("yyyy年MM月dd日").format(Date())
 
     // 日期，日出，日中，日落，昼长，天亮，天黑
@@ -64,7 +66,7 @@ object SunsetDataUtil {
         return dayLightStr ?: ""
     }
 
-    fun dayDarkStr(): String {
+    fun getDayDarkStr(): String {
         return dayDarkStr ?: ""
     }
 
@@ -91,20 +93,22 @@ object SunsetDataUtil {
             return
         }
         for (index in arr.indices) {
+            val item = arr[index]
+
             if (index == 0) {
-                dateStr = arr[index]
+                dateStr = item
             } else if (index == 1) {
-                sunriseStr = arr[index]
+                sunriseStr = item
             } else if (index == 2) {
-                sunMiddleStr = arr[index]
+                sunMiddleStr = item
             } else if (index == 3) {
-                sunsetStr = arr[index]
+                sunsetStr = item
             } else if (index == 4) {
-                dayLengthStr = arr[index]
+                dayLengthStr = item
             } else if (index == 5) {
-                dayLightStr = arr[index]
+                dayLightStr = item
             } else if (index == 6) {
-                dayDarkStr = arr[index]
+                dayDarkStr = item
             }
         }
 
