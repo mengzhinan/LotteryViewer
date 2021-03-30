@@ -62,15 +62,15 @@ object SunsetTodayDialogUtil {
         val tvDayLight = root.findViewById<TextView>(R.id.day_light_text)
         val tvDayDark = root.findViewById<TextView>(R.id.day_dark_text)
 
-        tvDate.text = "${getString(R.string.sunset_date)}${SunsetDataUtil.getDateStr()}"
-        tvSunrise.text = "${getString(R.string.sunset_sunrise)}${SunsetDataUtil.getSunriseStr()}"
-        tvSunMiddle.text = "${getString(R.string.sunset_middle)}${SunsetDataUtil.getSunMiddleStr()}"
-        tvSunset.text = "${getString(R.string.sunset_sunset)}${SunsetDataUtil.getSunsetStr()}"
+        tvDate.text = "${getString(R.string.sunset_date)} ${SunsetDataUtil.getDateStr()}"
+        tvSunrise.text = "${getString(R.string.sunset_sunrise)} ${SunsetDataUtil.getSunriseStr()}"
+        tvSunMiddle.text = "${getString(R.string.sunset_middle)} ${SunsetDataUtil.getSunMiddleStr()}"
+        tvSunset.text = "${getString(R.string.sunset_sunset)} ${SunsetDataUtil.getSunsetStr()}"
         tvDayLength.text =
-            "${getString(R.string.sunset_day_length)}${SunsetDataUtil.getDayLengthStr()}"
+            "${getString(R.string.sunset_day_length)} ${SunsetDataUtil.getDayLengthStr()}"
         tvDayLight.text =
-            "${getString(R.string.sunset_day_light)}${SunsetDataUtil.getDayLightStr()}"
-        tvDayDark.text = "${getString(R.string.sunset_day_dark)}${SunsetDataUtil.getDayDarkStr()}"
+            "${getString(R.string.sunset_day_light)} ${SunsetDataUtil.getDayLightStr()}"
+        tvDayDark.text = "${getString(R.string.sunset_day_dark)} ${SunsetDataUtil.getDayDarkStr()}"
 
         return root
     }
