@@ -3,7 +3,7 @@ package com.lotteryviewer.twocolorball.widget
 import android.webkit.WebView
 import com.lotteryviewer.base.interfaces.FunctionNone
 import com.lotteryviewer.base.widget.MyWebViewClient
-import com.lotteryviewer.twocolorball.util.BallHtmlUtil
+import com.lotteryviewer.twocolorball.util.TwoColorBallHtmlUtil
 
 /**
  * @Author: duke
@@ -18,7 +18,7 @@ class BallWebViewClient() : MyWebViewClient() {
 
         // just pre grab html data
 
-        BallHtmlUtil.getHtmlText(view, object : FunctionNone {
+        TwoColorBallHtmlUtil.getHtmlText(view, object : FunctionNone {
             override fun onCallBack() {
                 // do nothing
             }

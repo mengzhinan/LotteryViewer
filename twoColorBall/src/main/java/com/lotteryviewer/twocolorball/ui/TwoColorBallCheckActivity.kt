@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatSpinner
 import androidx.core.content.ContextCompat
 import com.lotteryviewer.base.ui.BaseActivity
 import com.lotteryviewer.twocolorball.R
-import com.lotteryviewer.twocolorball.util.BallDataUtil
+import com.lotteryviewer.twocolorball.util.TwoColorBallDataUtil
 import com.lotteryviewer.twocolorball.widget.BallLayout
 
 class TwoColorBallCheckActivity : BaseActivity() {
@@ -24,7 +24,7 @@ class TwoColorBallCheckActivity : BaseActivity() {
     private var tvResult: TextView? = null
 
     // 进入此页面时，开奖号码已经解析到，而不是 ？
-    private val finalBallArray = Array(BallDataUtil.prizeNumArray.size) { "" }
+    private val finalBallArray = Array(TwoColorBallDataUtil.prizeNumArray.size) { "" }
 
     private val inputBallArray: Array<String> = arrayOf("?", "?", "?", "?", "?", "?", "?")
 
@@ -40,9 +40,9 @@ class TwoColorBallCheckActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_check_prize)
 
-        if (BallDataUtil.isPrizeNumArrayValid()) {
+        if (TwoColorBallDataUtil.isPrizeNumArrayValid()) {
             // 获取解析到的数据，不要直接引用数组内存地址
-            BallDataUtil.copyArray(BallDataUtil.prizeNumArray, finalBallArray)
+            TwoColorBallDataUtil.copyArray(TwoColorBallDataUtil.prizeNumArray, finalBallArray)
         } else {
             Toast.makeText(
                 this,
@@ -208,7 +208,7 @@ class TwoColorBallCheckActivity : BaseActivity() {
         // 才能拿到正确的中奖号码个数
         myNumsLayout?.postDelayed({
             tvResult?.setText(
-                BallDataUtil.getPrizeTipText(
+                TwoColorBallDataUtil.getPrizeTipText(
                     myNumsLayout?.getRedHitCount() ?: 0,
                     myNumsLayout?.getBlueHitCount() ?: 0
                 )
@@ -223,9 +223,9 @@ class TwoColorBallCheckActivity : BaseActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun setupData() {
-        tvHitCity?.text = "中奖城市：${BallDataUtil.getPrizeCityStr()}"
-        tvSequence?.text = "开奖期数：${BallDataUtil.getPrizeSequenceStr()}"
-        tvDate?.text = "开奖日期：${BallDataUtil.getPrizeDateStr()}"
+        tvHitCity?.text = "中奖城市：${TwoColorBallDataUtil.getPrizeCityStr()}"
+        tvSequence?.text = "开奖期数：${TwoColorBallDataUtil.getPrizeSequenceStr()}"
+        tvDate?.text = "开奖日期：${TwoColorBallDataUtil.getPrizeDateStr()}"
         prizeNumsLayout?.setBalls(finalBallArray, finalBallArray)
     }
 

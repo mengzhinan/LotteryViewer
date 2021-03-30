@@ -1,6 +1,7 @@
 package com.lotteryviewer.sunset.util
 
 import android.content.Intent
+import com.lotteryviewer.base.util.TextUtil
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -43,8 +44,69 @@ object SunsetDataUtil {
         return dateStr ?: ""
     }
 
+    fun getSunriseStr(): String {
+        return sunriseStr ?: ""
+    }
+
+    fun getSunMiddleStr(): String {
+        return sunMiddleStr ?: ""
+    }
+
+    fun getSunsetStr(): String {
+        return sunsetStr ?: ""
+    }
+
+    fun getDayLengthStr(): String {
+        return dayLengthStr ?: ""
+    }
+
+    fun getDayLightStr(): String {
+        return dayLightStr ?: ""
+    }
+
+    fun dayDarkStr(): String {
+        return dayDarkStr ?: ""
+    }
+
     fun parseData(value: String?) {
-        value ?: return
+
+        dateStr = ""
+        sunriseStr = ""
+        sunMiddleStr = ""
+        sunsetStr = ""
+        dayLengthStr = ""
+        dayLightStr = ""
+        dayDarkStr = ""
+
+        if (TextUtil.isNullOrEmpty(value)) {
+            return
+        }
+        var tempData = value?.trim()
+        tempData = tempData?.toLowerCase(Locale.getDefault())
+        tempData = tempData?.replace("\"", "")
+        tempData = tempData?.replace("null", "")
+
+        val arr = tempData?.split(SPLIT)
+        if (arr == null || arr.isEmpty()) {
+            return
+        }
+        for (index in arr.indices) {
+            if (index == 0) {
+                dateStr = arr[index]
+            } else if (index == 1) {
+                sunriseStr = arr[index]
+            } else if (index == 2) {
+                sunMiddleStr = arr[index]
+            } else if (index == 3) {
+                sunsetStr = arr[index]
+            } else if (index == 4) {
+                dayLengthStr = arr[index]
+            } else if (index == 5) {
+                dayLightStr = arr[index]
+            } else if (index == 6) {
+                dayDarkStr = arr[index]
+            }
+        }
 
     }
 

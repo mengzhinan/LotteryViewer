@@ -7,20 +7,23 @@ import android.view.MenuItem
 import com.lotteryviewer.base.interfaces.FunctionNone
 import com.lotteryviewer.base.ui.BaseWebViewActivity
 import com.lotteryviewer.twocolorball.R
-import com.lotteryviewer.twocolorball.util.BallHtmlUtil
+import com.lotteryviewer.twocolorball.util.TwoColorBallDataUtil
+import com.lotteryviewer.twocolorball.util.TwoColorBallHtmlUtil
 import com.lotteryviewer.twocolorball.widget.BallWebViewClient
 
 class TwoColorBallPageActivity : BaseWebViewActivity() {
 
     companion object {
-        // china fc web url
-        private const val LOAD_URL = "http://www.cwl.gov.cn/kjxx/ssq/"
+
         private const val MENU_ID_REFRESH = 0
         private const val MENU_ID_CHECK = 1
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setActionBarTitle(R.string.two_color_ball_title)
 
         // just pre grab html data
         baseWebView?.webViewClient = BallWebViewClient()
@@ -28,14 +31,8 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
         refreshUrl()
     }
 
-    override fun onResume() {
-        super.onResume()
-        setActionBarTitle(R.string.two_color_ball_title)
-    }
-
-
     private fun refreshUrl() {
-        baseWebView?.loadUrl(LOAD_URL)
+        baseWebView?.loadUrl(TwoColorBallDataUtil.TWO_COLOR_BALL_URL)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -62,7 +59,7 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
 
             // 用户可能会切换页面内的 选择框，切换了开奖日期
             // 所以此处需要再次爬取数据
-            BallHtmlUtil.getHtmlText(baseWebView, object : FunctionNone {
+            TwoColorBallHtmlUtil.getHtmlText(baseWebView, object : FunctionNone {
                 override fun onCallBack() {
                     baseLoadingLayout?.postDelayed({
                         startActivity(
@@ -71,7 +68,7 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
                                 TwoColorBallCheckActivity::class.java
                             )
                         )
-                    }, 100)
+                    }, 50)
                 }
             })
 

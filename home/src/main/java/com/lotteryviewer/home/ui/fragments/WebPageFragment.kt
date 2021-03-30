@@ -25,7 +25,7 @@ class WebPageFragment : BaseWebViewFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        baseWebView?.loadUrl(webPageViewModel.WEB_URL)
+        baseWebView?.loadUrl(WebPageViewModel.WEB_URL)
     }
 
 }

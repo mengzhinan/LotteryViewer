@@ -8,7 +8,7 @@ package com.lotteryviewer.base.util
 object TextUtil {
 
     fun isNullOrEmpty(str: String?): Boolean {
-        return (str?.trim()?.length ?: 0) == 0
+        return str == null || str.trim().isEmpty()
     }
 
     fun parseToInt(text: String?, defaultValue: Int): Int {

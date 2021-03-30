@@ -12,7 +12,7 @@ import com.lotteryviewer.base.util.BaseHtmlJSUtil
  * @Description: 功能描述：
  *
  */
-object BallHtmlUtil {
+object TwoColorBallHtmlUtil {
 
     // 移除默认节点 UI
     private const val demo = ("javascript:function deleteByTagName0() {"
@@ -47,7 +47,7 @@ object BallHtmlUtil {
             + "var nums = '';"
             + "for(var i = 0; i < size; i++) {"
             + "nums += lis[i].innerText;"
-            + "nums += '${BallDataUtil.SPLIT}';"
+            + "nums += '${TwoColorBallDataUtil.SPLIT}';"
             + "}"
             + "return nums;"
             + "}")
@@ -55,7 +55,7 @@ object BallHtmlUtil {
 
     fun getHtmlText(view: WebView?, endCallback: FunctionNone?) {
         view ?: return
-        Log.e(BallDataUtil.TAG, "开始解析 html")
+        Log.e(TwoColorBallDataUtil.TAG, "开始解析 html")
 
         var isSequenceOK = false
         var isDateOK = false
@@ -68,7 +68,7 @@ object BallHtmlUtil {
             "getCurrentPrizeSequence",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    BallDataUtil.parseSequenceStr(value)
+                    TwoColorBallDataUtil.parseSequenceStr(value)
                     isSequenceOK = true
                     checkDateAndCallback(
                         isSequenceOK,
@@ -86,7 +86,7 @@ object BallHtmlUtil {
             "getCurrentPrizeDate",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    BallDataUtil.parseDateStr(value)
+                    TwoColorBallDataUtil.parseDateStr(value)
                     isDateOK = true
                     checkDateAndCallback(
                         isSequenceOK,
@@ -104,7 +104,7 @@ object BallHtmlUtil {
             "getCurrentPrizeNums",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    BallDataUtil.parsePrizeBallNum(value)
+                    TwoColorBallDataUtil.parsePrizeBallNum(value)
                     isPrizeNumOK = true
                     checkDateAndCallback(
                         isSequenceOK,
@@ -122,7 +122,7 @@ object BallHtmlUtil {
             "getHitPrizeCity",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    BallDataUtil.parseCityStr(value)
+                    TwoColorBallDataUtil.parseCityStr(value)
                     isPrizeCityOK = true
                     checkDateAndCallback(
                         isSequenceOK,

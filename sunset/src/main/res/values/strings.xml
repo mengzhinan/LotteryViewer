@@ -1,1 +1,5 @@
-<resources></resources>
+<resources>
+
+    <string name="sunset_title">日出日落</string>
+
+</resources>
