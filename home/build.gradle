@@ -43,18 +43,21 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation project(path: ':fc3d')
     implementation project(path: ':base')
-    implementation project(path: ':happy8')
-    implementation project(path: ':guaGuaLe')
-    implementation project(path: ':sevenColors')
     implementation project(path: ':twoColorBall')
+    implementation project(path: ':sevenColors')
+    implementation project(path: ':guaGuaLe')
+    implementation project(path: ':happy8')
+    implementation project(path: ':fc3d')
 
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.4'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.4'
+
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
 
 
 }
