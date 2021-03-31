@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
     android:paddingStart="20dp"
     android:paddingTop="10dp"
-    android:paddingBottom="5dp"
-    tools:ignore="RtlSymmetry">
+    android:paddingEnd="5dp"
+    android:paddingBottom="5dp">
 
     <TextView
         android:id="@+id/date_text"
@@ -21,7 +20,7 @@
         tools:text="日期" />
 
     <TextView
-        android:id="@+id/sunrise_text"
+        android:id="@+id/day_light_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -29,6 +28,17 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date_text"
+        tools:text="天亮" />
+
+    <TextView
+        android:id="@+id/sunrise_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="start|center_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/day_light_text"
         tools:text="日出" />
 
     <TextView
@@ -54,28 +64,6 @@
         tools:text="日落" />
 
     <TextView
-        android:id="@+id/day_length_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="start|center_vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sunset_text"
-        tools:text="昼长" />
-
-    <TextView
-        android:id="@+id/day_light_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="start|center_vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/day_length_text"
-        tools:text="天亮" />
-
-    <TextView
         android:id="@+id/day_dark_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,7 +71,18 @@
         android:gravity="start|center_vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/day_light_text"
+        app:layout_constraintTop_toBottomOf="@+id/sunset_text"
         tools:text="天黑" />
+
+    <TextView
+        android:id="@+id/day_length_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="start|center_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/day_dark_text"
+        tools:text="昼长" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
