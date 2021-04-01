@@ -10,11 +10,29 @@ import java.nio.charset.Charset
  * Version：3.0 <br></br>
  * Modify：2021-03-31
  */
-class FileReadHelper private constructor(inputStream: InputStream?) {
+class FileReadHelper private constructor(inputStreamArgs: InputStream?) {
 
     private var inputStream: InputStream?
     private var inputStreamReader: InputStreamReader? = null
     private var reader: BufferedReader? = null
+
+    companion object {
+        fun openStream(filePath: String): FileReadHelper {
+            return openStream(File(filePath))
+        }
+
+        fun openStream(file: File): FileReadHelper {
+            return FileReadHelper(FileInputStream(file))
+        }
+
+        fun openStream(inputStreamParam: InputStream?): FileReadHelper {
+            return FileReadHelper(inputStreamParam)
+        }
+    }
+
+    init {
+        this.inputStream = inputStreamArgs
+    }
 
     fun readString(): String? {
         if (inputStream == null) {
@@ -84,21 +102,4 @@ class FileReadHelper private constructor(inputStream: InputStream?) {
         }
     }
 
-    companion object {
-        fun openStream(filePath: String): FileReadHelper {
-            return openStream(File(filePath))
-        }
-
-        fun openStream(file: File): FileReadHelper {
-            return FileReadHelper(FileInputStream(file))
-        }
-
-        fun openStream(inputStream: InputStream?): FileReadHelper {
-            return FileReadHelper(inputStream)
-        }
-    }
-
-    init {
-        this.inputStream = inputStream
-    }
 }

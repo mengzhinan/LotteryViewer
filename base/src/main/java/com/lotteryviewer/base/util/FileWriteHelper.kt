@@ -26,17 +26,67 @@ class FileWriteHelper private constructor(
     private var outputStreamWriter: OutputStreamWriter? = null
     private var bufferedWriter: BufferedWriter? = null
 
-    private fun checkFile() {
-        file.parentFile?.mkdirs()
-        file.createNewFile()
+    companion object {
+        @JvmOverloads
+        fun openStream(file: File, isAppend: Boolean = false): FileWriteHelper? {
+            return FileWriteHelper(file, isAppend).createStream()
+        }
+
+        fun isFileExists(fileName: String): Boolean {
+            val file = File(fileName)
+            return file.exists()
+        }
+
+        fun isFileExists(baseFolder: String?, fileName: String): Boolean {
+            val file = File(baseFolder, fileName)
+            return file.exists()
+        }
+
+        fun isFileExists(baseFolder: File?, fileName: String): Boolean {
+            val file = File(baseFolder, fileName)
+            return file.exists()
+        }
     }
 
-    private fun createStream() {
-        fileOutputStream = FileOutputStream(file, isAppend)
-        //Android-changed: Use UTF_8 unconditionally.
-        outputStreamWriter = OutputStreamWriter(fileOutputStream, Charset.defaultCharset())
-        //default output-buffer size is 8192
-        bufferedWriter = BufferedWriter(outputStreamWriter)
+    private fun createStream(): FileWriteHelper? {
+        try {
+            if (!file.exists()) {
+                file.parentFile?.mkdirs()
+                file.createNewFile()
+            }
+            fileOutputStream = FileOutputStream(file, isAppend)
+            //Android-changed: Use UTF_8 unconditionally.
+            outputStreamWriter = OutputStreamWriter(fileOutputStream, Charset.defaultCharset())
+            //default output-buffer size is 8192
+            bufferedWriter = BufferedWriter(outputStreamWriter)
+            return this
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
+    fun write(content: String?): FileWriteHelper? {
+        if (TextUtils.isEmpty(content)) {
+            return this
+        }
+        try {
+            bufferedWriter?.write(content)
+            return this
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
+    fun newLine(): FileWriteHelper? {
+        try {
+            bufferedWriter?.newLine()
+            return this
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return null
     }
 
     fun closeStream() {
@@ -66,53 +116,4 @@ class FileWriteHelper private constructor(
         }
     }
 
-    fun write(content: String?): FileWriteHelper? {
-        if (TextUtils.isEmpty(content)) {
-            return this
-        }
-        try {
-            bufferedWriter?.write(content)
-            return this
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        return null
-    }
-
-    fun newLine(): FileWriteHelper? {
-        try {
-            bufferedWriter?.newLine()
-            return this
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        return null
-    }
-
-    companion object {
-        @JvmOverloads
-        fun openStream(file: File, isAppend: Boolean = false): FileWriteHelper {
-            return FileWriteHelper(file, isAppend)
-        }
-
-        fun isFileExists(fileName: String): Boolean {
-            val file = File(fileName)
-            return file.exists()
-        }
-
-        fun isFileExists(baseFolder: String?, fileName: String): Boolean {
-            val file = File(baseFolder, fileName)
-            return file.exists()
-        }
-
-        fun isFileExists(baseFolder: File?, fileName: String): Boolean {
-            val file = File(baseFolder, fileName)
-            return file.exists()
-        }
-    }
-
-    init {
-        checkFile()
-        createStream()
-    }
 }
