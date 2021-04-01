@@ -81,7 +81,7 @@ class PermissionHelper private constructor(fragmentManager: FragmentManager) {
             if (isNullOrEmpty(permission)) {
                 continue
             }
-            if (isGranted(permission!!)) {
+            if (isGranted(permission)) {
                 // 已经授权，isGranted = true
                 notRequestList.add(
                     PermissionInfo(
@@ -250,7 +250,7 @@ class PermissionHelper private constructor(fragmentManager: FragmentManager) {
             val packageName = activity.packageName
                 ?: throw NullPointerException("Exception caused by activity.getPackageName() == null.")
 
-            return packageManager.isPermissionRevokedByPolicy(permission!!, packageName)
+            return packageManager.isPermissionRevokedByPolicy(permission, packageName)
         }
 
         companion object {
@@ -287,18 +287,25 @@ class PermissionHelper private constructor(fragmentManager: FragmentManager) {
         var isShouldShowRequestPermissionRationale: Boolean
     ) {
 
-        override fun equals(o: Any?): Boolean {
+        override fun equals(other: Any?): Boolean {
 
             // 内存地址比较
-            if (this === o) {
+            if (this === other) {
                 return true
             }
-            return (o is PermissionInfo
-                    && javaClass == o.javaClass
-                    && name == o.name
-                    && isGranted == o.isGranted
-                    && isShouldShowRequestPermissionRationale == o.isShouldShowRequestPermissionRationale)
+            return (other is PermissionInfo
+                    && javaClass == other.javaClass
+                    && name == other.name
+                    && isGranted == other.isGranted
+                    && isShouldShowRequestPermissionRationale == other.isShouldShowRequestPermissionRationale)
 
+        }
+
+        override fun hashCode(): Int {
+            var result = name?.hashCode() ?: 0
+            result = 31 * result + isGranted.hashCode()
+            result = 31 * result + isShouldShowRequestPermissionRationale.hashCode()
+            return result
         }
     }
 
