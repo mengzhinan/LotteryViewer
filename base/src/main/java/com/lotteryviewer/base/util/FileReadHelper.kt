@@ -11,9 +11,8 @@ import java.nio.charset.Charset
  * Version：3.0
  * Modify：2021-03-31
  */
-class FileReadHelper private constructor(inputStreamArgs: InputStream?) {
+class FileReadHelper private constructor(private var inputStream: InputStream?) {
 
-    private var inputStream: InputStream?
     private var inputStreamReader: InputStreamReader? = null
     private var reader: BufferedReader? = null
 
@@ -40,10 +39,6 @@ class FileReadHelper private constructor(inputStreamArgs: InputStream?) {
             return FileReadHelper(inputStreamParam)
         }
 
-    }
-
-    init {
-        this.inputStream = inputStreamArgs
     }
 
     fun readString(charset: Charset? = Charset.forName("UTF-8")): String? {
