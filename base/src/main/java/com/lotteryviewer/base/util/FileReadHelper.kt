@@ -1,5 +1,6 @@
 package com.lotteryviewer.base.util
 
+import android.text.TextUtils
 import java.io.*
 import java.nio.charset.Charset
 
@@ -18,15 +19,24 @@ class FileReadHelper private constructor(inputStreamArgs: InputStream?) {
 
     companion object {
 
-        fun openStream(filePath: String): FileReadHelper {
+        fun openStream(filePath: String?): FileReadHelper? {
+            if (filePath == null || TextUtils.isEmpty(filePath.trim())) {
+                return null
+            }
             return openStream(File(filePath))
         }
 
-        fun openStream(file: File): FileReadHelper {
+        fun openStream(file: File?): FileReadHelper? {
+            if (file == null || !file.exists()) {
+                return null
+            }
             return FileReadHelper(FileInputStream(file))
         }
 
-        fun openStream(inputStreamParam: InputStream?): FileReadHelper {
+        fun openStream(inputStreamParam: InputStream?): FileReadHelper? {
+            if (inputStreamParam == null) {
+                return null
+            }
             return FileReadHelper(inputStreamParam)
         }
 
@@ -48,6 +58,7 @@ class FileReadHelper private constructor(inputStreamArgs: InputStream?) {
 
             // 默认 size 就是 8192
             reader = BufferedReader(inputStreamReader)
+
             val stringBuffer = StringBuilder()
             var text: String?
             while (reader?.readLine().also { text = it } != null) {
@@ -92,6 +103,7 @@ class FileReadHelper private constructor(inputStreamArgs: InputStream?) {
         } finally {
             reader = null
         }
+
         try {
             inputStreamReader?.close()
         } catch (e: IOException) {
@@ -99,6 +111,7 @@ class FileReadHelper private constructor(inputStreamArgs: InputStream?) {
         } finally {
             inputStreamReader = null
         }
+
         try {
             inputStream?.close()
         } catch (e: IOException) {
