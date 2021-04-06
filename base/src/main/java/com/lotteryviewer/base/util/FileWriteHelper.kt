@@ -22,21 +22,17 @@ class FileWriteHelper private constructor(
 
     companion object {
 
-        fun openStream(file: File): FileWriteHelper? {
-
-            return openStream(file, Charset.forName("UTF-8"), false)
-        }
+        private val defaultCharset = Charset.defaultCharset()
 
         fun openStream(
-            file: File,
-            charset: Charset? = Charset.forName("UTF-8"),
+            file: File?,
+            charset: Charset? = defaultCharset,
             isAppend: Boolean = false
         ): FileWriteHelper? {
-
-            return FileWriteHelper(file).createStream(
-                isAppend,
-                charset ?: Charset.defaultCharset()
-            )
+            if (file == null) {
+                return null
+            }
+            return FileWriteHelper(file).createStream(isAppend, charset ?: defaultCharset)
         }
 
         fun isFileExists(fileName: String): Boolean {
@@ -87,7 +83,7 @@ class FileWriteHelper private constructor(
     }
 
     fun write(content: String?): FileWriteHelper? {
-        if (TextUtils.isEmpty(content)) {
+        if (content == null || TextUtils.isEmpty(content)) {
             return this
         }
         try {
@@ -118,6 +114,7 @@ class FileWriteHelper private constructor(
         } finally {
             bufferedWriter = null
         }
+
         try {
             outputStreamWriter?.flush()
             outputStreamWriter?.close()
@@ -126,6 +123,7 @@ class FileWriteHelper private constructor(
         } finally {
             outputStreamWriter = null
         }
+
         try {
             fileOutputStream?.flush()
             fileOutputStream?.close()
