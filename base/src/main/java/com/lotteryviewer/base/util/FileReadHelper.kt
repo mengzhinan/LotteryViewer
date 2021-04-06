@@ -18,6 +18,8 @@ class FileReadHelper private constructor(private var inputStream: InputStream?) 
 
     companion object {
 
+        private val defaultCharset = Charset.defaultCharset()
+
         fun openStream(filePath: String?): FileReadHelper? {
             if (filePath == null || TextUtils.isEmpty(filePath.trim())) {
                 return null
@@ -41,15 +43,12 @@ class FileReadHelper private constructor(private var inputStream: InputStream?) 
 
     }
 
-    fun readString(charset: Charset? = Charset.forName("UTF-8")): String? {
+    fun readString(charset: Charset? = defaultCharset): String? {
         if (inputStream == null) {
             return null
         }
         try {
-            inputStreamReader = InputStreamReader(
-                inputStream,
-                charset ?: Charset.defaultCharset()
-            )
+            inputStreamReader = InputStreamReader(inputStream, charset ?: defaultCharset)
 
             // 默认 size 就是 8192
             reader = BufferedReader(inputStreamReader)
