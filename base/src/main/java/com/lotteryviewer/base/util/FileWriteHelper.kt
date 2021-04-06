@@ -13,13 +13,7 @@ import java.nio.charset.Charset
  * Modify：2021-03-31
  */
 class FileWriteHelper private constructor(
-    private val file: File,
-    /**
-     * 控制是否在上一次打开流的连续读写内容之后追加内容。
-     * 与本次打开流后的连续读写无关。
-     * 默认不保留以前的内容，只保留当前流的一系列写入操作。
-     */
-    private val isAppend: Boolean
+    private val file: File
 ) {
 
     private var fileOutputStream: FileOutputStream? = null
@@ -27,9 +21,22 @@ class FileWriteHelper private constructor(
     private var bufferedWriter: BufferedWriter? = null
 
     companion object {
-        @JvmOverloads
-        fun openStream(file: File, isAppend: Boolean = false): FileWriteHelper? {
-            return FileWriteHelper(file, isAppend).createStream()
+
+        fun openStream(file: File): FileWriteHelper? {
+
+            return openStream(file, Charset.forName("UTF-8"), false)
+        }
+
+        fun openStream(
+            file: File,
+            charset: Charset? = Charset.forName("UTF-8"),
+            isAppend: Boolean = false
+        ): FileWriteHelper? {
+
+            return FileWriteHelper(file).createStream(
+                isAppend,
+                charset ?: Charset.defaultCharset()
+            )
         }
 
         fun isFileExists(fileName: String): Boolean {
@@ -46,17 +53,30 @@ class FileWriteHelper private constructor(
             val file = File(baseFolder, fileName)
             return file.exists()
         }
+
     }
 
-    private fun createStream(): FileWriteHelper? {
+    fun getFile(): File {
+        return file
+    }
+
+    private fun createStream(isAppend: Boolean, charset: Charset): FileWriteHelper? {
         try {
             if (!file.exists()) {
                 file.parentFile?.mkdirs()
                 file.createNewFile()
             }
+            /**
+             * isAppend 参数：
+             * 控制是否在上一次打开流的连续读写内容之后追加内容。
+             * 与本次打开流后的连续读写无关。
+             * 默认不保留以前的内容，只保留当前流的一系列写入操作。
+             */
             fileOutputStream = FileOutputStream(file, isAppend)
+
             //Android-changed: Use UTF_8 unconditionally.
-            outputStreamWriter = OutputStreamWriter(fileOutputStream, Charset.defaultCharset())
+            outputStreamWriter = OutputStreamWriter(fileOutputStream, charset)
+
             //default output-buffer size is 8192
             bufferedWriter = BufferedWriter(outputStreamWriter)
             return this

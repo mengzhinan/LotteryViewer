@@ -6,8 +6,8 @@ import java.nio.charset.Charset
 /**
  * author: duke
  * dateTime: 2018-10-28 10:14
- * description: 读取文件数据工具类 <br></br>
- * Version：3.0 <br></br>
+ * description: 读取文件数据工具类
+ * Version：3.0
  * Modify：2021-03-31
  */
 class FileReadHelper private constructor(inputStreamArgs: InputStream?) {
@@ -17,6 +17,7 @@ class FileReadHelper private constructor(inputStreamArgs: InputStream?) {
     private var reader: BufferedReader? = null
 
     companion object {
+
         fun openStream(filePath: String): FileReadHelper {
             return openStream(File(filePath))
         }
@@ -28,23 +29,28 @@ class FileReadHelper private constructor(inputStreamArgs: InputStream?) {
         fun openStream(inputStreamParam: InputStream?): FileReadHelper {
             return FileReadHelper(inputStreamParam)
         }
+
     }
 
     init {
         this.inputStream = inputStreamArgs
     }
 
-    fun readString(): String? {
+    fun readString(charset: Charset? = Charset.forName("UTF-8")): String? {
         if (inputStream == null) {
             return null
         }
         try {
-            inputStreamReader = InputStreamReader(inputStream, Charset.defaultCharset())
+            inputStreamReader = InputStreamReader(
+                inputStream,
+                charset ?: Charset.defaultCharset()
+            )
+
             // 默认 size 就是 8192
             reader = BufferedReader(inputStreamReader)
             val stringBuffer = StringBuilder()
             var text: String?
-            while (reader!!.readLine().also { text = it } != null) {
+            while (reader?.readLine().also { text = it } != null) {
                 stringBuffer.append(text)
             }
             if (stringBuffer.isNotEmpty()) {
@@ -64,9 +70,9 @@ class FileReadHelper private constructor(inputStreamArgs: InputStream?) {
         }
         try {
             //获取文件流的大小
-            val size = inputStream!!.available()
+            val size = inputStream?.available() ?: return null
             val buffer = ByteArray(size)
-            val total = inputStream!!.read(buffer)
+            val total = inputStream?.read(buffer) ?: -1
             if (total >= 0) {
                 return buffer
             }
