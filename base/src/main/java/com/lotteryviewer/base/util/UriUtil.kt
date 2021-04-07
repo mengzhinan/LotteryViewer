@@ -28,12 +28,21 @@ object UriUtil {
             // var va = uri?.getQueryParameters("target")?.getOrNull(0)?:""
             var value = uri?.getQueryParameter(paramKey) ?: ""
             if (value.isNotBlank() && isNeedDecode) {
-                value = URLDecoder.decode(value, "UTF-8").trim()
+                value = decodeUriOrParam(value) ?: ""
             }
             value
         } catch (e: Exception) {
             e.printStackTrace()
             ""
+        }
+    }
+
+    fun decodeUriOrParam(str: String?): String? {
+        return try {
+            URLDecoder.decode(str, "UTF-8").trim()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
         }
     }
 
