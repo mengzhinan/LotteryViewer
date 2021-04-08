@@ -1,6 +1,13 @@
 package com.lotteryviewer.base.util
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.os.Build
+import android.os.Environment
+import android.provider.Settings
 import android.text.TextUtils
+import androidx.appcompat.app.AlertDialog
 import java.io.*
 import java.nio.charset.Charset
 
@@ -48,6 +55,49 @@ class FileWriteHelper private constructor(
         fun isFileExists(baseFolder: File?, fileName: String): Boolean {
             val file = File(baseFolder, fileName)
             return file.exists()
+        }
+
+        /**
+         * 是否拥有 Android 11 以上文件管理权限，包括读写沙盒以外区域
+         */
+        fun isGrantFileManagePermission(): Boolean {
+            return (Build.VERSION.SDK_INT < Build.VERSION_CODES.R
+                    || Environment.isExternalStorageManager())
+        }
+
+        /**
+         * 请求系统授权界面
+         */
+        fun requestFileManagePermission(context: Context?) {
+            context ?: return
+            val intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
+            context.startActivity(intent)
+        }
+
+        fun showFileManagePermissionDialog(
+            activity: Activity?,
+            message: String?,
+            okButton: String?,
+            cancelButton: String?
+        ) {
+            if (isGrantFileManagePermission()
+                || activity == null
+                || !ActivityUtil.isActivityValid(activity)
+                || TextUtil.isNullOrEmpty(message)
+                || TextUtil.isNullOrEmpty(okButton)
+                || TextUtil.isNullOrEmpty(cancelButton)
+            ) {
+                return
+            }
+            val builder = AlertDialog.Builder(activity)
+                .setMessage(message)
+                .setPositiveButton(okButton) { _, _ ->
+                    requestFileManagePermission(activity)
+                }
+                .setNegativeButton(cancelButton) { _, _ ->
+                    // do nothing
+                }
+            builder.show()
         }
 
     }
