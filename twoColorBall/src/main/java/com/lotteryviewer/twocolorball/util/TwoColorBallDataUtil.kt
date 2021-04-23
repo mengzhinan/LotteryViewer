@@ -122,6 +122,27 @@ object TwoColorBallDataUtil {
     }
 
     /**
+     * 获取历史篮球号码(last _ lastLast)
+     */
+    fun parseTwoHistoryBlueStr(value: String?) {
+        if (TextUtil.isNullOrEmpty(value)) {
+            return
+        }
+        var newValue = value?.trim()
+//        newValue = newValue?.toLowerCase(Locale.getDefault())
+        newValue = newValue?.replace("\"", "")
+        newValue = newValue?.replace("，", ",")
+        newValue = newValue?.replace("null", "")
+
+        val arr = newValue?.split(SPLIT)
+        if (arr == null || arr.size != 2) {
+            return
+        }
+        lastBlueNum = TextUtil.parseToInt(arr[0], 10)
+        lastLastBlueNum = TextUtil.parseToInt(arr[1], 5)
+    }
+
+    /**
      * 把解析到的开奖号码字符串，转换为对应的 String 数组
      */
     fun parsePrizeBallNum(value: String?) {

@@ -15,10 +15,10 @@ import com.lotteryviewer.base.util.BaseHtmlJSUtil
 object TwoColorBallHtmlUtil {
 
     // 移除默认节点 UI
-    private const val demo = ("javascript:function deleteByTagName0() {"
-            + "var header = document.getElementsByTagName('header')[0];"
-            + "header.parentNode.removeChild(header);"
-            + "}")
+//    private const val demo = ("javascript:function deleteByTagName0() {"
+//            + "var header = document.getElementsByTagName('header')[0];"
+//            + "header.parentNode.removeChild(header);"
+//            + "}")
 
     // 开奖期数
     private const val getCurrentPrizeSequence =
@@ -52,6 +52,15 @@ object TwoColorBallHtmlUtil {
             + "return nums;"
             + "}")
 
+    // 获取历史最近两期开奖号码的篮色球
+    private var getTwoHistoryBlueNum = ("javascript:function getTwoHistoryBlueNum() {"
+            + "var lqiuSpans = document.getElementsByClassName('lqiu');"
+            + "var lqiuLast = lqiuSpans[0].innerText;"
+            + "var lqiuLastLast = lqiuSpans[1].innerText;"
+            + "var nums = lqiuLast + '${TwoColorBallDataUtil.SPLIT}' + lqiuLastLast;"
+            + "return nums;"
+            + "}")
+
 
     fun getHtmlText(view: WebView?, endCallback: FunctionNone?) {
         view ?: return
@@ -61,6 +70,7 @@ object TwoColorBallHtmlUtil {
         var isDateOK = false
         var isPrizeNumOK = false
         var isPrizeCityOK = false
+        var isTwoHistoryBlueOK = false
 
         BaseHtmlJSUtil.loadAndCallJs(
             view,
@@ -75,6 +85,7 @@ object TwoColorBallHtmlUtil {
                         isDateOK,
                         isPrizeNumOK,
                         isPrizeCityOK,
+                        isTwoHistoryBlueOK,
                         endCallback
                     )
                 }
@@ -93,6 +104,7 @@ object TwoColorBallHtmlUtil {
                         isDateOK,
                         isPrizeNumOK,
                         isPrizeCityOK,
+                        isTwoHistoryBlueOK,
                         endCallback
                     )
                 }
@@ -111,6 +123,7 @@ object TwoColorBallHtmlUtil {
                         isDateOK,
                         isPrizeNumOK,
                         isPrizeCityOK,
+                        isTwoHistoryBlueOK,
                         endCallback
                     )
                 }
@@ -129,6 +142,26 @@ object TwoColorBallHtmlUtil {
                         isDateOK,
                         isPrizeNumOK,
                         isPrizeCityOK,
+                        isTwoHistoryBlueOK,
+                        endCallback
+                    )
+                }
+            })
+
+        BaseHtmlJSUtil.loadAndCallJs(
+            view,
+            getTwoHistoryBlueNum,
+            "getTwoHistoryBlueNum",
+            object : FunctionStringOne {
+                override fun onCallBack(value: String?) {
+                    TwoColorBallDataUtil.parseTwoHistoryBlueStr(value)
+                    isTwoHistoryBlueOK = true
+                    checkDateAndCallback(
+                        isSequenceOK,
+                        isDateOK,
+                        isPrizeNumOK,
+                        isPrizeCityOK,
+                        isTwoHistoryBlueOK,
                         endCallback
                     )
                 }
@@ -140,9 +173,10 @@ object TwoColorBallHtmlUtil {
         bl2: Boolean,
         bl3: Boolean,
         bl4: Boolean,
+        bl5: Boolean,
         callback: FunctionNone?
     ) {
-        if (bl1 && bl2 && bl3 && bl4) {
+        if (bl1 && bl2 && bl3 && bl4 && bl5) {
             callback?.onCallBack()
         }
     }
