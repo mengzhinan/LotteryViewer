@@ -16,7 +16,7 @@ object RandomUtil {
      */
     fun getRandomPercent(@IntRange(from = 0, to = 10) percent: Int): Boolean {
         // 产生一个随机数
-        val randomNum = (0..10).random()
+        val randomNum = (1..10).random()
         // 判断随机数是否在给定范围内
         return randomNum in (0..percent)
     }

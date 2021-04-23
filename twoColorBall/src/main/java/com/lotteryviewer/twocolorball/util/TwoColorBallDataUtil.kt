@@ -28,8 +28,8 @@ object TwoColorBallDataUtil {
     private var prizeCityStr: String? = ""
 
     // js 爬取 html 中上上期和上期的篮色球号码
-    private var lastLastBlueNum: Int = 5
-    private var lastBlueNum: Int = 10
+    private var lastLastBlueNum: Int = 0
+    private var lastBlueNum: Int = 0
 
     fun getLastLastBlue(): Int {
         return lastLastBlueNum
@@ -139,8 +139,8 @@ object TwoColorBallDataUtil {
         if (arr == null || arr.size != 2) {
             return
         }
-        lastBlueNum = TextUtil.parseToInt(arr[0], 10)
-        lastLastBlueNum = TextUtil.parseToInt(arr[1], 5)
+        lastBlueNum = TextUtil.parseToInt(arr[0], 0)
+        lastLastBlueNum = TextUtil.parseToInt(arr[1], 0)
 
         LVLogger.logE("$lastBlueNum - $lastLastBlueNum")
     }
