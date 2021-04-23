@@ -10,7 +10,7 @@ import android.util.Log
  */
 object LVLogger {
 
-    const val TAG = "test_lv_log"
+    private var TAG: String = LVLogger::class.java.simpleName
     var isDebug = true
 
     fun logD(s: String?) {

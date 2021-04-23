@@ -1,5 +1,6 @@
 package com.lotteryviewer.twocolorball.util
 
+import com.lotteryviewer.base.util.LVLogger
 import com.lotteryviewer.base.util.TextUtil
 import com.lotteryviewer.twocolorball.R
 import java.util.*
@@ -140,6 +141,8 @@ object TwoColorBallDataUtil {
         }
         lastBlueNum = TextUtil.parseToInt(arr[0], 10)
         lastLastBlueNum = TextUtil.parseToInt(arr[1], 5)
+
+        LVLogger.logE("$lastBlueNum - $lastLastBlueNum")
     }
 
     /**
