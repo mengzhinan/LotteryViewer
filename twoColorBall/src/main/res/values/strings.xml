@@ -17,4 +17,6 @@
 
     <string name="two_color_ball_prize_num_invalid">双色球开奖号码抓取失败，请刷新页面重新进入!</string>
 
+    <string name="two_color_ball_next_blue_ball">预测下一期蓝色球：</string>
+
 </resources>

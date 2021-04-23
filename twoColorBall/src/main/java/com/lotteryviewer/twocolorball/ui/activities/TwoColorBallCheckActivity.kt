@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import com.lotteryviewer.base.ui.BaseActivity
 import com.lotteryviewer.twocolorball.R
 import com.lotteryviewer.twocolorball.ui.widget.BallLayout
+import com.lotteryviewer.twocolorball.util.TowColorBallRandomUtil
 import com.lotteryviewer.twocolorball.util.TwoColorBallDataUtil
 
 class TwoColorBallCheckActivity : BaseActivity() {
@@ -22,6 +23,9 @@ class TwoColorBallCheckActivity : BaseActivity() {
     private var prizeNumsLayout: BallLayout? = null
     private var myNumsLayout: BallLayout? = null
     private var tvResult: TextView? = null
+
+    private val lastLastBlueNum: Int = TwoColorBallDataUtil.getLastLastBlue()
+    private val lastBlueNum: Int = TwoColorBallDataUtil.getLastBlue()
 
     // 进入此页面时，开奖号码已经解析到，而不是 ？
     private val finalBallArray = Array(TwoColorBallDataUtil.prizeNumArray.size) { "" }
@@ -34,7 +38,10 @@ class TwoColorBallCheckActivity : BaseActivity() {
     private var spinner4: AppCompatSpinner? = null
     private var spinner5: AppCompatSpinner? = null
     private var spinner6: AppCompatSpinner? = null
+
     private var spinner7: AppCompatSpinner? = null
+
+    private var nextBlueBall: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,6 +87,16 @@ class TwoColorBallCheckActivity : BaseActivity() {
         spinner5 = findViewById(R.id.input_spinner5)
         spinner6 = findViewById(R.id.input_spinner6)
         spinner7 = findViewById(R.id.input_spinner7)
+
+        nextBlueBall = findViewById(R.id.tv_next_blue_ball)
+        nextBlueBall?.text =
+            TowColorBallRandomUtil.getNextRandomBlueBall(lastLastBlueNum, lastBlueNum)
+        nextBlueBall?.setOnClickListener {
+            // 点击号码重新估算下一期号码
+            nextBlueBall?.text =
+                TowColorBallRandomUtil.getNextRandomBlueBall(lastLastBlueNum, lastBlueNum)
+        }
+
         spinner1?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,

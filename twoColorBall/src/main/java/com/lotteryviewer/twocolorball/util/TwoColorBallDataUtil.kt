@@ -26,6 +26,18 @@ object TwoColorBallDataUtil {
     private var prizeNumStr: String? = ""
     private var prizeCityStr: String? = ""
 
+    // js 爬取 html 中上上期和上期的篮色球号码
+    private var lastLastBlueNum: Int = 5
+    private var lastBlueNum: Int = 10
+
+    fun getLastLastBlue(): Int {
+        return lastLastBlueNum
+    }
+
+    fun getLastBlue(): Int {
+        return lastBlueNum
+    }
+
     fun getPrizeSequenceStr(): String {
         return prizeSequenceStr ?: ""
     }

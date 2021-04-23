@@ -1,5 +1,7 @@
 package com.lotteryviewer.base.util
 
+import androidx.annotation.IntRange
+
 /**
  * @Author: duke
  * @DateTime: 2021-03-24 13:34:07
@@ -7,6 +9,17 @@ package com.lotteryviewer.base.util
  *
  */
 object RandomUtil {
+
+    /**
+     * 产生一个随机数，然后计算这个数值是否在给定的百分比范围内
+     * @return true：在范围内；false：不在范围内
+     */
+    fun getRandomPercent(@IntRange(from = 0, to = 10) percent: Int): Boolean {
+        // 产生一个随机数
+        val randomNum = (0..10).random()
+        // 判断随机数是否在给定范围内
+        return randomNum in (0..percent)
+    }
 
     /**
      * 给定数组，随机获取其中 count 个 items 返回
