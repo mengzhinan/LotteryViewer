@@ -142,7 +142,7 @@ object TwoColorBallDataUtil {
         lastBlueNum = TextUtil.parseToInt(arr[0], 0)
         lastLastBlueNum = TextUtil.parseToInt(arr[1], 0)
 
-        LVLogger.logE("$lastBlueNum - $lastLastBlueNum")
+        LVLogger.logE("lastLastBlueNum = $lastLastBlueNum <---> lastBlueNum = $lastBlueNum")
     }
 
     /**
