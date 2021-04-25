@@ -24,13 +24,16 @@ class TwoColorBallCheckActivity : BaseActivity() {
     private var myNumsLayout: BallLayout? = null
     private var tvResult: TextView? = null
 
+    private val blueBallCount = 16
+    private val blueBallArray: Array<String> = Array(blueBallCount) { "0" }
     private val lastLastBlueNum: Int = TwoColorBallDataUtil.getLastLastBlue()
     private val lastBlueNum: Int = TwoColorBallDataUtil.getLastBlue()
 
     // 进入此页面时，开奖号码已经解析到，而不是 ？
     private val finalBallArray = Array(TwoColorBallDataUtil.prizeNumArray.size) { "" }
 
-    private val inputBallArray: Array<String> = arrayOf("?", "?", "?", "?", "?", "?", "?")
+    // 6 红 + 1 蓝
+    private val inputBallArray: Array<String> = Array(7) { "?" }
 
     private var spinner1: AppCompatSpinner? = null
     private var spinner2: AppCompatSpinner? = null
@@ -56,6 +59,12 @@ class TwoColorBallCheckActivity : BaseActivity() {
                 getString(R.string.two_color_ball_prize_num_invalid),
                 Toast.LENGTH_SHORT
             ).show()
+        }
+
+        // 获取 stringArray 里面的蓝色球数组(第一个是 "--")
+        val ballArray: Array<String>? = resources?.getStringArray(R.array.blue_num_array)
+        if (ballArray != null && ballArray.size > 1) {
+            System.arraycopy(ballArray, 1, blueBallArray, 0, blueBallCount)
         }
 
         initActionBar()
@@ -90,11 +99,19 @@ class TwoColorBallCheckActivity : BaseActivity() {
 
         nextBlueBall = findViewById(R.id.tv_next_blue_ball)
         nextBlueBall?.text =
-            TowColorBallRandomUtil.getNextRandomBlueBall(lastLastBlueNum, lastBlueNum)
+            TowColorBallRandomUtil.getNextRandomBlueBall(
+                blueBallArray,
+                lastLastBlueNum,
+                lastBlueNum
+            )
         nextBlueBall?.setOnClickListener {
             // 点击号码重新估算下一期号码
             nextBlueBall?.text =
-                TowColorBallRandomUtil.getNextRandomBlueBall(lastLastBlueNum, lastBlueNum)
+                TowColorBallRandomUtil.getNextRandomBlueBall(
+                    blueBallArray,
+                    lastLastBlueNum,
+                    lastBlueNum
+                )
         }
 
         spinner1?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

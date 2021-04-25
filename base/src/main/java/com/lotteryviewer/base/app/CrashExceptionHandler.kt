@@ -1,6 +1,9 @@
 package com.lotteryviewer.base.app
 
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 
 /**
  * @Author: duke
@@ -25,6 +28,13 @@ class CrashExceptionHandler private constructor() : Thread.UncaughtExceptionHand
             return
         }
         Log.e(TAG, "全局异常，thread = " + thread.name + ", error = " + throwable.message)
+        Handler(Looper.getMainLooper()).post {
+            Toast.makeText(
+                BaseApplication.get(),
+                "全局异常，error = " + throwable.message,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     companion object {
