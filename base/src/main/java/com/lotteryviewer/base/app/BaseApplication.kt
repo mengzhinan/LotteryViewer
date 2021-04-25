@@ -17,6 +17,7 @@ open class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         init(get())
+        CrashExceptionHandler.instance?.setDefaultUnCrashExceptionHandler()
     }
 
     companion object {

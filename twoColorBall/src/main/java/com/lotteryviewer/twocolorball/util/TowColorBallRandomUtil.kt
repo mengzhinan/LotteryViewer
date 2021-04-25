@@ -19,7 +19,7 @@ object TowColorBallRandomUtil {
         // 上一期的蓝色球方向
         val lastTowardsRight = lastLastNum <= lastNum
         // 根据数据分析，下一个号码大概率是反向的，即折线原理
-        val isNowTowardsRight = if (RandomUtil.getRandomPercent(2)) {
+        val isNowTowardsRight = if (RandomUtil.getRandomPercent(1)) {
             // 30% 概率不反向
             lastTowardsRight
         } else {
