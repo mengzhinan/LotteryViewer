@@ -8,15 +8,18 @@ import com.lotteryviewer.base.interfaces.FunctionNone
 import com.lotteryviewer.base.ui.BaseWebViewActivity
 import com.lotteryviewer.twocolorball.R
 import com.lotteryviewer.twocolorball.ui.widget.BallWebViewClient
-import com.lotteryviewer.twocolorball.util.TwoColorBallDataUtil
 import com.lotteryviewer.twocolorball.util.TwoColorBallHtmlUtil
 
 class TwoColorBallActivity : BaseWebViewActivity() {
 
     companion object {
 
+        // 福彩双色球网址
+        private const val URL = "http://www.cwl.gov.cn/kjxx/ssq/"
+
         private const val MENU_ID_REFRESH = 0
         private const val MENU_ID_CHECK = 1
+        private const val MENU_ID_HISTORY = 2
 
     }
 
@@ -32,16 +35,33 @@ class TwoColorBallActivity : BaseWebViewActivity() {
     }
 
     private fun refreshUrl() {
-        baseWebView?.loadUrl(TwoColorBallDataUtil.TWO_COLOR_BALL_URL)
+        baseWebView?.loadUrl(URL)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        menu?.add(Menu.NONE, MENU_ID_REFRESH, Menu.NONE, getString(R.string.two_color_ball_menu1))
-        menu?.add(Menu.NONE, MENU_ID_CHECK, Menu.NONE, getString(R.string.two_color_ball_menu2))
+        menu?.add(
+            Menu.NONE,
+            MENU_ID_REFRESH,
+            Menu.NONE,
+            getString(R.string.two_color_ball_refresh_menu)
+        )
+        menu?.add(
+            Menu.NONE,
+            MENU_ID_HISTORY,
+            Menu.NONE,
+            getString(R.string.two_color_ball_history_menu)
+        )
+        menu?.add(
+            Menu.NONE,
+            MENU_ID_CHECK,
+            Menu.NONE,
+            getString(R.string.two_color_ball_check_menu)
+        )
 
         menu?.getItem(MENU_ID_REFRESH)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
-        menu?.getItem(MENU_ID_CHECK)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
+        menu?.getItem(MENU_ID_HISTORY)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
+        menu?.getItem(MENU_ID_CHECK)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -55,6 +75,13 @@ class TwoColorBallActivity : BaseWebViewActivity() {
             }
         } else if (item.itemId == MENU_ID_REFRESH) {
             refreshUrl()
+        } else if (item.itemId == MENU_ID_HISTORY) {
+            startActivity(
+                Intent(
+                    this@TwoColorBallActivity,
+                    HistoryBallActivity::class.java
+                )
+            )
         } else if (item.itemId == MENU_ID_CHECK) {
 
             // 用户可能会切换页面内的 选择框，切换了开奖日期

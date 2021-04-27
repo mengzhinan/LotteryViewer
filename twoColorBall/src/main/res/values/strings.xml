@@ -2,8 +2,14 @@
 
     <string name="two_color_ball_title">双色球</string>
 
-    <string name="two_color_ball_menu1">刷新</string>
-    <string name="two_color_ball_menu2">查中奖</string>
+    <string name="two_color_ball_refresh_menu">刷新</string>
+    <string name="two_color_ball_history_menu">历史开奖</string>
+    <string name="two_color_ball_check_menu">查中奖</string>
+
+    <string name="two_color_ball_multi_title">往期开奖</string>
+
+    <string name="multi_ball_refresh_menu">刷新</string>
+    <string name="multi_color_ball_bet_menu">复式投注</string>
 
     <string name="check_prize_title">中奖查询</string>
 

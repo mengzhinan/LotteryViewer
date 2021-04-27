@@ -4,7 +4,7 @@
     package="com.lotteryviewer.twocolorball">
 
     <application>
-
+        <activity android:name=".ui.activities.HistoryBallActivity"></activity>
         <activity
             android:name=".ui.activities.TwoColorBallCheckActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
@@ -15,7 +15,6 @@
             android:supportsPictureInPicture="true"
             android:windowSoftInputMode="adjustResize|stateHidden"
             tools:ignore="UnusedAttribute" />
-
         <activity
             android:name=".ui.activities.TwoColorBallActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
@@ -26,7 +25,6 @@
             android:supportsPictureInPicture="true"
             android:windowSoftInputMode="adjustResize|stateHidden"
             tools:ignore="UnusedAttribute" />
-
     </application>
 
 </manifest>

@@ -15,9 +15,6 @@ object TwoColorBallDataUtil {
 
     const val TAG = "two_color_ball_js"
 
-    // 福彩双色球网址
-    const val TWO_COLOR_BALL_URL = "http://www.cwl.gov.cn/kjxx/ssq/"
-
     // 号码球之间的分割符
     const val SPLIT = "lvSplit"
     private const val SEE_CITY = "北京"
