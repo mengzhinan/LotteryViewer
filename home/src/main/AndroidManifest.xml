@@ -50,7 +50,15 @@
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="true"
             android:windowSoftInputMode="adjustResize|stateHidden"
-            tools:ignore="UnusedAttribute" />
+            tools:ignore="UnusedAttribute">
+
+            <!-- 在手机系统应用详情 -> 通知管理 -> 显示应用中的其他设置，点击跳转到当前页面 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.NOTIFICATION_PREFERENCES" />
+            </intent-filter>
+
+        </activity>
 
     </application>
 
