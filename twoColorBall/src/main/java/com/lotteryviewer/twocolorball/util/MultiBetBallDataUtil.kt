@@ -28,10 +28,22 @@ object MultiBetBallDataUtil {
     private var redBallList: List<BallInfo> = List(33) { BallInfo() }
     private var blueBallList: List<BallInfo> = List(16) { BallInfo() }
 
+    private fun initList() {
+        for (index in redBallList.indices) {
+            redBallList[index].ballNum = index + 1
+            redBallList[index].appearCount = 0
+        }
+        for (index in blueBallList.indices) {
+            blueBallList[index].ballNum = index + 1
+            blueBallList[index].appearCount = 0
+        }
+    }
+
     fun parseHistoryBalls(historyBallStr: String?) {
         if (TextUtil.isNullOrEmpty(historyBallStr)) {
             return
         }
+        initList()
         var newValue = historyBallStr?.trim()
         newValue = newValue?.replace("\"", "")
         newValue = newValue?.replace("，", ",")
@@ -62,12 +74,18 @@ object MultiBetBallDataUtil {
                 } else if (j == 7) {
                     //篮色球
                     val jInt = TextUtil.parseToInt(itemArr[7], -1)
+                    Log.e("blueddddd", "itemArr[7] = ${itemArr[7]}  jInt = $jInt")
                     if (jInt == -1) {
                         continue
                     }
                     val ballInfo = blueBallList[jInt - 1]
                     ballInfo.ballNum = jInt
                     ballInfo.appearCount += 1
+                    Log.e(
+                        "blueddddd",
+                        "ballInfo.ballNum = ${ballInfo.ballNum}  ballInfo.appearCount = ${ballInfo.appearCount}"
+                    )
+
                 } else {
                     // 红色球
                     val jInt = TextUtil.parseToInt(itemArr[j], -1)
