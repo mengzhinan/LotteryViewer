@@ -65,7 +65,8 @@ object MultiBetBallDataUtil {
                     if (jInt == -1) {
                         continue
                     }
-                    val ballInfo = blueBallList[jInt]
+                    val ballInfo = blueBallList[jInt - 1]
+                    ballInfo.ballNum = jInt
                     ballInfo.appearCount += 1
                 } else {
                     // 红色球
@@ -73,7 +74,8 @@ object MultiBetBallDataUtil {
                     if (jInt == -1) {
                         continue
                     }
-                    val ballInfo = redBallList[jInt]
+                    val ballInfo = redBallList[jInt - 1]
+                    ballInfo.ballNum = jInt
                     ballInfo.appearCount += 1
                 }
             }

@@ -31,7 +31,9 @@ object MultiBetBallHtmlUtil {
                 + "                balls = balls + '${MultiBetBallDataUtil.SPLIT_INNER}';"
                 + "            }"
                 + "        }"
-                + "        balls = balls + '${MultiBetBallDataUtil.SPLIT_GAP}';"
+                + "        if (i < totalCount - 1) {"
+                + "            balls = balls + '${MultiBetBallDataUtil.SPLIT_GAP}';"
+                + "        }"
                 + "    }"
                 + "    return balls;"
                 + "}")
