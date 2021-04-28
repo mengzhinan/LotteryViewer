@@ -8,7 +8,7 @@ import com.lotteryviewer.base.util.RandomUtil
  * @Description: 功能描述：
  *
  */
-object TowColorBallRandomUtil {
+object SingleBallRandomUtil {
 
     /**
      * 预测下一个篮色球

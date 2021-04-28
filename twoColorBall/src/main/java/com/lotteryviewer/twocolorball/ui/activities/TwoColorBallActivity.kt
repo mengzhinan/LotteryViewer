@@ -7,8 +7,8 @@ import android.view.MenuItem
 import com.lotteryviewer.base.interfaces.FunctionNone
 import com.lotteryviewer.base.ui.BaseWebViewActivity
 import com.lotteryviewer.twocolorball.R
-import com.lotteryviewer.twocolorball.ui.widget.BallWebViewClient
-import com.lotteryviewer.twocolorball.util.TwoColorBallHtmlUtil
+import com.lotteryviewer.twocolorball.ui.widget.SingleBallWebViewClient
+import com.lotteryviewer.twocolorball.util.SingleBallHtmlUtil
 
 class TwoColorBallActivity : BaseWebViewActivity() {
 
@@ -29,7 +29,7 @@ class TwoColorBallActivity : BaseWebViewActivity() {
         setActionBarTitle(R.string.two_color_ball_title)
 
         // just pre grab html data
-        baseWebView?.webViewClient = BallWebViewClient()
+        baseWebView?.webViewClient = SingleBallWebViewClient()
 
         refreshUrl()
     }
@@ -86,13 +86,13 @@ class TwoColorBallActivity : BaseWebViewActivity() {
 
             // 用户可能会切换页面内的 选择框，切换了开奖日期
             // 所以此处需要再次爬取数据
-            TwoColorBallHtmlUtil.getHtmlText(baseWebView, object : FunctionNone {
+            SingleBallHtmlUtil.getHtmlText(baseWebView, object : FunctionNone {
                 override fun onCallBack() {
                     baseLoadingLayout?.postDelayed({
                         startActivity(
                             Intent(
                                 this@TwoColorBallActivity,
-                                TwoColorBallCheckActivity::class.java
+                                SingleBallCheckActivity::class.java
                             )
                         )
                     }, 50)

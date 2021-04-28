@@ -6,7 +6,7 @@
     <application>
         <activity android:name=".ui.activities.HistoryBallActivity"></activity>
         <activity
-            android:name=".ui.activities.TwoColorBallCheckActivity"
+            android:name=".ui.activities.SingleBallCheckActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
             android:exported="false"
             android:launchMode="singleTask"

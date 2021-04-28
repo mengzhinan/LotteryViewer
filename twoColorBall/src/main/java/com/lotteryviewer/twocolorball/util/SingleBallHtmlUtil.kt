@@ -12,7 +12,7 @@ import com.lotteryviewer.base.util.BaseHtmlJSUtil
  * @Description: 功能描述：
  *
  */
-object TwoColorBallHtmlUtil {
+object SingleBallHtmlUtil {
 
     // 移除默认节点 UI
 //    private const val demo = ("javascript:function deleteByTagName0() {"
@@ -47,7 +47,7 @@ object TwoColorBallHtmlUtil {
             + "var nums = '';"
             + "for(var i = 0; i < size; i++) {"
             + "nums += lis[i].innerText;"
-            + "nums += '${TwoColorBallDataUtil.SPLIT}';"
+            + "nums += '${SingleBallDataUtil.SPLIT}';"
             + "}"
             + "return nums;"
             + "}")
@@ -57,14 +57,14 @@ object TwoColorBallHtmlUtil {
             + "var lqiuSpans = document.getElementsByClassName('lqiu');"
             + "var lqiuLast = lqiuSpans[0].innerText;"
             + "var lqiuLastLast = lqiuSpans[1].innerText;"
-            + "var nums = lqiuLast + '${TwoColorBallDataUtil.SPLIT}' + lqiuLastLast;"
+            + "var nums = lqiuLast + '${SingleBallDataUtil.SPLIT}' + lqiuLastLast;"
             + "return nums;"
             + "}")
 
 
     fun getHtmlText(view: WebView?, endCallback: FunctionNone?) {
         view ?: return
-        Log.e(TwoColorBallDataUtil.TAG, "开始解析 html")
+        Log.e(SingleBallDataUtil.TAG, "开始解析 html")
 
         var isSequenceOK = false
         var isDateOK = false
@@ -78,7 +78,7 @@ object TwoColorBallHtmlUtil {
             "getCurrentPrizeSequence",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    TwoColorBallDataUtil.parseSequenceStr(value)
+                    SingleBallDataUtil.parseSequenceStr(value)
                     isSequenceOK = true
                     checkDateAndCallback(
                         isSequenceOK,
@@ -97,7 +97,7 @@ object TwoColorBallHtmlUtil {
             "getCurrentPrizeDate",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    TwoColorBallDataUtil.parseDateStr(value)
+                    SingleBallDataUtil.parseDateStr(value)
                     isDateOK = true
                     checkDateAndCallback(
                         isSequenceOK,
@@ -116,7 +116,7 @@ object TwoColorBallHtmlUtil {
             "getCurrentPrizeNums",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    TwoColorBallDataUtil.parsePrizeBallNum(value)
+                    SingleBallDataUtil.parsePrizeBallNum(value)
                     isPrizeNumOK = true
                     checkDateAndCallback(
                         isSequenceOK,
@@ -135,7 +135,7 @@ object TwoColorBallHtmlUtil {
             "getHitPrizeCity",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    TwoColorBallDataUtil.parseCityStr(value)
+                    SingleBallDataUtil.parseCityStr(value)
                     isPrizeCityOK = true
                     checkDateAndCallback(
                         isSequenceOK,
@@ -154,7 +154,7 @@ object TwoColorBallHtmlUtil {
             "getTwoHistoryBlueNum",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    TwoColorBallDataUtil.parseTwoHistoryBlueStr(value)
+                    SingleBallDataUtil.parseTwoHistoryBlueStr(value)
                     isTwoHistoryBlueOK = true
                     checkDateAndCallback(
                         isSequenceOK,

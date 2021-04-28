@@ -12,10 +12,10 @@ import androidx.core.content.ContextCompat
 import com.lotteryviewer.base.ui.BaseActivity
 import com.lotteryviewer.twocolorball.R
 import com.lotteryviewer.twocolorball.ui.widget.BallLayout
-import com.lotteryviewer.twocolorball.util.TowColorBallRandomUtil
-import com.lotteryviewer.twocolorball.util.TwoColorBallDataUtil
+import com.lotteryviewer.twocolorball.util.SingleBallRandomUtil
+import com.lotteryviewer.twocolorball.util.SingleBallDataUtil
 
-class TwoColorBallCheckActivity : BaseActivity() {
+class SingleBallCheckActivity : BaseActivity() {
 
     private var tvHitCity: TextView? = null
     private var tvSequence: TextView? = null
@@ -26,11 +26,11 @@ class TwoColorBallCheckActivity : BaseActivity() {
 
     private val blueBallCount = 16
     private val blueBallArray: Array<String> = Array(blueBallCount) { "0" }
-    private val lastLastBlueNum: Int = TwoColorBallDataUtil.getLastLastBlue()
-    private val lastBlueNum: Int = TwoColorBallDataUtil.getLastBlue()
+    private val lastLastBlueNum: Int = SingleBallDataUtil.getLastLastBlue()
+    private val lastBlueNum: Int = SingleBallDataUtil.getLastBlue()
 
     // 进入此页面时，开奖号码已经解析到，而不是 ？
-    private val finalBallArray = Array(TwoColorBallDataUtil.prizeNumArray.size) { "" }
+    private val finalBallArray = Array(SingleBallDataUtil.prizeNumArray.size) { "" }
 
     // 6 红 + 1 蓝
     private val inputBallArray: Array<String> = Array(7) { "?" }
@@ -50,9 +50,9 @@ class TwoColorBallCheckActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_check_prize)
 
-        if (TwoColorBallDataUtil.isPrizeNumArrayValid()) {
+        if (SingleBallDataUtil.isPrizeNumArrayValid()) {
             // 获取解析到的数据，不要直接引用数组内存地址
-            TwoColorBallDataUtil.copyArray(TwoColorBallDataUtil.prizeNumArray, finalBallArray)
+            SingleBallDataUtil.copyArray(SingleBallDataUtil.prizeNumArray, finalBallArray)
         } else {
             Toast.makeText(
                 this,
@@ -99,7 +99,7 @@ class TwoColorBallCheckActivity : BaseActivity() {
 
         nextBlueBall = findViewById(R.id.tv_next_blue_ball)
         nextBlueBall?.text =
-            TowColorBallRandomUtil.getNextRandomBlueBall(
+            SingleBallRandomUtil.getNextRandomBlueBall(
                 blueBallArray,
                 lastLastBlueNum,
                 lastBlueNum
@@ -107,7 +107,7 @@ class TwoColorBallCheckActivity : BaseActivity() {
         nextBlueBall?.setOnClickListener {
             // 点击号码重新估算下一期号码
             nextBlueBall?.text =
-                TowColorBallRandomUtil.getNextRandomBlueBall(
+                SingleBallRandomUtil.getNextRandomBlueBall(
                     blueBallArray,
                     lastLastBlueNum,
                     lastBlueNum
@@ -242,7 +242,7 @@ class TwoColorBallCheckActivity : BaseActivity() {
         // 才能拿到正确的中奖号码个数
         myNumsLayout?.postDelayed({
             tvResult?.setText(
-                TwoColorBallDataUtil.getPrizeTipText(
+                SingleBallDataUtil.getPrizeTipText(
                     myNumsLayout?.getRedHitCount() ?: 0,
                     myNumsLayout?.getBlueHitCount() ?: 0
                 )
@@ -257,9 +257,9 @@ class TwoColorBallCheckActivity : BaseActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun setupData() {
-        tvHitCity?.text = "中奖城市：${TwoColorBallDataUtil.getPrizeCityStr()}"
-        tvSequence?.text = "开奖期数：${TwoColorBallDataUtil.getPrizeSequenceStr()}"
-        tvDate?.text = "开奖日期：${TwoColorBallDataUtil.getPrizeDateStr()}"
+        tvHitCity?.text = "中奖城市：${SingleBallDataUtil.getPrizeCityStr()}"
+        tvSequence?.text = "开奖期数：${SingleBallDataUtil.getPrizeSequenceStr()}"
+        tvDate?.text = "开奖日期：${SingleBallDataUtil.getPrizeDateStr()}"
         prizeNumsLayout?.setBalls(finalBallArray, finalBallArray)
     }
 

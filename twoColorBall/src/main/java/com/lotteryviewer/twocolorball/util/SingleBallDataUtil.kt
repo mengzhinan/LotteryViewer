@@ -11,7 +11,7 @@ import java.util.*
  * @Description: 功能描述：
  *
  */
-object TwoColorBallDataUtil {
+object SingleBallDataUtil {
 
     const val TAG = "two_color_ball_js"
 
