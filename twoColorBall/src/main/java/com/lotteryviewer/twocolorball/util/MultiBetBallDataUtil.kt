@@ -1,9 +1,6 @@
 package com.lotteryviewer.twocolorball.util
 
-import com.lotteryviewer.base.util.LVLogger
 import com.lotteryviewer.base.util.TextUtil
-import com.lotteryviewer.twocolorball.R
-import java.util.*
 
 /**
  * @Author: duke
@@ -22,9 +19,9 @@ object MultiBetBallDataUtil {
     const val SPLIT_GAP = ";"
 
     private var groupCount: String? = ""
-    private var prizeDateStr: String? = ""
-    private var prizeNumStr: String? = ""
-    private var prizeCityStr: String? = ""
+    private var recentPrizeNumStr:String?=""
+    private var recentPrizeDateStr: String? = ""
+
 
 
     fun parseHistoryBalls(historyBall: String?) {
