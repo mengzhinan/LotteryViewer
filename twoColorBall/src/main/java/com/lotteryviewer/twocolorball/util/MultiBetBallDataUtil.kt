@@ -25,10 +25,48 @@ object MultiBetBallDataUtil {
     private var lastLastBlueNum: Int = 0
     private var lastBlueNum: Int = 0
 
+    fun getGroupNum(): Int {
+        return groupCount
+    }
+
+    fun getRecentPrizeNumStr(): String? {
+        return recentPrizeNumStr
+    }
+
+    fun getLastLastBallNum(): Int {
+        return lastLastBlueNum
+    }
+
+    fun getLastBallNum(): Int {
+        return lastBlueNum
+    }
+
+    private var baseSourceData: String? = ""
+
+    fun setBaseSourceData(data: String?) {
+        baseSourceData = data
+    }
+
     private var redBallList: List<BallInfo> = List(33) { BallInfo() }
     private var blueBallList: List<BallInfo> = List(16) { BallInfo() }
 
-    private fun initList() {
+    fun getRedBallList(): List<BallInfo> {
+        return redBallList
+    }
+
+    fun getBlueBallList(): List<BallInfo> {
+        return blueBallList
+    }
+
+    /**
+     * 解析历史开奖数据
+     * @param parseItemCount 需要解析多少天的数据. -1 全部解析
+     */
+    fun parseHistoryBalls(parseItemCount: Int = -1) {
+        if (TextUtil.isNullOrEmpty(baseSourceData)) {
+            return
+        }
+
         for (index in redBallList.indices) {
             redBallList[index].ballNum = index + 1
             redBallList[index].appearCount = 0
@@ -37,14 +75,8 @@ object MultiBetBallDataUtil {
             blueBallList[index].ballNum = index + 1
             blueBallList[index].appearCount = 0
         }
-    }
 
-    fun parseHistoryBalls(historyBallStr: String?) {
-        if (TextUtil.isNullOrEmpty(historyBallStr)) {
-            return
-        }
-        initList()
-        var newValue = historyBallStr?.trim()
+        var newValue = baseSourceData?.trim()
         newValue = newValue?.replace("\"", "")
         newValue = newValue?.replace("，", ",")
         newValue = newValue?.replace("null", "")
@@ -56,6 +88,12 @@ object MultiBetBallDataUtil {
         groupCount = groupArr.size
         recentPrizeNumStr = groupArr[0]
         for (index in groupArr.indices) {
+
+            if (parseItemCount > 0 && index > parseItemCount - 1) {
+                // 控制只解析多少天的数据
+                break
+            }
+
             val groupItem = groupArr[index]
             // 开奖日期_红1_红2_红3_红4_红5_红6_蓝7
             val itemArr = groupItem.split(SPLIT_INNER)
@@ -74,18 +112,12 @@ object MultiBetBallDataUtil {
                 } else if (j == 7) {
                     //篮色球
                     val jInt = TextUtil.parseToInt(itemArr[7], -1)
-                    Log.e("blueddddd", "itemArr[7] = ${itemArr[7]}  jInt = $jInt")
                     if (jInt == -1) {
                         continue
                     }
                     val ballInfo = blueBallList[jInt - 1]
                     ballInfo.ballNum = jInt
                     ballInfo.appearCount += 1
-                    Log.e(
-                        "blueddddd",
-                        "ballInfo.ballNum = ${ballInfo.ballNum}  ballInfo.appearCount = ${ballInfo.appearCount}"
-                    )
-
                 } else {
                     // 红色球
                     val jInt = TextUtil.parseToInt(itemArr[j], -1)
@@ -98,7 +130,13 @@ object MultiBetBallDataUtil {
                 }
             }
         }
+
+        // 倒叙排序
+        blueBallList = blueBallList.sortedByDescending { it.appearCount }
+        redBallList = redBallList.sortedByDescending { it.appearCount }
+
         Log.e(TAG, "数据统计完毕")
+
     }
 
 }

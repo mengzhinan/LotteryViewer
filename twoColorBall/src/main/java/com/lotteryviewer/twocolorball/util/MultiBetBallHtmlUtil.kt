@@ -48,7 +48,8 @@ object MultiBetBallHtmlUtil {
             "getHistoryBallStr",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    MultiBetBallDataUtil.parseHistoryBalls(value)
+                    MultiBetBallDataUtil.setBaseSourceData(value)
+                    MultiBetBallDataUtil.parseHistoryBalls()
                     endCallback?.onCallBack(value)
                 }
             })
