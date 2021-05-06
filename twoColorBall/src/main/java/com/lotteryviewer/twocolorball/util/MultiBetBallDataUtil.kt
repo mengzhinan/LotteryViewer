@@ -67,10 +67,12 @@ object MultiBetBallDataUtil {
             return
         }
 
+        // 初始化红球 list
         for (index in redBallList.indices) {
             redBallList[index].ballNum = index + 1
             redBallList[index].appearCount = 0
         }
+        // 初始化蓝球 list
         for (index in blueBallList.indices) {
             blueBallList[index].ballNum = index + 1
             blueBallList[index].appearCount = 0
