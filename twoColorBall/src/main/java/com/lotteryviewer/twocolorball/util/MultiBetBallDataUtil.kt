@@ -24,6 +24,8 @@ object MultiBetBallDataUtil {
     private var recentPrizeNumStr: String? = ""
     private var lastLastBlueNum: Int = 0
     private var lastBlueNum: Int = 0
+    private var redBallScatterList: List<BallInfo> = List(33) { BallInfo() }
+    private var blueBallScatterList: List<BallInfo> = List(16) { BallInfo() }
 
     fun getGroupNum(): Int {
         return groupCount
@@ -47,15 +49,12 @@ object MultiBetBallDataUtil {
         baseSourceData = data
     }
 
-    private var redBallList: List<BallInfo> = List(33) { BallInfo() }
-    private var blueBallList: List<BallInfo> = List(16) { BallInfo() }
-
-    fun getRedBallList(): List<BallInfo> {
-        return redBallList
+    fun getRedBallScatterList(): List<BallInfo> {
+        return redBallScatterList
     }
 
-    fun getBlueBallList(): List<BallInfo> {
-        return blueBallList
+    fun getBlueBallScatterList(): List<BallInfo> {
+        return blueBallScatterList
     }
 
     /**
@@ -68,14 +67,14 @@ object MultiBetBallDataUtil {
         }
 
         // 初始化红球 list
-        for (index in redBallList.indices) {
-            redBallList[index].ballNum = index + 1
-            redBallList[index].appearCount = 0
+        for (index in redBallScatterList.indices) {
+            redBallScatterList[index].ballNum = index + 1
+            redBallScatterList[index].appearCount = 0
         }
         // 初始化蓝球 list
-        for (index in blueBallList.indices) {
-            blueBallList[index].ballNum = index + 1
-            blueBallList[index].appearCount = 0
+        for (index in blueBallScatterList.indices) {
+            blueBallScatterList[index].ballNum = index + 1
+            blueBallScatterList[index].appearCount = 0
         }
 
         var newValue = baseSourceData?.trim()
@@ -117,7 +116,7 @@ object MultiBetBallDataUtil {
                     if (jInt == -1) {
                         continue
                     }
-                    val ballInfo = blueBallList[jInt - 1]
+                    val ballInfo = blueBallScatterList[jInt - 1]
                     ballInfo.ballNum = jInt
                     ballInfo.appearCount += 1
                 } else {
@@ -126,7 +125,7 @@ object MultiBetBallDataUtil {
                     if (jInt == -1) {
                         continue
                     }
-                    val ballInfo = redBallList[jInt - 1]
+                    val ballInfo = redBallScatterList[jInt - 1]
                     ballInfo.ballNum = jInt
                     ballInfo.appearCount += 1
                 }
@@ -134,8 +133,8 @@ object MultiBetBallDataUtil {
         }
 
         // 倒叙排序
-        blueBallList = blueBallList.sortedByDescending { it.appearCount }
-        redBallList = redBallList.sortedByDescending { it.appearCount }
+        blueBallScatterList = blueBallScatterList.sortedByDescending { it.appearCount }
+        redBallScatterList = redBallScatterList.sortedByDescending { it.appearCount }
 
         Log.e(TAG, "数据统计完毕")
 
