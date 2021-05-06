@@ -20,10 +20,20 @@ object MultiBetBallDataUtil {
     // 每组之间的分割线，区分组与组的标志
     const val SPLIT_GAP = ";"
 
+    // 总共解析了多少组开奖号码
     private var groupCount: Int = 0
+
+    // js 解析的原始数据字符串(备用)
+    private var baseSourceData: String? = ""
+
+    // 最近一期开奖号码是
     private var recentPrizeNumStr: String? = ""
-    private var lastLastBlueNum: Int = 0
+
+    // 上期和上上期篮球号码
     private var lastBlueNum: Int = 0
+    private var lastLastBlueNum: Int = 0
+
+    // 统计红球、篮球出现次数分布集合
     private var redBallScatterList: List<BallInfo> = List(33) { BallInfo() }
     private var blueBallScatterList: List<BallInfo> = List(16) { BallInfo() }
 
@@ -42,8 +52,6 @@ object MultiBetBallDataUtil {
     fun getLastBallNum(): Int {
         return lastBlueNum
     }
-
-    private var baseSourceData: String? = ""
 
     fun setBaseSourceData(data: String?) {
         baseSourceData = data
