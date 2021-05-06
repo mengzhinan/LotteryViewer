@@ -6,372 +6,97 @@
     android:layout_height="match_parent"
     android:background="#0D000000">
 
-    <TextView
-        android:id="@+id/tv_hit_city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="中奖城市" />
-
-    <TextView
-        android:id="@+id/tv_sequence"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_hit_city"
-        tools:text="第几期" />
-
-    <TextView
-        android:id="@+id/tv_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sequence"
-        tools:text="开奖日期" />
-
     <LinearLayout
-        android:id="@+id/current_ball_layout_root"
+        android:id="@+id/ll_fix_select_red_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
-        android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_date">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/tv_fix_red_count_tip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="本期号码："
-            android:textSize="16sp" />
-
-        <com.lotteryviewer.twocolorball.ui.widget.BallLayout
-            android:id="@+id/current_ball_layout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/center_split_line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="#000000"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_ball_layout_root" />
-
-    <LinearLayout
-        android:id="@+id/your_ball_layout_root"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/center_split_line">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="你的号码："
             android:textSize="16sp"
-            android:textStyle="bold" />
+            tools:text="固定选取红球几个？" />
 
-        <com.lotteryviewer.twocolorball.ui.widget.BallLayout
-            android:id="@+id/your_ball_layout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
+        <EditText
+            android:id="@+id/et_fix_red_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/result_layout_root"
+        android:id="@+id/ll_random_select_red_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/your_ball_layout_root">
+        app:layout_constraintTop_toBottomOf="@+id/ll_fix_select_red_count">
 
         <TextView
+            android:id="@+id/tv_random_red_count_tip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="中奖结果："
             android:textSize="16sp"
-            android:textStyle="bold" />
+            tools:text="固定选取红球几个？" />
 
-        <TextView
-            android:id="@+id/result_text"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/et_random_rad_count"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="\?"
-            android:textColor="@color/COLOR_000000"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_weight="1" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/your_num_title_tip"
+    <LinearLayout
+        android:id="@+id/ll_random_red_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:gravity="center_vertical|left"
-        android:text="请选择你的彩票号码："
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result_layout_root" />
-
-    <RelativeLayout
-        android:id="@+id/input_spinner_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/your_num_title_tip">
+        app:layout_constraintTop_toBottomOf="@+id/ll_fix_select_red_count">
 
-        <LinearLayout
-            android:id="@+id/line1"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_random_red_type"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:textSize="16sp"
+            tools:text="固定选取红球几个？" />
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/item_red_bg"
-                android:gravity="center"
-                android:padding="2dp">
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/input_spinner1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/red_num_array"
-                    android:spinnerMode="dialog"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/item_red_bg"
-                android:gravity="center"
-                android:padding="2dp">
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/input_spinner2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/red_num_array"
-                    android:spinnerMode="dialog"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/item_red_bg"
-                android:gravity="center"
-                android:padding="2dp">
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/input_spinner3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/red_num_array"
-                    android:spinnerMode="dialog"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/line2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line1"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/item_red_bg"
-                android:gravity="center"
-                android:padding="2dp">
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/input_spinner4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/red_num_array"
-                    android:spinnerMode="dialog"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/item_red_bg"
-                android:gravity="center"
-                android:padding="2dp">
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/input_spinner5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/red_num_array"
-                    android:spinnerMode="dialog"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/item_red_bg"
-                android:gravity="center"
-                android:padding="2dp">
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/input_spinner6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/red_num_array"
-                    android:spinnerMode="dialog"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/line3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line2"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
-
-            <RelativeLayout
+        <RadioGroup
+            android:id="@+id/rg_random_red_type"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/rb_top"
+                android:text="选取最高"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/item_blue_bg"
-                android:gravity="center"
-                android:padding="2dp">
+                android:layout_height="wrap_content"/>
+            <RadioButton
+                android:text="剩余随机"
+                android:id="@+id/rb_random"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
 
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/input_spinner7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/blue_num_array"
-                    android:spinnerMode="dialog"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </RelativeLayout>
-
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_spinner_container">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/two_color_ball_next_blue_ball" />
-
-        <TextView
-            android:id="@+id/tv_next_blue_ball"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/COLOR_4586F3_80"
-            android:textSize="40sp"
-            android:textStyle="bold" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
