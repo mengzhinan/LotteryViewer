@@ -15,7 +15,7 @@ import com.lotteryviewer.twocolorball.ui.widget.BallLayout
 import com.lotteryviewer.twocolorball.util.SingleBallDataUtil
 import com.lotteryviewer.twocolorball.util.SingleBallRandomUtil
 
-class MultiBetActivity : BaseActivity() {
+class HistoryBallAnalysisActivity : BaseActivity() {
 
     private var tvHitCity: TextView? = null
     private var tvSequence: TextView? = null

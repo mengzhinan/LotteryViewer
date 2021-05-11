@@ -4,7 +4,17 @@
     package="com.lotteryviewer.twocolorball">
 
     <application>
-        <activity android:name=".ui.activities.HistoryBallActivity"></activity>
+        <activity
+            android:name=".ui.activities.HistoryBallActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:screenOrientation="portrait"
+            android:supportsPictureInPicture="true"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            tools:ignore="UnusedAttribute" />
+
         <activity
             android:name=".ui.activities.SingleBallCheckActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
@@ -16,7 +26,7 @@
             android:windowSoftInputMode="adjustResize|stateHidden"
             tools:ignore="UnusedAttribute" />
         <activity
-            android:name=".ui.activities.TwoColorBallActivity"
+            android:name=".ui.activities.TwoColorBallPageActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
             android:exported="false"
             android:launchMode="singleTask"
@@ -25,6 +35,18 @@
             android:supportsPictureInPicture="true"
             android:windowSoftInputMode="adjustResize|stateHidden"
             tools:ignore="UnusedAttribute" />
+
+        <activity
+            android:name=".ui.activities.TwoColorBallMenuActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:screenOrientation="portrait"
+            android:supportsPictureInPicture="true"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            tools:ignore="UnusedAttribute" />
+
     </application>
 
 </manifest>

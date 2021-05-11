@@ -73,7 +73,7 @@ class HistoryBallActivity : BaseWebViewActivity() {
                         startActivity(
                             Intent(
                                 this@HistoryBallActivity,
-                                MultiBetActivity::class.java
+                                HistoryBallAnalysisActivity::class.java
                             )
                         )
                     }, 50)

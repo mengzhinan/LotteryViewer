@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.webkit.WebView
 import android.widget.RelativeLayout
-import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.lotteryviewer.base.R
 import com.lotteryviewer.base.util.WebViewSettingsUtil
@@ -22,7 +21,6 @@ open class BaseWebViewActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base_web_view)
         initUI()
-        initActionBar()
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -37,23 +35,6 @@ open class BaseWebViewActivity : BaseActivity() {
         // set WebView common properties
         WebViewSettingsUtil.setWebView(baseWebView)
 
-    }
-
-    private fun initActionBar() {
-        // 返回按钮
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        // 是否显示标题
-        supportActionBar?.setDisplayShowTitleEnabled(true)
-    }
-
-    protected fun setActionBarTitle(@StringRes titleResId: Int?) {
-        titleResId ?: return
-        setActionBarTitle(getString(titleResId))
-    }
-
-    protected fun setActionBarTitle(title: String?) {
-        title ?: return
-        supportActionBar?.title = title
     }
 
     /**

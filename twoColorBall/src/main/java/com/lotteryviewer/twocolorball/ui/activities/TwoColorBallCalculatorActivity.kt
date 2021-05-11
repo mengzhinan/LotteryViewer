@@ -10,7 +10,7 @@ import com.lotteryviewer.twocolorball.R
 import com.lotteryviewer.twocolorball.ui.widget.SingleBallWebViewClient
 import com.lotteryviewer.twocolorball.util.SingleBallHtmlUtil
 
-class TwoColorBallActivity : BaseWebViewActivity() {
+class TwoColorBallCalculatorActivity : BaseWebViewActivity() {
 
     companion object {
 
@@ -78,7 +78,7 @@ class TwoColorBallActivity : BaseWebViewActivity() {
         } else if (item.itemId == MENU_ID_HISTORY) {
             startActivity(
                 Intent(
-                    this@TwoColorBallActivity,
+                    this@TwoColorBallCalculatorActivity,
                     HistoryBallActivity::class.java
                 )
             )
@@ -91,7 +91,7 @@ class TwoColorBallActivity : BaseWebViewActivity() {
                     baseLoadingLayout?.postDelayed({
                         startActivity(
                             Intent(
-                                this@TwoColorBallActivity,
+                                this@TwoColorBallCalculatorActivity,
                                 SingleBallCheckActivity::class.java
                             )
                         )

@@ -13,7 +13,7 @@ import com.lotteryviewer.home.R
 import com.lotteryviewer.home.ui.viewmodel.DashboardViewModel
 import com.lotteryviewer.sunset.ui.activities.SunsetActivity
 import com.lotteryviewer.sunset.util.SunsetDataUtil
-import com.lotteryviewer.twocolorball.ui.activities.TwoColorBallActivity
+import com.lotteryviewer.twocolorball.ui.activities.TwoColorBallMenuActivity
 
 class DashboardFragment : BaseFragment() {
 
@@ -41,7 +41,7 @@ class DashboardFragment : BaseFragment() {
         })
 
         btnTwoColorBall.setOnClickListener {
-            startActivity(Intent(context, TwoColorBallActivity::class.java))
+            startActivity(Intent(context, TwoColorBallMenuActivity::class.java))
         }
 
         btnSunsetBeijing.setOnClickListener {
