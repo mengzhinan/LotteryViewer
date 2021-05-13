@@ -6,6 +6,9 @@ import androidx.appcompat.widget.AppCompatButton
 import com.lotteryviewer.base.ui.BaseActivity
 import com.lotteryviewer.twocolorball.R
 
+/**
+ * 双色球 app 菜单 页面
+ */
 class TwoColorBallMenuActivity : BaseActivity() {
 
     private var twoColorBallMain: AppCompatButton? = null
@@ -23,11 +26,11 @@ class TwoColorBallMenuActivity : BaseActivity() {
         twoColorBallCalculator = findViewById(R.id.btn_two_color_ball_calculator)
 
         twoColorBallMain?.setOnClickListener {
-            startPage(TwoColorBallPageActivity::class.java)
+            startPage(TwoColorBallMainPageActivity::class.java)
         }
 
         twoColorBallHistory?.setOnClickListener {
-            startPage(HistoryBallActivity::class.java)
+            startPage(TwoColorBallHistoryBallActivity::class.java)
         }
 
         twoColorBallCalculator?.setOnClickListener {

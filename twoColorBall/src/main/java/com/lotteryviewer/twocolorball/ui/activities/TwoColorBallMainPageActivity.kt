@@ -10,7 +10,10 @@ import com.lotteryviewer.twocolorball.R
 import com.lotteryviewer.twocolorball.ui.widget.SingleBallWebViewClient
 import com.lotteryviewer.twocolorball.util.SingleBallHtmlUtil
 
-class TwoColorBallPageActivity : BaseWebViewActivity() {
+/**
+ * 双色球官方网站 开奖 主页
+ */
+class TwoColorBallMainPageActivity : BaseWebViewActivity() {
 
     companion object {
 
@@ -19,7 +22,6 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
 
         private const val MENU_ID_REFRESH = 0
         private const val MENU_ID_CHECK = 1
-        private const val MENU_ID_HISTORY = 2
 
     }
 
@@ -48,19 +50,12 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
         )
         menu?.add(
             Menu.NONE,
-            MENU_ID_HISTORY,
-            Menu.NONE,
-            getString(R.string.two_color_ball_history_menu)
-        )
-        menu?.add(
-            Menu.NONE,
             MENU_ID_CHECK,
             Menu.NONE,
             getString(R.string.two_color_ball_check_menu)
         )
 
         menu?.getItem(MENU_ID_REFRESH)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
-        menu?.getItem(MENU_ID_HISTORY)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
         menu?.getItem(MENU_ID_CHECK)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
 
         return super.onCreateOptionsMenu(menu)
@@ -75,13 +70,6 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
             }
         } else if (item.itemId == MENU_ID_REFRESH) {
             refreshUrl()
-        } else if (item.itemId == MENU_ID_HISTORY) {
-            startActivity(
-                Intent(
-                    this@TwoColorBallPageActivity,
-                    HistoryBallActivity::class.java
-                )
-            )
         } else if (item.itemId == MENU_ID_CHECK) {
 
             // 用户可能会切换页面内的 选择框，切换了开奖日期
@@ -91,8 +79,8 @@ class TwoColorBallPageActivity : BaseWebViewActivity() {
                     baseLoadingLayout?.postDelayed({
                         startActivity(
                             Intent(
-                                this@TwoColorBallPageActivity,
-                                SingleBallCheckActivity::class.java
+                                this@TwoColorBallMainPageActivity,
+                                TwoColorBallSingleCheckActivity::class.java
                             )
                         )
                     }, 50)

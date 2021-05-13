@@ -10,7 +10,10 @@ import com.lotteryviewer.twocolorball.R
 import com.lotteryviewer.twocolorball.ui.widget.MultiBallWebViewClient
 import com.lotteryviewer.twocolorball.util.MultiBetBallHtmlUtil
 
-class HistoryBallActivity : BaseWebViewActivity() {
+/**
+ * 双色球 历史开奖 页面
+ */
+class TwoColorBallHistoryBallActivity : BaseWebViewActivity() {
 
     companion object {
         // 历史中奖信息
@@ -72,8 +75,8 @@ class HistoryBallActivity : BaseWebViewActivity() {
                     baseLoadingLayout?.postDelayed({
                         startActivity(
                             Intent(
-                                this@HistoryBallActivity,
-                                HistoryBallAnalysisActivity::class.java
+                                this@TwoColorBallHistoryBallActivity,
+                                TwoColorBallHistoryAnalysisActivity::class.java
                             )
                         )
                     }, 50)

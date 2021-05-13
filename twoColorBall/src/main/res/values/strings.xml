@@ -1,6 +1,7 @@
 <resources>
 
     <string name="two_color_ball_title">双色球</string>
+    <string name="two_color_ball_calculator_title">复式计算器</string>
 
     <string name="two_color_ball_refresh_menu">刷新</string>
     <string name="two_color_ball_history_menu">历史开奖</string>

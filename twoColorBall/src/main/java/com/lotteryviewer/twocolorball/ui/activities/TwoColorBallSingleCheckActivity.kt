@@ -15,7 +15,10 @@ import com.lotteryviewer.twocolorball.ui.widget.BallLayout
 import com.lotteryviewer.twocolorball.util.SingleBallRandomUtil
 import com.lotteryviewer.twocolorball.util.SingleBallDataUtil
 
-class SingleBallCheckActivity : BaseActivity() {
+/**
+ * 单注 查询中奖 页面
+ */
+class TwoColorBallSingleCheckActivity : BaseActivity() {
 
     private var tvHitCity: TextView? = null
     private var tvSequence: TextView? = null

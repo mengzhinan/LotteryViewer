@@ -4,8 +4,19 @@
     package="com.lotteryviewer.twocolorball">
 
     <application>
+
         <activity
-            android:name=".ui.activities.HistoryBallActivity"
+            android:name=".ui.activities.TwoColorBallCalculatorActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:screenOrientation="portrait"
+            android:supportsPictureInPicture="true"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            tools:ignore="UnusedAttribute" />
+        <activity
+            android:name=".ui.activities.TwoColorBallHistoryBallActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
             android:exported="false"
             android:launchMode="singleTask"
@@ -16,7 +27,7 @@
             tools:ignore="UnusedAttribute" />
 
         <activity
-            android:name=".ui.activities.SingleBallCheckActivity"
+            android:name=".ui.activities.TwoColorBallSingleCheckActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
             android:exported="false"
             android:launchMode="singleTask"
@@ -26,7 +37,7 @@
             android:windowSoftInputMode="adjustResize|stateHidden"
             tools:ignore="UnusedAttribute" />
         <activity
-            android:name=".ui.activities.TwoColorBallPageActivity"
+            android:name=".ui.activities.TwoColorBallMainPageActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
             android:exported="false"
             android:launchMode="singleTask"
