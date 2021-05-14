@@ -78,8 +78,8 @@ class TwoColorBallHistoryAnalysisActivity : BaseActivity() {
         ltlRecentPrizeNum?.setLabel("最近开奖号码：")
         ltlRecentPrizeNum?.setContent(HistoryBallDataUtil.getRecentPrizeNumStr())
 
-        ltlRecommendBlueNum?.setTextSize(20f)
-        ltlRecommendBlueNum?.setLabel("推荐篮球：")
+        ltlRecommendBlueNum?.setTextSize(40f)
+        ltlRecommendBlueNum?.setLabel("推荐篮色球：")
         ltlRecommendBlueNum?.setContent(
             BlueBallRandomUtil.getNextRandomBlueBall(
                 blueBallArray,
@@ -88,10 +88,12 @@ class TwoColorBallHistoryAnalysisActivity : BaseActivity() {
             )
         )
         ltlRecommendBlueNum?.setOnClickListener {
-            BlueBallRandomUtil.getNextRandomBlueBall(
-                blueBallArray,
-                HistoryBallDataUtil.getLastLastBallNum(),
-                HistoryBallDataUtil.getLastBallNum()
+            ltlRecommendBlueNum?.setContent(
+                BlueBallRandomUtil.getNextRandomBlueBall(
+                    blueBallArray,
+                    HistoryBallDataUtil.getLastLastBallNum(),
+                    HistoryBallDataUtil.getLastBallNum()
+                )
             )
             Toast.makeText(BaseApplication.get(), "重新推测篮球", Toast.LENGTH_SHORT).show()
         }
