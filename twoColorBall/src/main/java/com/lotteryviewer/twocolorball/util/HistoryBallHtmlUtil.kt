@@ -11,7 +11,7 @@ import com.lotteryviewer.base.util.BaseHtmlJSUtil
  * @Description: 功能描述： 解析历史号码，分析统计
  *
  */
-object MultiBetBallHtmlUtil {
+object HistoryBallHtmlUtil {
 
     // 爬取历史中奖号码组(开奖日期_红1_红2_红3_红4_红5_红6_蓝7;开奖日期_红1_红2_红3_红4_红5_红6_蓝7。。。)
     // js 代码之间不要添加注释，否则运行报错
@@ -24,15 +24,15 @@ object MultiBetBallHtmlUtil {
                 + "    for (var i = 0; i < totalCount; i++) {"
                 + "        var tr = trs[i];"
                 + "        var balls = balls + tr.getElementsByTagName('td')[1].innerText;"
-                + "        var balls = balls + '${MultiBetBallDataUtil.SPLIT_INNER}';"
+                + "        var balls = balls + '${HistoryBallDataUtil.SPLIT_INNER}';"
                 + "        for (var j = 0; j < 7; j++) {"
                 + "            balls = balls + tr.getElementsByTagName('span')[j].innerText;"
                 + "            if (j < 6) {"
-                + "                balls = balls + '${MultiBetBallDataUtil.SPLIT_INNER}';"
+                + "                balls = balls + '${HistoryBallDataUtil.SPLIT_INNER}';"
                 + "            }"
                 + "        }"
                 + "        if (i < totalCount - 1) {"
-                + "            balls = balls + '${MultiBetBallDataUtil.SPLIT_GAP}';"
+                + "            balls = balls + '${HistoryBallDataUtil.SPLIT_GAP}';"
                 + "        }"
                 + "    }"
                 + "    return balls;"
@@ -40,7 +40,7 @@ object MultiBetBallHtmlUtil {
 
     fun getHtmlText(view: WebView?, endCallback: FunctionStringOne?) {
         view ?: return
-        Log.e(MultiBetBallDataUtil.TAG, "开始解析 html")
+        Log.e(HistoryBallDataUtil.TAG, "开始解析 html")
 
         BaseHtmlJSUtil.loadAndCallJs(
             view,
@@ -48,8 +48,8 @@ object MultiBetBallHtmlUtil {
             "getHistoryBallStr",
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
-                    MultiBetBallDataUtil.setBaseSourceData(value)
-                    MultiBetBallDataUtil.parseHistoryBalls()
+                    HistoryBallDataUtil.setBaseSourceData(value)
+                    HistoryBallDataUtil.parseHistoryBalls()
                     endCallback?.onCallBack(value)
                 }
             })

@@ -7,10 +7,10 @@ import com.lotteryviewer.twocolorball.ui.model.BallInfo
 /**
  * @Author: duke
  * @DateTime: 2021-03-24 17:28:00
- * @Description: 功能描述：
+ * @Description: 功能描述：历史开奖信息统计数据
  *
  */
-object MultiBetBallDataUtil {
+object HistoryBallDataUtil {
 
     const val TAG = "history_ball_js"
 

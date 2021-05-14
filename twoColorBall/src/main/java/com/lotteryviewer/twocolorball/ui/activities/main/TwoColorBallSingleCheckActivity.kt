@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import com.lotteryviewer.base.ui.BaseActivity
 import com.lotteryviewer.twocolorball.R
 import com.lotteryviewer.twocolorball.ui.widget.BallLayout
-import com.lotteryviewer.twocolorball.util.SingleBallRandomUtil
+import com.lotteryviewer.twocolorball.util.BlueBallRandomUtil
 import com.lotteryviewer.twocolorball.util.SingleBallDataUtil
 
 /**
@@ -102,7 +102,7 @@ class TwoColorBallSingleCheckActivity : BaseActivity() {
 
         nextBlueBall = findViewById(R.id.tv_next_blue_ball)
         nextBlueBall?.text =
-            SingleBallRandomUtil.getNextRandomBlueBall(
+            BlueBallRandomUtil.getNextRandomBlueBall(
                 blueBallArray,
                 lastLastBlueNum,
                 lastBlueNum
@@ -110,7 +110,7 @@ class TwoColorBallSingleCheckActivity : BaseActivity() {
         nextBlueBall?.setOnClickListener {
             // 点击号码重新估算下一期号码
             nextBlueBall?.text =
-                SingleBallRandomUtil.getNextRandomBlueBall(
+                BlueBallRandomUtil.getNextRandomBlueBall(
                     blueBallArray,
                     lastLastBlueNum,
                     lastBlueNum

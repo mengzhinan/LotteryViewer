@@ -3,12 +3,11 @@ package com.lotteryviewer.twocolorball.util
 import com.lotteryviewer.base.util.LVLogger
 import com.lotteryviewer.base.util.TextUtil
 import com.lotteryviewer.twocolorball.R
-import java.util.*
 
 /**
  * @Author: duke
  * @DateTime: 2021-03-24 17:28:00
- * @Description: 功能描述：
+ * @Description: 功能描述：某期开奖信息
  *
  */
 object SingleBallDataUtil {
@@ -17,7 +16,8 @@ object SingleBallDataUtil {
 
     // 号码球之间的分割符
     const val SPLIT = "lvSplit"
-    private const val SEE_CITY = "北京"
+    private const val SEE_CITY_BEIJING = "北京"
+    private const val SEE_CITY_HUBEI = "湖北"
 
     private var prizeSequenceStr: String? = ""
     private var prizeDateStr: String? = ""
@@ -76,7 +76,6 @@ object SingleBallDataUtil {
             return
         }
         prizeSequenceStr = prizeSequenceStr?.trim()
-        prizeSequenceStr = prizeSequenceStr?.toLowerCase(Locale.getDefault())
         prizeSequenceStr = prizeSequenceStr?.replace("\"", "")
         prizeSequenceStr = prizeSequenceStr?.replace("null", "")
     }
@@ -88,7 +87,6 @@ object SingleBallDataUtil {
             return
         }
         prizeDateStr = prizeDateStr?.trim()
-        prizeDateStr = prizeDateStr?.toLowerCase(Locale.getDefault())
         prizeDateStr = prizeDateStr?.replace("\"", "")
         prizeDateStr = prizeDateStr?.replace("null", "")
     }
@@ -100,22 +98,43 @@ object SingleBallDataUtil {
             return
         }
         prizeCityStr = prizeCityStr?.trim()
-        prizeCityStr = prizeCityStr?.toLowerCase(Locale.getDefault())
         prizeCityStr = prizeCityStr?.replace("\"", "")
         prizeCityStr = prizeCityStr?.replace("，", ",")
         prizeCityStr = prizeCityStr?.replace("null", "")
         val arr = prizeCityStr?.split(",")
         if (arr == null || arr.isEmpty()) {
-            prizeCityStr = ""
+            prizeCityStr = "本期无 一等奖"
             return
         }
+        var bj = ""
+        var hb = ""
+        val total = if (arr.isNotEmpty()) {
+            arr[arr.size - 1]
+        } else {
+            ""
+        }
         for (index in arr.indices) {
-            if (arr[index].startsWith(SEE_CITY)) {
-                prizeCityStr = arr[index]
+            if (arr[index].startsWith(SEE_CITY_BEIJING)) {
+                bj = arr[index]
+                return
+            } else if (arr[index].startsWith(SEE_CITY_HUBEI)) {
+                hb = arr[index]
                 return
             }
         }
-        // 没找到北京的，那就把其他的也显示出来，但是逗号间隔大一点
+        if (!TextUtil.isNullOrEmpty(bj)) {
+            prizeCityStr += bj
+            prizeCityStr += "，"
+        }
+        if (!TextUtil.isNullOrEmpty(hb)) {
+            prizeCityStr += hb
+            prizeCityStr += "，"
+        }
+        if (!TextUtil.isNullOrEmpty(prizeCityStr)) {
+            prizeCityStr += total
+            return
+        }
+        // 没找到北京或湖北，那就把其他的也显示出来，但是逗号间隔大一点
         prizeCityStr = prizeCityStr?.replace(",", " , ")
     }
 
@@ -127,7 +146,6 @@ object SingleBallDataUtil {
             return
         }
         var newValue = value?.trim()
-//        newValue = newValue?.toLowerCase(Locale.getDefault())
         newValue = newValue?.replace("\"", "")
         newValue = newValue?.replace("，", ",")
         newValue = newValue?.replace("null", "")

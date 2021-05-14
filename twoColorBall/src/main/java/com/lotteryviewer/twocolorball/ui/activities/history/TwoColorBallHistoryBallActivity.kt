@@ -8,7 +8,7 @@ import com.lotteryviewer.base.interfaces.FunctionStringOne
 import com.lotteryviewer.base.ui.BaseWebViewActivity
 import com.lotteryviewer.base.widget.MyWebViewClient
 import com.lotteryviewer.twocolorball.R
-import com.lotteryviewer.twocolorball.util.MultiBetBallHtmlUtil
+import com.lotteryviewer.twocolorball.util.HistoryBallHtmlUtil
 
 /**
  * 双色球 历史开奖 页面
@@ -70,7 +70,7 @@ class TwoColorBallHistoryBallActivity : BaseWebViewActivity() {
             refreshUrl()
         } else if (item.itemId == MENU_ID_BET) {
             // 爬取历史开奖高频号码
-            MultiBetBallHtmlUtil.getHtmlText(baseWebView, object : FunctionStringOne {
+            HistoryBallHtmlUtil.getHtmlText(baseWebView, object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
                     baseLoadingLayout?.postDelayed({
                         startActivity(

@@ -5,10 +5,10 @@ import com.lotteryviewer.base.util.RandomUtil
 /**
  * @Author: duke
  * @DateTime: 2021-04-23 17:11:46
- * @Description: 功能描述：
+ * @Description: 功能描述：篮球预测工具类
  *
  */
-object SingleBallRandomUtil {
+object BlueBallRandomUtil {
 
     /**
      * 预测下一个篮色球
