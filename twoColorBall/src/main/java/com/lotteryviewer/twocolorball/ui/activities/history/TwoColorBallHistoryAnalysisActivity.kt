@@ -101,6 +101,54 @@ class TwoColorBallHistoryAnalysisActivity : BaseActivity() {
         ltlGroupSize?.setTextSize(20f)
         ltlGroupSize?.setLabel("解析历史数据数：")
         ltlGroupSize?.setContent(HistoryBallDataUtil.getGroupCount().toString())
+
+
+        val redNumOrderList = HistoryBallDataUtil.getRedBallNumOrderList()
+        var redNumOrderStr = ""
+        for (index in redNumOrderList.indices) {
+            val item = redNumOrderList[index]
+            redNumOrderStr += "${getTwoSizeStr(item.ballNum)} -> ${item.appearCount}"
+            redNumOrderStr += "\n\n"
+        }
+        tvRedBallNumOrder?.text = redNumOrderStr
+
+        val redAppearOrderList = HistoryBallDataUtil.getRedBallAppearOrderList()
+        var redAppearOrderStr = ""
+        for (index in redAppearOrderList.indices) {
+            val item = redAppearOrderList[index]
+            redAppearOrderStr += "${getTwoSizeStr(item.ballNum)} -> ${item.appearCount}"
+            redAppearOrderStr += "\n\n"
+        }
+        tvRedBallAppearOrder?.text = redAppearOrderStr
+
+        val blueNumOrderList = HistoryBallDataUtil.getBlueBallNumOrderList()
+        var blueNumOrderStr = ""
+        for (index in blueNumOrderList.indices) {
+            val item = blueNumOrderList[index]
+            blueNumOrderStr += "${getTwoSizeStr(item.ballNum)} -> ${item.appearCount}"
+            blueNumOrderStr += "\n\n"
+        }
+        tvBlueBallNumOrder?.text = blueNumOrderStr
+
+        val blueAppearOrderList = HistoryBallDataUtil.getBlueBallAppearOrderList()
+        var blueAppearOrderStr = ""
+        for (index in blueAppearOrderList.indices) {
+            val item = blueAppearOrderList[index]
+            blueAppearOrderStr += "${getTwoSizeStr(item.ballNum)} -> ${item.appearCount}"
+            blueAppearOrderStr += "\n\n"
+        }
+        tvBlueBallAppearOrder?.text = blueAppearOrderStr
+    }
+
+    /**
+     * 数值小于 10 时，在前面补充 0
+     */
+    private fun getTwoSizeStr(i: Int): String {
+        return if (i >= 10) {
+            "$i"
+        } else {
+            "0$i"
+        }
     }
 
 }
