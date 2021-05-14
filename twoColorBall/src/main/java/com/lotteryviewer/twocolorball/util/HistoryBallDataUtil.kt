@@ -33,11 +33,15 @@ object HistoryBallDataUtil {
     private var lastBlueNum: Int = 0
     private var lastLastBlueNum: Int = 0
 
-    // 统计红球、篮球出现次数分布集合
-    private var redBallScatterList: List<BallInfo> = List(33) { BallInfo() }
-    private var blueBallScatterList: List<BallInfo> = List(16) { BallInfo() }
+    // 统计红球、篮球出现次数分布集合(按照 号码 顺序 排序)
+    private var redBallNumOrderList: List<BallInfo> = List(33) { BallInfo() }
+    private var blueBallNumOrderList: List<BallInfo> = List(16) { BallInfo() }
 
-    fun getGroupNum(): Int {
+    // 统计红球、篮球出现次数分布集合(按照 出现次数 倒序 排序)
+    private var redBallAppearOrderList: List<BallInfo> = List(33) { BallInfo() }
+    private var blueBallAppearOrderList: List<BallInfo> = List(16) { BallInfo() }
+
+    fun getGroupCount(): Int {
         return groupCount
     }
 
@@ -57,12 +61,20 @@ object HistoryBallDataUtil {
         baseSourceData = data
     }
 
-    fun getRedBallScatterList(): List<BallInfo> {
-        return redBallScatterList
+    fun getRedBallNumOrderList(): List<BallInfo> {
+        return redBallNumOrderList
     }
 
-    fun getBlueBallScatterList(): List<BallInfo> {
-        return blueBallScatterList
+    fun getBlueBallNumOrderList(): List<BallInfo> {
+        return blueBallNumOrderList
+    }
+
+    fun getRedBallAppearOrderList(): List<BallInfo> {
+        return redBallAppearOrderList
+    }
+
+    fun getBlueBallAppearOrderList(): List<BallInfo> {
+        return blueBallAppearOrderList
     }
 
     /**
@@ -75,14 +87,14 @@ object HistoryBallDataUtil {
         }
 
         // 初始化红球 list
-        for (index in redBallScatterList.indices) {
-            redBallScatterList[index].ballNum = index + 1
-            redBallScatterList[index].appearCount = 0
+        for (index in redBallNumOrderList.indices) {
+            redBallNumOrderList[index].ballNum = index + 1
+            redBallNumOrderList[index].appearCount = 0
         }
         // 初始化蓝球 list
-        for (index in blueBallScatterList.indices) {
-            blueBallScatterList[index].ballNum = index + 1
-            blueBallScatterList[index].appearCount = 0
+        for (index in blueBallNumOrderList.indices) {
+            blueBallNumOrderList[index].ballNum = index + 1
+            blueBallNumOrderList[index].appearCount = 0
         }
 
         var newValue = baseSourceData?.trim()
@@ -124,7 +136,7 @@ object HistoryBallDataUtil {
                     if (jInt == -1) {
                         continue
                     }
-                    val ballInfo = blueBallScatterList[jInt - 1]
+                    val ballInfo = blueBallNumOrderList[jInt - 1]
                     ballInfo.ballNum = jInt
                     ballInfo.appearCount += 1
                 } else {
@@ -133,16 +145,16 @@ object HistoryBallDataUtil {
                     if (jInt == -1) {
                         continue
                     }
-                    val ballInfo = redBallScatterList[jInt - 1]
+                    val ballInfo = redBallNumOrderList[jInt - 1]
                     ballInfo.ballNum = jInt
                     ballInfo.appearCount += 1
                 }
             }
         }
 
-        // 倒叙排序
-        blueBallScatterList = blueBallScatterList.sortedByDescending { it.appearCount }
-        redBallScatterList = redBallScatterList.sortedByDescending { it.appearCount }
+        // 倒叙排序，统计出现次数
+        redBallAppearOrderList = redBallNumOrderList.sortedByDescending { it.appearCount }
+        blueBallAppearOrderList = blueBallNumOrderList.sortedByDescending { it.appearCount }
 
         Log.e(TAG, "数据统计完毕")
 
