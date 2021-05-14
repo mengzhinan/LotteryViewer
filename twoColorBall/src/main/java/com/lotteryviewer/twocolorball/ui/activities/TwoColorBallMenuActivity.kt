@@ -22,7 +22,7 @@ class TwoColorBallMenuActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_two_color_menu)
+        setContentView(R.layout.activity_two_color_ball_menu)
 
         setActionBarTitle(R.string.two_color_ball_title)
 

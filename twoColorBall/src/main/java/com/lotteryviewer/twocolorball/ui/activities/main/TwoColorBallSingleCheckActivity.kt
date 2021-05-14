@@ -66,7 +66,7 @@ class TwoColorBallSingleCheckActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_check_prize)
+        setContentView(R.layout.activity_single_check_prize)
 
         if (SingleBallDataUtil.isPrizeNumArrayValid()) {
             // 获取解析到的数据，不要直接引用数组内存地址

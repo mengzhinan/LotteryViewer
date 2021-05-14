@@ -13,6 +13,8 @@
     <string name="history_ball_refresh_menu">刷新</string>
     <string name="history_ball_analysis_menu">往期统计</string>
 
+    <string name="history_ball_analysis_title">历史数据统计</string>
+
     <string name="check_prize_title">中奖查询</string>
 
     <string name="result_tip_6">恭喜你命中六等奖，\n奖金 5 元！</string>
