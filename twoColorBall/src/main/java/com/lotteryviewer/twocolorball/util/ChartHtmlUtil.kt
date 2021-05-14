@@ -16,16 +16,7 @@ object ChartHtmlUtil {
 
     // 移除节点 UI
     private const val removeTopADs = ("javascript:function removeTopADs() {"
-            + "    var ads = document.getElementsByClassName('page-ads');"
-            + "    var totalCount = ads.length;"
-            + "    for (var i = 0; i < totalCount; i++) {"
-            + "        var ad = ads[i];"
-            + "        ad.parentNode.removeChild(ad);"
-            + "    }"
-            + "}")
-
-    private const val removeBottomADs = ("javascript:function removeBottomADs() {"
-            + "    var ads = document.getElementsByClassName('section clearfix');"
+            + "    var ads = document.getElementsByClassName('tb-gg-img');"
             + "    var totalCount = ads.length;"
             + "    for (var i = 0; i < totalCount; i++) {"
             + "        var ad = ads[i];"
@@ -34,7 +25,7 @@ object ChartHtmlUtil {
             + "}")
 
     private const val removeRightADs = ("javascript:function removeRightADs() {"
-            + "    var ads = document.getElementsByClassName('_iibuxfuxlbc');"
+            + "    var ads = document.getElementsByClassName('jltb');"
             + "    var totalCount = ads.length;"
             + "    for (var i = 0; i < totalCount; i++) {"
             + "        var ad = ads[i];"
@@ -46,7 +37,6 @@ object ChartHtmlUtil {
         view ?: return
 
         var top = false
-        var bottom = false
         var right = false
 
         BaseHtmlJSUtil.loadAndCallJs(
@@ -56,18 +46,7 @@ object ChartHtmlUtil {
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
                     top = true
-                    callback(top, bottom, right, endCallback)
-                }
-            })
-
-        BaseHtmlJSUtil.loadAndCallJs(
-            view,
-            removeBottomADs,
-            "removeBottomADs",
-            object : FunctionStringOne {
-                override fun onCallBack(value: String?) {
-                    bottom = true
-                    callback(top, bottom, right, endCallback)
+                    callback(top, right, endCallback)
                 }
             })
 
@@ -78,7 +57,7 @@ object ChartHtmlUtil {
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
                     right = true
-                    callback(top, bottom, right, endCallback)
+                    callback(top, right, endCallback)
                 }
             })
 
@@ -86,11 +65,10 @@ object ChartHtmlUtil {
 
     private fun callback(
         topSuccess: Boolean,
-        bottomSuccess: Boolean,
         rightSuccess: Boolean,
         endCallback: FunctionNone?
     ) {
-        if (topSuccess && bottomSuccess && rightSuccess) {
+        if (topSuccess && rightSuccess) {
             endCallback?.onCallBack()
         }
     }
