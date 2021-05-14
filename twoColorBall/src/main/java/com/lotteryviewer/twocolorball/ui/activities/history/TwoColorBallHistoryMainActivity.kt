@@ -20,7 +20,7 @@ class TwoColorBallHistoryMainActivity : BaseWebViewActivity() {
         private const val URL = "http://www.cwl.gov.cn/kjxx/ssq/kjgg/"
 
         private const val MENU_ID_REFRESH = 0
-        private const val MENU_ID_BET = 1
+        private const val MENU_ID_ANALYSIS = 1
 
     }
 
@@ -44,17 +44,17 @@ class TwoColorBallHistoryMainActivity : BaseWebViewActivity() {
             Menu.NONE,
             MENU_ID_REFRESH,
             Menu.NONE,
-            getString(R.string.multi_ball_refresh_menu)
+            getString(R.string.history_ball_refresh_menu)
         )
         menu?.add(
             Menu.NONE,
-            MENU_ID_BET,
+            MENU_ID_ANALYSIS,
             Menu.NONE,
-            getString(R.string.multi_color_ball_bet_menu)
+            getString(R.string.history_ball_analysis_menu)
         )
 
         menu?.getItem(MENU_ID_REFRESH)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
-        menu?.getItem(MENU_ID_BET)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
+        menu?.getItem(MENU_ID_ANALYSIS)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -68,7 +68,7 @@ class TwoColorBallHistoryMainActivity : BaseWebViewActivity() {
             }
         } else if (item.itemId == MENU_ID_REFRESH) {
             refreshUrl()
-        } else if (item.itemId == MENU_ID_BET) {
+        } else if (item.itemId == MENU_ID_ANALYSIS) {
             // 爬取历史开奖高频号码
             HistoryBallHtmlUtil.getHtmlText(baseWebView, object : FunctionStringOne {
                 override fun onCallBack(value: String?) {

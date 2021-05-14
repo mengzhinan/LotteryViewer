@@ -10,8 +10,8 @@
 
     <string name="two_color_ball_multi_title">往期开奖</string>
 
-    <string name="multi_ball_refresh_menu">刷新</string>
-    <string name="multi_color_ball_bet_menu">复式投注</string>
+    <string name="history_ball_refresh_menu">刷新</string>
+    <string name="history_ball_analysis_menu">往期统计</string>
 
     <string name="check_prize_title">中奖查询</string>
 
