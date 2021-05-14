@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.lotteryviewer.base.ui.BaseWebViewActivity
-import com.lotteryviewer.base.widget.MyWebViewClient
 import com.lotteryviewer.twocolorball.R
+import com.lotteryviewer.twocolorball.ui.widget.ChartWebViewClient
 
 /**
  * 双色球 数据图表 页面
@@ -27,7 +27,7 @@ class TwoColorBallChartActivity : BaseWebViewActivity() {
         setActionBarTitle(R.string.two_color_ball_chart_title)
 
         // just pre grab html data
-        baseWebView?.webViewClient = MyWebViewClient()
+        baseWebView?.webViewClient = ChartWebViewClient()
 
         refreshUrl()
     }
