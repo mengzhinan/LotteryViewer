@@ -92,16 +92,16 @@ object SingleBallDataUtil {
     }
 
     fun parseCityStr(value: String?) {
-        prizeCityStr = value
-        if (TextUtil.isNullOrEmpty(prizeCityStr)) {
-            prizeCityStr = ""
+        prizeCityStr = ""
+        var tempCityStr = value
+        if (TextUtil.isNullOrEmpty(tempCityStr)) {
             return
         }
-        prizeCityStr = prizeCityStr?.trim()
-        prizeCityStr = prizeCityStr?.replace("\"", "")
-        prizeCityStr = prizeCityStr?.replace("，", ",")
-        prizeCityStr = prizeCityStr?.replace("null", "")
-        val arr = prizeCityStr?.split(",")
+        tempCityStr = tempCityStr?.trim()
+        tempCityStr = tempCityStr?.replace("\"", "")
+        tempCityStr = tempCityStr?.replace("，", ",")
+        tempCityStr = tempCityStr?.replace("null", "")
+        val arr = tempCityStr?.split(",")
         if (arr == null || arr.isEmpty()) {
             prizeCityStr = "本期无 一等奖"
             return
@@ -113,13 +113,12 @@ object SingleBallDataUtil {
         } else {
             ""
         }
+        // 寻找北京或湖北中一等奖信息
         for (index in arr.indices) {
             if (arr[index].startsWith(SEE_CITY_BEIJING)) {
                 bj = arr[index]
-                return
             } else if (arr[index].startsWith(SEE_CITY_HUBEI)) {
                 hb = arr[index]
-                return
             }
         }
         if (!TextUtil.isNullOrEmpty(bj)) {
@@ -135,7 +134,7 @@ object SingleBallDataUtil {
             return
         }
         // 没找到北京或湖北，那就把其他的也显示出来，但是逗号间隔大一点
-        prizeCityStr = prizeCityStr?.replace(",", " , ")
+        prizeCityStr = tempCityStr?.replace(",", " , ")
     }
 
     /**

@@ -2,14 +2,15 @@ package com.lotteryviewer.twocolorball.ui.activities.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.core.content.ContextCompat
+import com.lotteryviewer.base.app.BaseApplication
 import com.lotteryviewer.base.ui.BaseActivity
+import com.lotteryviewer.base.util.TextUtil
 import com.lotteryviewer.twocolorball.R
 import com.lotteryviewer.twocolorball.ui.widget.BallLayout
 import com.lotteryviewer.twocolorball.util.BlueBallRandomUtil
@@ -48,6 +49,20 @@ class TwoColorBallSingleCheckActivity : BaseActivity() {
     private var spinner7: AppCompatSpinner? = null
 
     private var nextBlueBall: TextView? = null
+
+    // Spinner 选择数据后的回调
+    private val onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            val spinnerIndex = TextUtil.parseToInt(parent?.tag?.toString(), 1)
+            // 注意，需要将 spinnerIndex -1，
+            // 因为 array 中需要的是 0 开始的索引，而 xml 中写的是 1 开始的序号
+            setUserSelectData(spinnerIndex - 1, parent, position)
+        }
+
+        override fun onNothingSelected(parent: AdapterView<*>?) {
+            // do nothing
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,127 +116,34 @@ class TwoColorBallSingleCheckActivity : BaseActivity() {
         spinner7 = findViewById(R.id.input_spinner7)
 
         nextBlueBall = findViewById(R.id.tv_next_blue_ball)
+
+        // 初始化篮球预测值
         nextBlueBall?.text =
             BlueBallRandomUtil.getNextRandomBlueBall(
                 blueBallArray,
                 lastLastBlueNum,
                 lastBlueNum
             )
+
         nextBlueBall?.setOnClickListener {
-            // 点击号码重新估算下一期号码
+            // 点击号码后，重新估算下一期号码
             nextBlueBall?.text =
                 BlueBallRandomUtil.getNextRandomBlueBall(
                     blueBallArray,
                     lastLastBlueNum,
                     lastBlueNum
                 )
+            Toast.makeText(BaseApplication.get(), "重新推测篮球", Toast.LENGTH_SHORT).show()
         }
 
-        spinner1?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                setUserSelectData(0, parent, position)
-            }
+        spinner1?.onItemSelectedListener = onItemSelectedListener
+        spinner2?.onItemSelectedListener = onItemSelectedListener
+        spinner3?.onItemSelectedListener = onItemSelectedListener
+        spinner4?.onItemSelectedListener = onItemSelectedListener
+        spinner5?.onItemSelectedListener = onItemSelectedListener
+        spinner6?.onItemSelectedListener = onItemSelectedListener
+        spinner7?.onItemSelectedListener = onItemSelectedListener
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-        }
-        spinner2?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                setUserSelectData(1, parent, position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-        }
-        spinner3?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                setUserSelectData(2, parent, position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-        }
-        spinner4?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                setUserSelectData(3, parent, position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-        }
-        spinner5?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                setUserSelectData(4, parent, position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-        }
-        spinner6?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                setUserSelectData(5, parent, position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-        }
-        spinner7?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                setUserSelectData(6, parent, position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-        }
     }
 
     private fun setUserSelectData(spinnerIndex: Int, parent: AdapterView<*>?, position: Int) {
@@ -264,13 +186,6 @@ class TwoColorBallSingleCheckActivity : BaseActivity() {
         tvSequence?.text = "开奖期数：${SingleBallDataUtil.getPrizeSequenceStr()}"
         tvDate?.text = "开奖日期：${SingleBallDataUtil.getPrizeDateStr()}"
         prizeNumsLayout?.setBalls(finalBallArray, finalBallArray)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            finish()
-        }
-        return super.onOptionsItemSelected(item)
     }
 
 }
