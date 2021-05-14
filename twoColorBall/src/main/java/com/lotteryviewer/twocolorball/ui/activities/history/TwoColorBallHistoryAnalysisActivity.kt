@@ -1,4 +1,4 @@
-package com.lotteryviewer.twocolorball.ui.activities
+package com.lotteryviewer.twocolorball.ui.activities.history
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -12,13 +12,13 @@ import androidx.core.content.ContextCompat
 import com.lotteryviewer.base.ui.BaseActivity
 import com.lotteryviewer.twocolorball.R
 import com.lotteryviewer.twocolorball.ui.widget.BallLayout
-import com.lotteryviewer.twocolorball.util.SingleBallRandomUtil
 import com.lotteryviewer.twocolorball.util.SingleBallDataUtil
+import com.lotteryviewer.twocolorball.util.SingleBallRandomUtil
 
 /**
- * 单注 查询中奖 页面
+ * 双色球 历史开奖 数据统计
  */
-class TwoColorBallSingleCheckActivity : BaseActivity() {
+class TwoColorBallHistoryAnalysisActivity : BaseActivity() {
 
     private var tvHitCity: TextView? = null
     private var tvSequence: TextView? = null
@@ -51,7 +51,7 @@ class TwoColorBallSingleCheckActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_check_prize)
+        setContentView(R.layout.activity_multi_bet)
 
         if (SingleBallDataUtil.isPrizeNumArrayValid()) {
             // 获取解析到的数据，不要直接引用数组内存地址

@@ -13,12 +13,28 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/btn_two_color_ball_selector"
         android:gravity="center"
-        android:text="(本期开奖)主页"
+        android:text="开奖主页"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_two_color_ball_calculator"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/btn_two_color_ball_selector"
+        android:gravity="center"
+        android:text="复式计算器"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_two_color_ball_main" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_two_color_ball_history"
@@ -34,10 +50,10 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_two_color_ball_main" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_two_color_ball_calculator" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_two_color_ball_calculator"
+        android:id="@+id/btn_two_color_ball_chart"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -45,7 +61,7 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/btn_two_color_ball_selector"
         android:gravity="center"
-        android:text="复式计算器"
+        android:text="图表分析"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,4 +1,4 @@
-package com.lotteryviewer.twocolorball.ui.activities
+package com.lotteryviewer.twocolorball.ui.activities.history
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,8 @@ import android.view.Menu
 import android.view.MenuItem
 import com.lotteryviewer.base.interfaces.FunctionStringOne
 import com.lotteryviewer.base.ui.BaseWebViewActivity
+import com.lotteryviewer.base.widget.MyWebViewClient
 import com.lotteryviewer.twocolorball.R
-import com.lotteryviewer.twocolorball.ui.widget.MultiBallWebViewClient
 import com.lotteryviewer.twocolorball.util.MultiBetBallHtmlUtil
 
 /**
@@ -28,7 +28,7 @@ class TwoColorBallHistoryBallActivity : BaseWebViewActivity() {
         super.onCreate(savedInstanceState)
 
         setActionBarTitle(R.string.two_color_ball_multi_title)
-        baseWebView?.webViewClient = MultiBallWebViewClient()
+        baseWebView?.webViewClient = MyWebViewClient()
 
         refreshUrl()
     }
