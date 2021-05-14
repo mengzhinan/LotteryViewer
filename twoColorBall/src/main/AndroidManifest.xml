@@ -26,7 +26,7 @@
             android:windowSoftInputMode="adjustResize|stateHidden"
             tools:ignore="UnusedAttribute" />
         <activity
-            android:name=".ui.activities.history.TwoColorBallHistoryBallActivity"
+            android:name=".ui.activities.history.TwoColorBallHistoryMainActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
             android:exported="false"
             android:launchMode="singleTask"

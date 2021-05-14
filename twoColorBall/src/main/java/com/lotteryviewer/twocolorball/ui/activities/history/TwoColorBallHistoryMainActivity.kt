@@ -13,7 +13,7 @@ import com.lotteryviewer.twocolorball.util.HistoryBallHtmlUtil
 /**
  * 双色球 历史开奖 页面
  */
-class TwoColorBallHistoryBallActivity : BaseWebViewActivity() {
+class TwoColorBallHistoryMainActivity : BaseWebViewActivity() {
 
     companion object {
         // 历史中奖信息
@@ -75,7 +75,7 @@ class TwoColorBallHistoryBallActivity : BaseWebViewActivity() {
                     baseLoadingLayout?.postDelayed({
                         startActivity(
                             Intent(
-                                this@TwoColorBallHistoryBallActivity,
+                                this@TwoColorBallHistoryMainActivity,
                                 TwoColorBallHistoryAnalysisActivity::class.java
                             )
                         )

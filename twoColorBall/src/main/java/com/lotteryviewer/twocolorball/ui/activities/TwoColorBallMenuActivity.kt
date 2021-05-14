@@ -7,7 +7,7 @@ import com.lotteryviewer.base.ui.BaseActivity
 import com.lotteryviewer.twocolorball.R
 import com.lotteryviewer.twocolorball.ui.activities.calculator.TwoColorBallCalculatorActivity
 import com.lotteryviewer.twocolorball.ui.activities.chart.TwoColorBallChartActivity
-import com.lotteryviewer.twocolorball.ui.activities.history.TwoColorBallHistoryBallActivity
+import com.lotteryviewer.twocolorball.ui.activities.history.TwoColorBallHistoryMainActivity
 import com.lotteryviewer.twocolorball.ui.activities.main.TwoColorBallMainPageActivity
 
 /**
@@ -40,7 +40,7 @@ class TwoColorBallMenuActivity : BaseActivity() {
         }
 
         twoColorBallHistory?.setOnClickListener {
-            startPage(TwoColorBallHistoryBallActivity::class.java)
+            startPage(TwoColorBallHistoryMainActivity::class.java)
         }
 
         twoColorBallChart?.setOnClickListener {
