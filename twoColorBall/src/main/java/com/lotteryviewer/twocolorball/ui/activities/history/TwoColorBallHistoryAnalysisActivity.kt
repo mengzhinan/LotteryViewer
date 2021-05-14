@@ -108,7 +108,7 @@ class TwoColorBallHistoryAnalysisActivity : BaseActivity() {
         for (index in redNumOrderList.indices) {
             val item = redNumOrderList[index]
             redNumOrderStr += "${getTwoSizeStr(item.ballNum)} -> ${item.appearCount}"
-            redNumOrderStr += "\n\n"
+            redNumOrderStr += "\n"
         }
         tvRedBallNumOrder?.text = redNumOrderStr
 
@@ -117,7 +117,7 @@ class TwoColorBallHistoryAnalysisActivity : BaseActivity() {
         for (index in redAppearOrderList.indices) {
             val item = redAppearOrderList[index]
             redAppearOrderStr += "${getTwoSizeStr(item.ballNum)} -> ${item.appearCount}"
-            redAppearOrderStr += "\n\n"
+            redAppearOrderStr += "\n"
         }
         tvRedBallAppearOrder?.text = redAppearOrderStr
 
@@ -126,7 +126,7 @@ class TwoColorBallHistoryAnalysisActivity : BaseActivity() {
         for (index in blueNumOrderList.indices) {
             val item = blueNumOrderList[index]
             blueNumOrderStr += "${getTwoSizeStr(item.ballNum)} -> ${item.appearCount}"
-            blueNumOrderStr += "\n\n"
+            blueNumOrderStr += "\n"
         }
         tvBlueBallNumOrder?.text = blueNumOrderStr
 
@@ -135,7 +135,7 @@ class TwoColorBallHistoryAnalysisActivity : BaseActivity() {
         for (index in blueAppearOrderList.indices) {
             val item = blueAppearOrderList[index]
             blueAppearOrderStr += "${getTwoSizeStr(item.ballNum)} -> ${item.appearCount}"
-            blueAppearOrderStr += "\n\n"
+            blueAppearOrderStr += "\n"
         }
         tvBlueBallAppearOrder?.text = blueAppearOrderStr
     }
