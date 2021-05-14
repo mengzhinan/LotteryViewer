@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.lotteryviewer.base.ui.BaseWebViewActivity
-import com.lotteryviewer.base.widget.MyWebViewClient
 import com.lotteryviewer.twocolorball.R
+import com.lotteryviewer.twocolorball.ui.widget.CalculatorWebViewClient
 
 /**
  * 双色球 复试计算器 页面
@@ -26,8 +26,8 @@ class TwoColorBallCalculatorActivity : BaseWebViewActivity() {
 
         setActionBarTitle(R.string.two_color_ball_calculator_title)
 
-        // just pre grab html data
-        baseWebView?.webViewClient = MyWebViewClient()
+        // 去广告
+        baseWebView?.webViewClient = CalculatorWebViewClient()
 
         refreshUrl()
     }
