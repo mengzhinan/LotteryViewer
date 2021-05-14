@@ -16,8 +16,8 @@ import com.lotteryviewer.twocolorball.ui.activities.main.TwoColorBallMainPageAct
 class TwoColorBallMenuActivity : BaseActivity() {
 
     private var twoColorBallMain: AppCompatButton? = null
-    private var twoColorBallCalculator: AppCompatButton? = null
     private var twoColorBallHistory: AppCompatButton? = null
+    private var twoColorBallCalculator: AppCompatButton? = null
     private var twoColorBallChart: AppCompatButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,20 +27,20 @@ class TwoColorBallMenuActivity : BaseActivity() {
         setActionBarTitle(R.string.two_color_ball_title)
 
         twoColorBallMain = findViewById(R.id.btn_two_color_ball_main)
-        twoColorBallCalculator = findViewById(R.id.btn_two_color_ball_calculator)
         twoColorBallHistory = findViewById(R.id.btn_two_color_ball_history)
+        twoColorBallCalculator = findViewById(R.id.btn_two_color_ball_calculator)
         twoColorBallChart = findViewById(R.id.btn_two_color_ball_chart)
 
         twoColorBallMain?.setOnClickListener {
             startPage(TwoColorBallMainPageActivity::class.java)
         }
 
-        twoColorBallCalculator?.setOnClickListener {
-            startPage(TwoColorBallCalculatorActivity::class.java)
-        }
-
         twoColorBallHistory?.setOnClickListener {
             startPage(TwoColorBallHistoryMainActivity::class.java)
+        }
+
+        twoColorBallCalculator?.setOnClickListener {
+            startPage(TwoColorBallCalculatorActivity::class.java)
         }
 
         twoColorBallChart?.setOnClickListener {

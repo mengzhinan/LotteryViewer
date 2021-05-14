@@ -21,22 +21,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_two_color_ball_calculator"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/btn_two_color_ball_selector"
-        android:gravity="center"
-        android:text="复式计算器"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_two_color_ball_main" />
-
-    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_two_color_ball_history"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -50,7 +34,23 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_two_color_ball_calculator" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_two_color_ball_main" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_two_color_ball_calculator"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/btn_two_color_ball_selector"
+        android:gravity="center"
+        android:text="复式计算器"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_two_color_ball_history" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_two_color_ball_chart"
@@ -66,6 +66,6 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_two_color_ball_history" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_two_color_ball_calculator" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
