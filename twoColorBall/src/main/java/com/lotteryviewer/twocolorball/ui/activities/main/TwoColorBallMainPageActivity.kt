@@ -62,13 +62,7 @@ class TwoColorBallMainPageActivity : BaseWebViewActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            if (baseWebView?.canGoBack() == true) {
-                baseWebView?.goBack()
-            } else {
-                finish()
-            }
-        } else if (item.itemId == MENU_ID_REFRESH) {
+        if (item.itemId == MENU_ID_REFRESH) {
             refreshUrl()
         } else if (item.itemId == MENU_ID_CHECK) {
 

@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="红球顺序"
+                    android:text="红球顺序次数"
                     android:textColor="@color/COLOR_FF0000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="红球出现次数"
+                    android:text="红球高频次数"
                     android:textColor="@color/COLOR_FF0000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="篮球顺序"
+                    android:text="篮球顺序次数"
                     android:textColor="@color/COLOR_4586F3"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="篮球出现次数"
+                    android:text="篮球高频次数"
                     android:textColor="@color/COLOR_4586F3"
                     android:textSize="18sp"
                     android:textStyle="bold" />

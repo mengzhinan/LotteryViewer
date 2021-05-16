@@ -3,6 +3,7 @@ package com.lotteryviewer.base.ui
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.MenuItem
 import android.webkit.WebView
 import android.widget.RelativeLayout
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -42,6 +43,17 @@ open class BaseWebViewActivity : BaseActivity() {
      */
     protected fun setLoadingCoverColor(colorInt: Int) {
         baseLoadingLayout?.setBackgroundColor(colorInt)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            if (baseWebView?.canGoBack() == true) {
+                baseWebView?.goBack()
+            } else {
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     /**
