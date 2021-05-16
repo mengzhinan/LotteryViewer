@@ -42,12 +42,18 @@ object CalculatorHtmlUtil {
             + "    }"
             + "}")
 
+    private const val removeCenterAboveADs = ("javascript:function removeCenterAboveADs() {"
+            + "    var ad = document.getElementsById('_msk');"
+            + "    ad.parentNode.removeChild(ad);"
+            + "}")
+
     fun removeADs(view: WebView?, endCallback: FunctionNone?) {
         view ?: return
 
         var top = false
         var bottom = false
         var right = false
+        var centerAbove = false
 
         BaseHtmlJSUtil.loadAndCallJs(
             view,
@@ -56,7 +62,7 @@ object CalculatorHtmlUtil {
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
                     top = true
-                    callback(top, bottom, right, endCallback)
+                    callback(top, bottom, right, centerAbove, endCallback)
                 }
             })
 
@@ -67,7 +73,7 @@ object CalculatorHtmlUtil {
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
                     bottom = true
-                    callback(top, bottom, right, endCallback)
+                    callback(top, bottom, right, centerAbove, endCallback)
                 }
             })
 
@@ -78,7 +84,18 @@ object CalculatorHtmlUtil {
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
                     right = true
-                    callback(top, bottom, right, endCallback)
+                    callback(top, bottom, right, centerAbove, endCallback)
+                }
+            })
+
+        BaseHtmlJSUtil.loadAndCallJs(
+            view,
+            removeCenterAboveADs,
+            "removeCenterAboveADs",
+            object : FunctionStringOne {
+                override fun onCallBack(value: String?) {
+                    centerAbove = true
+                    callback(top, bottom, right, centerAbove, endCallback)
                 }
             })
 
@@ -88,9 +105,10 @@ object CalculatorHtmlUtil {
         topSuccess: Boolean,
         bottomSuccess: Boolean,
         rightSuccess: Boolean,
+        centerAbove: Boolean,
         endCallback: FunctionNone?
     ) {
-        if (topSuccess && bottomSuccess && rightSuccess) {
+        if (topSuccess && bottomSuccess && rightSuccess && centerAbove) {
             endCallback?.onCallBack()
         }
     }
