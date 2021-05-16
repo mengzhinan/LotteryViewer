@@ -46,12 +46,9 @@ open class BaseWebViewActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            if (baseWebView?.canGoBack() == true) {
-                baseWebView?.goBack()
-            } else {
-                finish()
-            }
+        if (item.itemId == android.R.id.home && baseWebView?.canGoBack() == true) {
+            baseWebView?.goBack()
+            return true
         }
         return super.onOptionsItemSelected(item)
     }
