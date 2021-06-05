@@ -6,6 +6,7 @@ import android.os.Message
 import androidx.appcompat.app.AppCompatActivity
 import com.lotteryviewer.base.interfaces.FunctionNone
 import com.lotteryviewer.base.util.SafetyHandler
+import com.lotteryviewer.base.util.WindowInsetsControllerUtil
 import com.lotteryviewer.home.R
 import com.lotteryviewer.home.ui.dialog.DisclaimerDialogUtil
 
@@ -13,13 +14,17 @@ class SplashActivity : AppCompatActivity(), SafetyHandler.Delegate {
 
     companion object {
         private const val HANDLER_WHAT_FINISH = 1
-        private const val DELAY_TIME = 0L
+        private const val DELAY_TIME = 1500L
     }
 
     private var safetyHandler: SafetyHandler? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // 全屏
+        WindowInsetsControllerUtil.setFullScreen(this)
+
         setContentView(R.layout.activity_splash)
 
         safetyHandler = SafetyHandler.create(this)

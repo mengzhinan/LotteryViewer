@@ -1,6 +1,7 @@
 <resources>
 
     <string name="sunset_title">日出日落</string>
+    <string name="sunset_pneumonia">肺炎最新信息</string>
 
     <string name="sunset_menu1">刷新</string>
     <string name="sunset_menu2">查今天</string>

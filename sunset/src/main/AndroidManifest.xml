@@ -15,6 +15,16 @@
             android:windowSoftInputMode="adjustResize|stateHidden"
             tools:ignore="UnusedAttribute" />
 
+        <activity
+            android:name="com.lotteryviewer.sunset.ui.activities.PneumoniaActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboardHidden|locale|mnc|mcc"
+            android:exported="false"
+            android:resizeableActivity="true"
+            android:screenOrientation="portrait"
+            android:supportsPictureInPicture="true"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            tools:ignore="UnusedAttribute" />
+
     </application>
 
 </manifest>
