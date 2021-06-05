@@ -60,6 +60,7 @@ class SunsetActivity : BaseWebViewActivity() {
             } else {
                 finish()
             }
+            return true
         } else if (item.itemId == MENU_ID_REFRESH) {
             refreshUrl()
         } else if (item.itemId == MENU_ID_SEE_TODAY) {
