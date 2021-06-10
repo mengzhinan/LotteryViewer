@@ -18,10 +18,13 @@ class FileReadHelper private constructor(private var inputStream: InputStream?) 
 
     companion object {
 
+        var ERROR_INFO: String? = ""
+
         private val defaultCharset = Charset.defaultCharset()
 
         fun openStream(filePath: String?): FileReadHelper? {
             if (filePath == null || TextUtils.isEmpty(filePath.trim())) {
+                ERROR_INFO = "FileReadHelper.openStream() filePath == null or empty"
                 return null
             }
             return openStream(File(filePath))
@@ -29,6 +32,7 @@ class FileReadHelper private constructor(private var inputStream: InputStream?) 
 
         fun openStream(file: File?): FileReadHelper? {
             if (file == null || !file.exists()) {
+                ERROR_INFO = "FileReadHelper.openStream() file == null || !file.exists()"
                 return null
             }
             return FileReadHelper(FileInputStream(file))
@@ -36,6 +40,7 @@ class FileReadHelper private constructor(private var inputStream: InputStream?) 
 
         fun openStream(inputStreamParam: InputStream?): FileReadHelper? {
             if (inputStreamParam == null) {
+                ERROR_INFO = "FileReadHelper.openStream() inputStreamParam == null"
                 return null
             }
             return FileReadHelper(inputStreamParam)
@@ -45,6 +50,7 @@ class FileReadHelper private constructor(private var inputStream: InputStream?) 
 
     fun readString(charset: Charset? = defaultCharset): String? {
         if (inputStream == null) {
+            ERROR_INFO = "FileReadHelper.readString() inputStream == null"
             return null
         }
         try {
@@ -63,6 +69,7 @@ class FileReadHelper private constructor(private var inputStream: InputStream?) 
             }
         } catch (e: Exception) {
             e.printStackTrace()
+            ERROR_INFO = "FileReadHelper.readString() 失败：${e.message}"
         } finally {
             closeStream()
         }
@@ -71,6 +78,7 @@ class FileReadHelper private constructor(private var inputStream: InputStream?) 
 
     fun readByteArray(): ByteArray? {
         if (inputStream == null) {
+            ERROR_INFO = "FileReadHelper.readByteArray() inputStream == null"
             return null
         }
         try {
@@ -83,6 +91,7 @@ class FileReadHelper private constructor(private var inputStream: InputStream?) 
             }
         } catch (e: Exception) {
             e.printStackTrace()
+            ERROR_INFO = "FileReadHelper.readByteArray() 失败：${e.message}"
         } finally {
             closeStream()
         }

@@ -1,13 +1,13 @@
 package com.lotteryviewer.base.util
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Environment
 import android.provider.Settings
 import android.text.TextUtils
-import androidx.appcompat.app.AlertDialog
 import java.io.*
 import java.nio.charset.Charset
 
@@ -29,6 +29,8 @@ class FileWriteHelper private constructor(
 
     companion object {
 
+        var ERROR_INFO: String? = ""
+
         private val defaultCharset = Charset.defaultCharset()
 
         fun openStream(
@@ -37,6 +39,7 @@ class FileWriteHelper private constructor(
             isAppend: Boolean = false
         ): FileWriteHelper? {
             if (file == null) {
+                ERROR_INFO = "file == null，尝试打开文件流失败"
                 return null
             }
             return FileWriteHelper(file).createStream(isAppend, charset ?: defaultCharset)
@@ -128,6 +131,7 @@ class FileWriteHelper private constructor(
             return this
         } catch (e: Exception) {
             e.printStackTrace()
+            ERROR_INFO = "创建文件或打开文件流失败：${e.message}"
         }
         return null
     }
@@ -141,6 +145,7 @@ class FileWriteHelper private constructor(
             return this
         } catch (e: IOException) {
             e.printStackTrace()
+            ERROR_INFO = "写入内容失败：${e.message}"
         }
         return null
     }
@@ -151,6 +156,7 @@ class FileWriteHelper private constructor(
             return this
         } catch (e: IOException) {
             e.printStackTrace()
+            ERROR_INFO = "写入换行失败：${e.message}"
         }
         return null
     }
