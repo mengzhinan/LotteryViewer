@@ -62,6 +62,7 @@ class TwoColorBallHistoryMainActivity : BaseWebViewActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == MENU_ID_REFRESH) {
             refreshUrl()
+            return true
         } else if (item.itemId == MENU_ID_ANALYSIS) {
             // 爬取历史开奖高频号码
             HistoryBallHtmlUtil.getHtmlText(baseWebView, object : FunctionStringOne {
@@ -76,6 +77,7 @@ class TwoColorBallHistoryMainActivity : BaseWebViewActivity() {
                     }, 50)
                 }
             })
+            return true
 
         }
         return super.onOptionsItemSelected(item)

@@ -1,13 +1,18 @@
 package com.lotteryviewer.base.ui
 
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import com.lotteryviewer.base.R
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -70,6 +75,12 @@ open class BaseActivity : AppCompatActivity() {
     protected fun setActionBarTitle(title: String?) {
         title ?: return
         supportActionBar?.title = title
+    }
+
+    protected fun setActionBarBackIconColor(@ColorInt colorInt: Int) {
+        val backDrawable = ResourcesCompat.getDrawable(resources, R.mipmap.icon_back_arrow, null)
+        backDrawable?.colorFilter = PorterDuffColorFilter(colorInt, PorterDuff.Mode.SRC_IN)
+        supportActionBar?.setHomeAsUpIndicator(backDrawable)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

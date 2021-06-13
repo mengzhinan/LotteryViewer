@@ -14,7 +14,7 @@ class SplashActivity : AppCompatActivity(), SafetyHandler.Delegate {
 
     companion object {
         private const val HANDLER_WHAT_FINISH = 1
-        private const val DELAY_TIME = 1500L
+        private const val DELAY_TIME = 500L
     }
 
     private var safetyHandler: SafetyHandler? = null
@@ -45,8 +45,8 @@ class SplashActivity : AppCompatActivity(), SafetyHandler.Delegate {
 
     override fun onReceivedHandlerMessage(message: Message?) {
         if (message?.what == HANDLER_WHAT_FINISH) {
-            finish()
             startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            finish()
         }
     }
 

@@ -63,6 +63,7 @@ class SunsetActivity : BaseWebViewActivity() {
             return true
         } else if (item.itemId == MENU_ID_REFRESH) {
             refreshUrl()
+            return true
         } else if (item.itemId == MENU_ID_SEE_TODAY) {
 
             // 此处需要再次爬取数据
@@ -71,6 +72,7 @@ class SunsetActivity : BaseWebViewActivity() {
                     SunsetTodayDialogUtil.showTodayDialog(this@SunsetActivity)
                 }
             })
+            return true
 
         }
         return super.onOptionsItemSelected(item)

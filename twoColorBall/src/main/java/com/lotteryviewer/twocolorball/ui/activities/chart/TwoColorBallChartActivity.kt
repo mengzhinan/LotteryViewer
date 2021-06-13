@@ -1,5 +1,6 @@
 package com.lotteryviewer.twocolorball.ui.activities.chart
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -25,6 +26,7 @@ class TwoColorBallChartActivity : BaseWebViewActivity() {
         super.onCreate(savedInstanceState)
 
         setActionBarTitle(R.string.two_color_ball_chart_title)
+        setActionBarBackIconColor(Color.BLACK)
 
         // just pre grab html data
         baseWebView?.webViewClient = ChartWebViewClient()
@@ -53,6 +55,7 @@ class TwoColorBallChartActivity : BaseWebViewActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == MENU_ID_REFRESH) {
             refreshUrl()
+            return true
         }
         return super.onOptionsItemSelected(item)
     }

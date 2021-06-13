@@ -50,6 +50,7 @@ class PneumoniaActivity : BaseWebViewActivity() {
             return true
         } else if (item.itemId == MENU_ID_REFRESH) {
             refreshUrl()
+            return true
         }
         return super.onOptionsItemSelected(item)
     }

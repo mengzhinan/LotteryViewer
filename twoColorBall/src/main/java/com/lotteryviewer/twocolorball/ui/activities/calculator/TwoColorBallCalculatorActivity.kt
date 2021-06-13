@@ -1,5 +1,6 @@
 package com.lotteryviewer.twocolorball.ui.activities.calculator
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -25,6 +26,7 @@ class TwoColorBallCalculatorActivity : BaseWebViewActivity() {
         super.onCreate(savedInstanceState)
 
         setActionBarTitle(R.string.two_color_ball_calculator_title)
+        setActionBarBackIconColor(Color.BLACK)
 
         // 去广告
         baseWebView?.webViewClient = CalculatorWebViewClient()
@@ -53,6 +55,7 @@ class TwoColorBallCalculatorActivity : BaseWebViewActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == MENU_ID_REFRESH) {
             refreshUrl()
+            return true
         }
         return super.onOptionsItemSelected(item)
     }

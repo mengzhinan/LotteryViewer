@@ -64,6 +64,7 @@ class TwoColorBallMainPageActivity : BaseWebViewActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == MENU_ID_REFRESH) {
             refreshUrl()
+            return true
         } else if (item.itemId == MENU_ID_CHECK) {
 
             // 用户可能会切换页面内的 选择框，切换了开奖日期
@@ -80,6 +81,7 @@ class TwoColorBallMainPageActivity : BaseWebViewActivity() {
                     }, 50)
                 }
             })
+            return true
 
         }
         return super.onOptionsItemSelected(item)
