@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import com.lotteryviewer.twocolorball.R
 
 /**
@@ -47,6 +48,11 @@ class LabelTextLayout @JvmOverloads constructor(
     fun setTextSize(spF: Float) {
         tvLabel.textSize = spF
         tvContent.textSize = spF
+    }
+
+    fun setTextColor(@ColorInt colorInt: Int) {
+        tvLabel.setTextColor(colorInt)
+        tvContent.setTextColor(colorInt)
     }
 
 }

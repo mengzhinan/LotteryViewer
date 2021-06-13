@@ -3,6 +3,7 @@ package com.lotteryviewer.twocolorball.ui.activities.history
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.lotteryviewer.base.app.BaseApplication
 import com.lotteryviewer.base.ui.BaseActivity
 import com.lotteryviewer.twocolorball.R
@@ -75,10 +76,40 @@ class TwoColorBallHistoryAnalysisActivity : BaseActivity() {
             System.arraycopy(ballArray, 1, blueBallArray, 0, blueBallCount)
         }
 
-        ltlRecentPrizeNum?.setLabel("最近开奖号码：")
-        ltlRecentPrizeNum?.setContent(HistoryBallDataUtil.getRecentPrizeNumStr())
+        ltlRecentPrizeNum?.setTextSize(20f)
+        ltlRecentPrizeNum?.setLabel("上期开奖：")
+
+        // 解析到原始的字符串(开奖日期，开奖红球号码，开奖篮球号码)
+        // DEMO: 2021-06-10(四)_04_06_08_15_16_18_16
+        val recentSource = HistoryBallDataUtil.getRecentPrizeNumStr()
+        // 最终想要的样式字符串
+        var recentResultStr = recentSource
+
+        val recentArr = recentSource?.split("_")
+        val recentArrSize = recentArr?.size ?: 0
+        if (recentArr != null && recentArrSize > 7) {
+            recentResultStr = ""
+            for (index in 0 until recentArrSize) {
+                if (index == 0) {
+                    // 第一个数据拼接后，需要换行
+                    recentResultStr = recentArr[index] + "\n"
+                } else if (index == recentArrSize - 1) {
+                    // 最后一个数据拼接后，也需要单独换行
+                    recentResultStr = recentResultStr + "\n" + recentArr[index]
+                } else if (index == recentArrSize - 2) {
+                    // 中间的数据最后一个拼接后，不需要追加 -
+                    recentResultStr += recentArr[index]
+                } else {
+                    // 中间的数据拼接后，需要追加 -
+                    recentResultStr = recentResultStr + recentArr[index] + " - "
+                }
+            }
+        }
+        ltlRecentPrizeNum?.setContent(recentResultStr)
+
 
         ltlRecommendBlueNum?.setTextSize(40f)
+        ltlRecommendBlueNum?.setTextColor(ContextCompat.getColor(this, R.color.COLOR_4586F3))
         ltlRecommendBlueNum?.setLabel("推荐篮色球：")
         ltlRecommendBlueNum?.setContent(
             BlueBallRandomUtil.getNextRandomBlueBall(
