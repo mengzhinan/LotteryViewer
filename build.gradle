@@ -49,8 +49,8 @@ ext {
     buildTools = "30.0.3"
     minSdk = 21
     targetSdk = 30
-    versionCode = 8
-    versionName = "6.0"
+    versionCode = 9
+    versionName = "7.0"
 
     minifyEnabled = true
 
