@@ -14,7 +14,7 @@ import java.io.InputStream
  */
 object AssetsFileCopyUtil {
 
-    private fun copyAssetsFileToExtendedStorage(
+    fun copyAssetsFileToExtendedStorage(
         context: Context?,
         fullNameAndSuffix: String?,
         outFile: File?,
