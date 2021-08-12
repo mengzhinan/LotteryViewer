@@ -47,7 +47,7 @@ class NetHelper {
             val result: String?
             var conn: HttpURLConnection? = null
             try {
-                Log.d(TAG, "GrowthNet newUrl = $newUrl")
+                Log.d(TAG, "Net newUrl = $newUrl")
 
                 conn = HttpsConn.getHttpsConn(newUrl)
 
@@ -110,7 +110,7 @@ class NetHelper {
             var result = ""
 
             try {
-                Log.d(TAG, "GrowthNet newUrl = $newUrl")
+                Log.d(TAG, "Net newUrl = $newUrl")
 
 //                val response = client.newCall(request).execute()
 //                result = response?.body()?.string() ?: ""
