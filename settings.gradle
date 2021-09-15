@@ -1,10 +1,21 @@
-include ':sunset'
-include ':guaGuaLe'
-include ':fc3d'
-include ':sevenColors'
-include ':happy8'
-include ':twoColorBall'
-include ':base'
-include ':home'
-include ':app'
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        // Warning: this repository is going to shut down soon
+    }
+}
 rootProject.name = "LotteryViewer"
+include ':app'
+include ':base'
+include ':fc3d'
+include ':guaGuaLe'
+include ':happy8'
+include ':home'
+include ':sevenColors'
+include ':sunset'
+include ':twoColorBall'
+
+
+

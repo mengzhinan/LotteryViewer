@@ -30,6 +30,9 @@ proguard/
 # Log Files
 *.log
 
+.externalNativeBuild
+.cxx
+
 # Other Files
 captures/
 
