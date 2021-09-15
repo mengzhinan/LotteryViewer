@@ -18,7 +18,7 @@ class TwoColorBallMainPageActivity : BaseWebViewActivity() {
     companion object {
 
         // 福彩双色球网址
-        private const val URL = "http://www.cwl.gov.cn/"
+        private const val URL = "http://www.cwl.gov.cn/html5/fcpz/yxjs/ssq/"
 
         private const val MENU_ID_REFRESH = 0
         private const val MENU_ID_CHECK = 1

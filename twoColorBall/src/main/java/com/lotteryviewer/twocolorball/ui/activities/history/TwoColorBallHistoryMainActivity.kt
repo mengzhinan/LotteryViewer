@@ -17,7 +17,7 @@ class TwoColorBallHistoryMainActivity : BaseWebViewActivity() {
 
     companion object {
         // 历史中奖信息
-        private const val URL = "http://www.cwl.gov.cn/kjxx/ssq/kjgg/"
+        private const val URL = "http://www.cwl.gov.cn/html5/ygkj/wqkjgg/ssq/"
 
         private const val MENU_ID_REFRESH = 0
         private const val MENU_ID_ANALYSIS = 1
