@@ -79,6 +79,9 @@ object SingleBallHtmlUtil {
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
                     SingleBallDataUtil.parseSequenceStr(value)
+                    if (isNullOrNullStr(value)) {
+                        return
+                    }
                     isSequenceOK = true
                     checkDateAndCallback(
                         isSequenceOK,
@@ -98,6 +101,9 @@ object SingleBallHtmlUtil {
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
                     SingleBallDataUtil.parseDateStr(value)
+                    if (isNullOrNullStr(value)) {
+                        return
+                    }
                     isDateOK = true
                     checkDateAndCallback(
                         isSequenceOK,
@@ -117,6 +123,9 @@ object SingleBallHtmlUtil {
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
                     SingleBallDataUtil.parsePrizeBallNum(value)
+                    if (isNullOrNullStr(value)) {
+                        return
+                    }
                     isPrizeNumOK = true
                     checkDateAndCallback(
                         isSequenceOK,
@@ -136,6 +145,9 @@ object SingleBallHtmlUtil {
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
                     SingleBallDataUtil.parseCityStr(value)
+                    if (isNullOrNullStr(value)) {
+                        return
+                    }
                     isPrizeCityOK = true
                     checkDateAndCallback(
                         isSequenceOK,
@@ -155,6 +167,9 @@ object SingleBallHtmlUtil {
             object : FunctionStringOne {
                 override fun onCallBack(value: String?) {
                     SingleBallDataUtil.parseTwoHistoryBlueStr(value)
+                    if (isNullOrNullStr(value)) {
+                        return
+                    }
                     isTwoHistoryBlueOK = true
                     checkDateAndCallback(
                         isSequenceOK,
@@ -179,6 +194,10 @@ object SingleBallHtmlUtil {
         if (bl1 && bl2 && bl3 && bl4 && bl5) {
             callback?.onCallBack()
         }
+    }
+
+    private fun isNullOrNullStr(value: String?): Boolean {
+        return value == null || value.lowercase().trim().trim() == "null"
     }
 
 }
