@@ -8,37 +8,25 @@ import com.lotteryviewer.base.app.ActivityStack.init
  * @DateTime: 2021-03-17 10:53:57
  * @Description: 功能描述：
  */
-open class BaseApplication : Application() {
+object BaseApplication {
 
-    init {
-        setApplication(this)
+    private var mApplication: Application? = null
+
+    private fun setApplication(application: Application) {
+        mApplication = application
     }
 
-    override fun onCreate() {
-        super.onCreate()
+    fun get(): Application? {
+        if (mApplication != null) {
+            return mApplication
+        }
+        throw NullPointerException("Application 为空")
+    }
+
+    fun init(application: Application) {
+        setApplication(application)
         init(get())
         CrashExceptionHandler.instance?.setDefaultUnCrashExceptionHandler()
-    }
-
-    companion object {
-        private var REAL_INSTANCE: BaseApplication? = null
-        private var sApplicationContext: Application? = null
-        private fun setApplication(application: Application) {
-            sApplicationContext = application
-            if (application is BaseApplication) {
-                REAL_INSTANCE = application
-            }
-        }
-
-        fun get(): Application? {
-            if (REAL_INSTANCE != null) {
-                return REAL_INSTANCE
-            }
-            if (sApplicationContext != null) {
-                return sApplicationContext
-            }
-            throw NullPointerException("Application 为空")
-        }
     }
 
 }

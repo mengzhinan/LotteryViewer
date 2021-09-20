@@ -1,6 +1,8 @@
 package com.lotteryviewer.android
 
+import android.app.Application
 import android.content.Context
+import androidx.multidex.BuildConfig
 import androidx.multidex.MultiDex
 import com.lotteryviewer.base.app.AppBuildConfig
 import com.lotteryviewer.base.app.BaseApplication
@@ -11,10 +13,11 @@ import com.lotteryviewer.home.ui.activities.MainActivity
  * @DateTime: 2021-03-17 15:07:57
  * @Description: 功能描述：
  */
-class LotteryApplication : BaseApplication() {
+class LotteryApplication : Application() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
+        BaseApplication.init(this)
         MultiDex.install(this)
 
         AppBuildConfig.newBuilder()

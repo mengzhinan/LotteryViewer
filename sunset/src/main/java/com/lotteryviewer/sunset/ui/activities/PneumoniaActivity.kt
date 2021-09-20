@@ -7,6 +7,9 @@ import com.lotteryviewer.base.ui.BaseWebViewActivity
 import com.lotteryviewer.base.util.TextUtil
 import com.lotteryviewer.sunset.R
 
+/**
+ * 疫情信息查看
+ */
 class PneumoniaActivity : BaseWebViewActivity() {
 
     companion object {

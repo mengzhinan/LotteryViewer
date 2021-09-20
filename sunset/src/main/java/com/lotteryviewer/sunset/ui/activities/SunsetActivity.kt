@@ -12,6 +12,9 @@ import com.lotteryviewer.sunset.ui.widgets.SunsetWebViewClient
 import com.lotteryviewer.sunset.util.SunsetDataUtil
 import com.lotteryviewer.sunset.util.SunsetHtmlUtil
 
+/**
+ * 日出日落
+ */
 class SunsetActivity : BaseWebViewActivity() {
 
     companion object {
@@ -33,6 +36,15 @@ class SunsetActivity : BaseWebViewActivity() {
         baseWebView?.webViewClient = SunsetWebViewClient()
 
         refreshUrl()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        baseWebView?.postDelayed({
+            seeToday()
+        }, 1000)
+
     }
 
     private fun refreshUrl() {
@@ -66,16 +78,20 @@ class SunsetActivity : BaseWebViewActivity() {
             return true
         } else if (item.itemId == MENU_ID_SEE_TODAY) {
 
-            // 此处需要再次爬取数据
-            SunsetHtmlUtil.getHtmlText(baseWebView, object : FunctionNone {
-                override fun onCallBack() {
-                    SunsetTodayDialogUtil.showTodayDialog(this@SunsetActivity)
-                }
-            })
+            seeToday()
+
             return true
 
         }
         return super.onOptionsItemSelected(item)
     }
 
+    private fun seeToday() {
+        // 此处需要再次爬取数据
+        SunsetHtmlUtil.getHtmlText(baseWebView, object : FunctionNone {
+            override fun onCallBack() {
+                SunsetTodayDialogUtil.showTodayDialog(this@SunsetActivity)
+            }
+        })
+    }
 }
