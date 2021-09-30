@@ -49,11 +49,12 @@ object BaseSPUtil {
         return getSharedPreferences(context)?.getFloat(key, defaultValue) ?: defaultValue
     }
 
-    @SuppressLint("CommitPrefEdits")
+    @SuppressLint("CommitPrefEdits", "ApplySharedPref")
     fun putApply(
         context: Context?,
         key: String?,
         value: Any?,
+        isCommit: Boolean = false,
         listener: SharedPreferences.OnSharedPreferenceChangeListener? = null
     ) {
         key ?: return
@@ -62,16 +63,22 @@ object BaseSPUtil {
         if (listener != null) {
             sp.registerOnSharedPreferenceChangeListener(listener)
         }
+        var editor: SharedPreferences.Editor? = null
         if (value is Boolean) {
-            sp.edit()?.putBoolean(key, value)?.apply()
+            editor = sp.edit()?.putBoolean(key, value)
         } else if (value is Float) {
-            sp.edit()?.putFloat(key, value)?.apply()
+            editor = sp.edit()?.putFloat(key, value)
         } else if (value is Int) {
-            sp.edit()?.putInt(key, value)?.apply()
+            editor = sp.edit()?.putInt(key, value)
         } else if (value is Long) {
-            sp.edit()?.putLong(key, value)?.apply()
+            editor = sp.edit()?.putLong(key, value)
         } else if (value is String) {
-            sp.edit()?.putString(key, value)?.apply()
+            editor = sp.edit()?.putString(key, value)
+        }
+        if (isCommit) {
+            editor?.commit()
+        } else {
+            editor?.apply()
         }
     }
 
