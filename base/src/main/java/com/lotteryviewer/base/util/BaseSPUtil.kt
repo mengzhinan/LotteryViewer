@@ -50,7 +50,7 @@ object BaseSPUtil {
     }
 
     @SuppressLint("CommitPrefEdits", "ApplySharedPref")
-    fun putApply(
+    fun putData(
         context: Context?,
         key: String?,
         value: Any?,

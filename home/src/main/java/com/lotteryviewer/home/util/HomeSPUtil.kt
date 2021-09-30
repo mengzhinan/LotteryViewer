@@ -19,7 +19,7 @@ object HomeSPUtil {
     }
 
     fun setConsumeDisclaimerDialog() {
-        BaseSPUtil.putApply(BaseApplication.get(), KEY_DISCLAIMER_DIALOG_NEED_SHOW, false)
+        BaseSPUtil.putData(BaseApplication.get(), KEY_DISCLAIMER_DIALOG_NEED_SHOW, false)
     }
 
 }
