@@ -5,18 +5,26 @@ package com.lotteryviewer.base.util
  * @DateTime: 2021-03-17 12:46:23
  * @Description: 功能描述：
  */
-object FastClickUtil {
+class FastClickUtil(private var lastClickTime: Long) {
 
-    private var LAST_CLICK_TIME: Long = 0
+    init {
+        resetTime()
+    }
+
+    fun resetTime() {
+        lastClickTime = 0
+    }
 
     val isFastClick: Boolean
         get() = isFastClick(800)
 
     fun isFastClick(timeThreshold: Long): Boolean {
         val currentTime = System.currentTimeMillis()
-        val differenceTime = currentTime - LAST_CLICK_TIME
-        LAST_CLICK_TIME = currentTime
+        val differenceTime = currentTime - lastClickTime
+        lastClickTime = currentTime
         return differenceTime <= timeThreshold
     }
 
+
 }
+
