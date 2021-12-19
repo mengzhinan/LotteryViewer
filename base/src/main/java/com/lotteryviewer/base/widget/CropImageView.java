@@ -41,7 +41,7 @@ public class CropImageView extends AppCompatImageView {
             }
             Bitmap bitmap = drawableToBitmap(drawable);
             bitmap = cropBottom(bitmap);
-            if (bitmap == null) {
+            if (bitmap == null || bitmap.isRecycled()) {
                 return;
             }
             setImageBitmap(bitmap);
@@ -57,6 +57,9 @@ public class CropImageView extends AppCompatImageView {
      * @return new bitmap
      */
     private Bitmap cropBottom(Bitmap bitmap) {
+        if (bitmap == null || bitmap.isRecycled()) {
+            return null;
+        }
 
         int ivWidth = getMeasuredWidth();
         int ivHeight = getMeasuredHeight();
