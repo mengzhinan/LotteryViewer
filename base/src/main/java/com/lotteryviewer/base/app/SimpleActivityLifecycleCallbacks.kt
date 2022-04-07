@@ -10,6 +10,7 @@ import android.os.Bundle
  * @Description: 功能描述：
  */
 open class SimpleActivityLifecycleCallbacks : ActivityLifecycleCallbacks {
+
     /**
      * Called as the first step of the Activity being created. This is always called before
      * [Activity.onCreate].
