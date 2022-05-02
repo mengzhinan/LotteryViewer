@@ -4,6 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.net.Uri
+import android.os.Build
 
 /**
  * author: duke
@@ -34,6 +35,58 @@ object ClipManagerUtil {
             return null
         }
         return clipData.getItemAt(0)?.uri?.toString()
+    }
+
+    private fun getClipboardManager(context: Context?): ClipboardManager? {
+        return try {
+            context?.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager?
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    private fun getClipboardPrimaryClip(context: Context?): ClipData? {
+        return try {
+            getClipboardManager(context)?.primaryClip
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    /**
+     * 读取剪切板内容
+     */
+    fun getPrimaryClipText(context: Context?): String? {
+        val primaryClip = getClipboardPrimaryClip(context) ?: return null
+        if (primaryClip.itemCount <= 0) {
+            return null
+        }
+        val charSequence = primaryClip.getItemAt(0)?.text ?: return null
+        return charSequence.toString()
+    }
+
+    /**
+     * 设置剪切板
+     */
+    fun setClipText(context: Context?, text: String?) {
+        text ?: return
+        val clipboard = getClipboardManager(context)
+        clipboard?.setPrimaryClip(ClipData.newPlainText(text, text))
+    }
+
+    /**
+     * 清空剪切板
+     */
+    fun clearClipText(context: Context?) {
+        val clipboard = getClipboardManager(context)
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                clipboard?.clearPrimaryClip()
+            } else {
+                clipboard?.setPrimaryClip(ClipData.newPlainText("", ""))
+            }
+        } catch (e: Exception) {
+        }
     }
 
 }

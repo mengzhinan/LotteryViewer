@@ -11,7 +11,7 @@ import java.util.Locale;
  * @DateTime: 2021-12-10 17:02:09
  * @Description: 功能描述：
  */
-public class PreinstallMD5Utils {
+public class MD5UtilJava {
 
     public static String md5(String str) {
         if (str == null || TextUtils.isEmpty(str.trim())) {

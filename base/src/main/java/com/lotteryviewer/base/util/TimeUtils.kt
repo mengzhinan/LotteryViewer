@@ -1,5 +1,6 @@
 package com.lotteryviewer.base.util
 
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -9,6 +10,25 @@ import java.util.*
  *
  */
 object TimeUtils {
+
+    fun currentTimeToString(): String {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = System.currentTimeMillis()
+
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH) + 1
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+        val second = calendar.get(Calendar.SECOND)
+
+        val monthStr = if (month < 10) "0$month" else "$month"
+        val dayStr = if (day < 10) "0$day" else "$day"
+        val hourStr = if (hour < 10) "0$hour" else "$hour"
+        val minuteStr = if (minute < 10) "0$minute" else "$minute"
+        val secondStr = if (second < 10) "0$second" else "$second"
+        return "$year-$monthStr-$dayStr $hourStr:$minuteStr:$secondStr"
+    }
 
     /**
      * 获取某个时间的总毫秒数
@@ -57,6 +77,11 @@ object TimeUtils {
         timeMillisEnd: Long
     ): Boolean {
         return timeMillisCurrent in timeMillisStart..timeMillisEnd
+    }
+
+    fun getDateTimeStr(): String {
+        val sdf = SimpleDateFormat("yyyy.MM.dd HH:mm:ss")
+        return sdf.format(Date())
     }
 
 }

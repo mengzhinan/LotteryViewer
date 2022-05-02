@@ -4,6 +4,8 @@ import android.text.TextUtils
 import java.io.File
 import java.io.FileInputStream
 import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+import java.util.*
 
 /**
  * @Author: duke
@@ -17,6 +19,28 @@ object MD5Util {
         charArrayOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F')
 
     private val MESSAGE_DIGEST = MessageDigest.getInstance("MD5")
+
+    fun md5_2(str: String?): String {
+        if (str == null || TextUtils.isEmpty(str.trim())) {
+            return ""
+        }
+        try {
+            val messageDigest = MessageDigest.getInstance("MD5") ?: return ""
+            val bytes = messageDigest.digest(str.trim().toByteArray()) ?: return ""
+            val result = StringBuilder()
+            for (b in bytes) {
+                var temp = Integer.toHexString(b.toInt() and 0xFF).toUpperCase(Locale.getDefault())
+                if (temp.length == 1) {
+                    temp = "0$temp"
+                }
+                result.append(temp)
+            }
+            return result.toString()
+        } catch (e: NoSuchAlgorithmException) {
+            e.printStackTrace()
+        }
+        return ""
+    }
 
     /**
      * 转换字节数组为 16 进制值

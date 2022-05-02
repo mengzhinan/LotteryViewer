@@ -39,7 +39,7 @@ object UriUtil {
 
     fun decodeUriOrParam(str: String?): String? {
         return try {
-            URLDecoder.decode(str, "UTF-8").trim()
+            URLDecoder.decode(str, "UTF-8")?.trim()
         } catch (e: Exception) {
             e.printStackTrace()
             null
