@@ -14,17 +14,37 @@ import java.io.InputStream
  */
 object AssetsFileCopyUtil {
 
-    fun copyAssetsFileToExtendedStorage(
+    /**
+     * copy Assets 中的文件 to
+     * @param context context
+     * @param fullNameAndSuffix Assets 中的文件名 + 后缀名
+     * @param isFocus 如果目标文件已经存在，是否强制覆盖旧文件
+     * @return is copy success
+     */
+    fun copyAssetsFileTo(
         context: Context?,
         fullNameAndSuffix: String?,
         outFile: File?,
+        isFocus: Boolean = false
     ): Boolean {
         context ?: return false
         fullNameAndSuffix ?: return false
         outFile ?: return false
 
         if (outFile.exists()) {
-            return true
+            if (isFocus) {
+                // 强制 copy，先删除再 copy
+                try {
+                    outFile.delete()
+                    outFile.createNewFile()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    return false
+                }
+            } else {
+                // 非强制 copy，如果存在则不 copy
+                return false
+            }
         }
 
         var inputStream: InputStream? = null
@@ -32,7 +52,7 @@ object AssetsFileCopyUtil {
         try {
             inputStream = context.assets.open(fullNameAndSuffix)
             fos = FileOutputStream(outFile)
-            val buffer = ByteArray(1024)
+            val buffer = ByteArray(8192)
             var byteCount = inputStream.read(buffer)
             while (byteCount != -1) {
                 fos.write(buffer, 0, byteCount)
@@ -41,13 +61,16 @@ object AssetsFileCopyUtil {
             return true
         } catch (e: IOException) {
             e.printStackTrace()
-            return false
         } finally {
-            fos?.flush()
-            fos?.close()
-            inputStream?.close()
+            try {
+                fos?.flush()
+                fos?.close()
+                inputStream?.close()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
-
+        return false
     }
 
 }
