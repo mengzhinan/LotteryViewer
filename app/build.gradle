@@ -48,7 +48,7 @@ android {
         alpha {
             versionNameSuffix "-dev"
             buildConfigField "String", "INSTALLER_ID", "\"Development\""
-            resConfigs "zh-rCN", "xxhdpi"
+            resConfigs 'zh-rCN', 'xxhdpi'
         }
 
         market {
@@ -64,6 +64,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'com.lotteryviewer.android'
 //    lintOptions {
 //        checkReleaseBuilds false
 //        abortOnError false

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.lotteryviewer.base">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Android 11 以上版本，管理 SDCard 文件权限，包括读写沙盒以外区域 -->
     <uses-permission
