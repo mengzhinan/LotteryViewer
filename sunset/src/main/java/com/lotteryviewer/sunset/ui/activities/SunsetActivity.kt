@@ -27,6 +27,8 @@ class SunsetActivity : BaseWebViewActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        SunsetDataUtil.setNotDataOK()
+
         // 解析对应的 url
         url = SunsetDataUtil.parseIntentUrl(intent)
 
@@ -41,9 +43,7 @@ class SunsetActivity : BaseWebViewActivity() {
     override fun onResume() {
         super.onResume()
 
-        baseWebView?.postDelayed({
-            seeToday()
-        }, 1000)
+        seeToday()
 
     }
 
@@ -87,11 +87,18 @@ class SunsetActivity : BaseWebViewActivity() {
     }
 
     private fun seeToday() {
-        // 此处需要再次爬取数据
-        SunsetHtmlUtil.getHtmlText(baseWebView, object : FunctionNone {
-            override fun onCallBack() {
-                SunsetTodayDialogUtil.showTodayDialog(this@SunsetActivity)
-            }
-        })
+        baseWebView?.postDelayed({
+            // 此处需要再次爬取数据
+            SunsetHtmlUtil.getHtmlText(baseWebView, object : FunctionNone {
+                override fun onCallBack() {
+                    if (SunsetDataUtil.isDataOK()) {
+                        SunsetTodayDialogUtil.showTodayDialog(this@SunsetActivity)
+                    } else {
+                        seeToday()
+                    }
+                }
+            })
+        }, 100)
+
     }
 }

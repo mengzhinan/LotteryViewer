@@ -42,6 +42,8 @@ object SunsetDataUtil {
     private var dayLightStr: String? = ""
     private var dayDarkStr: String? = ""
 
+    private var dataParseOK = false
+
     fun getDateStr(): String {
         return dateStr ?: ""
     }
@@ -68,6 +70,12 @@ object SunsetDataUtil {
 
     fun getDayDarkStr(): String {
         return dayDarkStr ?: ""
+    }
+
+    fun isDataOK() = dataParseOK
+
+    fun setNotDataOK(){
+        dataParseOK = false
     }
 
     fun parseData(value: String?) {
@@ -109,6 +117,7 @@ object SunsetDataUtil {
                 dayLightStr = item
             } else if (index == 6) {
                 dayDarkStr = item
+                dataParseOK = true
             }
         }
 

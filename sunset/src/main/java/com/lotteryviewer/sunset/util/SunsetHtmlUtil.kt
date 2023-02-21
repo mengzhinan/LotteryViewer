@@ -51,6 +51,11 @@ object SunsetHtmlUtil {
     fun getHtmlText(view: WebView?, endCallback: FunctionNone?) {
         view ?: return
 
+        if (SunsetDataUtil.isDataOK()) {
+            endCallback?.onCallBack()
+            return
+        }
+
         BaseHtmlJSUtil.loadAndCallJs(
             view,
             getSunInfo,
