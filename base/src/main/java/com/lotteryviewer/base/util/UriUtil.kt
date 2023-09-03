@@ -1,6 +1,7 @@
 package com.lotteryviewer.base.util
 
 import android.net.Uri
+import android.text.TextUtils
 import java.net.URLDecoder
 
 /**
@@ -11,39 +12,23 @@ import java.net.URLDecoder
  */
 object UriUtil {
 
-    fun getUriParameter(
-        uriString: String?,
-        paramKey: String?,
-        isNeedDecode: Boolean = true
-    ): String {
-        return try {
-            getUriParameter(Uri.parse(uriString), paramKey, isNeedDecode)
-        } catch (e: Exception) {
-            ""
-        }
-    }
+    private const val CHARSET_UTF_8 = "UTF-8"
 
-    fun getUriParameter(uri: Uri?, paramKey: String?, isNeedDecode: Boolean = true): String {
-        return try {
-            // var va = uri?.getQueryParameters("target")?.getOrNull(0)?:""
-            var value = uri?.getQueryParameter(paramKey) ?: ""
-            if (value.isNotBlank() && isNeedDecode) {
-                value = decodeUriOrParam(value) ?: ""
+    @JvmStatic
+    fun parseUriParam(uri: Uri?, key: String?): String? {
+        if (uri == null || TextUtils.isEmpty(key)) {
+            return null
+        }
+        var value: String? = null
+        try {
+            value = uri.getQueryParameter(key)?.trim()
+            if (!value.isNullOrEmpty()) {
+                value = URLDecoder.decode(value, CHARSET_UTF_8).trim()
             }
-            value
         } catch (e: Exception) {
             e.printStackTrace()
-            ""
         }
-    }
-
-    fun decodeUriOrParam(str: String?): String? {
-        return try {
-            URLDecoder.decode(str, "UTF-8")?.trim()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            null
-        }
+        return value
     }
 
 }

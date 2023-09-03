@@ -21,6 +21,7 @@ object ColorUtil {
      * @param isWithAlpha 是否需要拼接 alpha 不透明度部分。如：需要拼接，那么颜色值就是 #FF000000 中的 FF 部分。
      * @return 颜色值 16 进制的字符串。如：#FF0000。
      */
+    @JvmStatic
     fun getColorToHexString(@ColorInt color: Int, isWithAlpha: Boolean? = true): String {
         val alphaHexStr = intToHexString(Color.alpha(color))
         val redHexStr = intToHexString(Color.red(color))
@@ -40,6 +41,7 @@ object ColorUtil {
      * @param color 颜色 16 进制的字符串。如：#FF0000。
      * @return 颜色值 int。如果返回值为 null，则表示解析失败。
      */
+    @JvmStatic
     fun getColorToIntSafety(color: String?): Int {
         if (color.isNullOrBlank()) {
             return 0
@@ -66,6 +68,7 @@ object ColorUtil {
      * @param alphaFloat 透明度。0.0: 完全透明；1.0: 完全不透明。
      * @return 新的颜色值
      */
+    @JvmStatic
     fun getColorIntByAlpha(
         @ColorInt color: Int, @FloatRange(from = 0.0, to = 1.0) alphaFloat: Float
     ): Int {
@@ -94,6 +97,7 @@ object ColorUtil {
      * @param alphaInt 透明度。0: 完全透明；100: 完全不透明。
      * @return 新的颜色值
      */
+    @JvmStatic
     fun getColorIntByAlpha(
         @ColorInt color: Int, @IntRange(from = 0, to = 100) alphaInt: Int
     ): Int {
@@ -111,6 +115,7 @@ object ColorUtil {
      * 取值范围 [0.0, 1.0]。
      * 0.0: 完全透明；1.0: 完全不透明。
      */
+    @JvmStatic
     fun getAlphaFloat(@ColorInt color: Int): Float {
         // Color.alpha 取值范围：@IntRange(from = 0, to = 255)
         val alphaForColor = Color.alpha(color)
@@ -126,6 +131,7 @@ object ColorUtil {
      * @param color 原始颜色值 int。
      * @return 透明度值 16 进制字符串。取值范围：["00", "FF"]
      */
+    @JvmStatic
     fun getAlphaHexString(@ColorInt color: Int): String {
         // Color.alpha 取值范围：@IntRange(from = 0, to = 255)
         val alphaForColor = Color.alpha(color)
